@@ -1,0 +1,123 @@
+{
+  "totalDuration": 98.276,
+  "totalFrames": 2948,
+  "fps": 30,
+  "sentences": [
+    {
+      "id": 0,
+      "scene": 1,
+      "text": "当你一不小心在 skills 后面加了个 sh，你就进入了这个全球最大的 AI Agent Skills 技能库！",
+      "dur": 8.038,
+      "start": 0.35,
+      "end": 8.388,
+      "startFrame": 10,
+      "endFrame": 252
+    },
+    {
+      "id": 1,
+      "scene": 1,
+      "text": "有帮你连数据库的，做简报的，写文章的，做海报的，功能一应俱全。",
+      "dur": 7.759,
+      "start": 8.788,
+      "end": 16.547,
+      "startFrame": 264,
+      "endFrame": 496
+    },
+    {
+      "id": 2,
+      "scene": 2,
+      "text": "面对如今浩如烟海的 151 万多个 skills，哪怕你是零基础文科生，也能通过 Vibe Coding 轻松手搓出全功能网站！",
+      "dur": 9.992,
+      "start": 17.197,
+      "end": 27.189,
+      "startFrame": 516,
+      "endFrame": 816
+    },
+    {
+      "id": 3,
+      "scene": 3,
+      "text": "操作极度丝滑：在 skills.sh 上选中头脑风暴 skill，点击复制；随即打开 Cursor，把代码直接丢进对话框，下一秒这个技能就装好了！",
+      "dur": 12.643,
+      "start": 27.839,
+      "end": 40.482,
+      "startFrame": 835,
+      "endFrame": 1214
+    },
+    {
+      "id": 4,
+      "scene": 4,
+      "text": "然后你对 Cursor 说：我想做一个适合家长带孩子学英文的网站，先帮我头脑风暴，再写代码。",
+      "dur": 8.763,
+      "start": 41.132,
+      "end": 49.895,
+      "startFrame": 1234,
+      "endFrame": 1497
+    },
+    {
+      "id": 5,
+      "scene": 4,
+      "text": "Cursor 不仅帮你理清需求，还自动输出方案！确定后，Cursor 直接写程式码。",
+      "dur": 9.126,
+      "start": 50.345,
+      "end": 59.471,
+      "startFrame": 1510,
+      "endFrame": 1784
+    },
+    {
+      "id": 6,
+      "scene": 5,
+      "text": "只需三分钟，你的网站做好了！打开一看：分级阅读库，即时发音纠错，生词本，家长监控，功能一应俱全！",
+      "dur": 14.43,
+      "start": 60.121,
+      "end": 74.551,
+      "startFrame": 1804,
+      "endFrame": 2237
+    },
+    {
+      "id": 7,
+      "scene": 6,
+      "text": "学会了 skills，就等于给你的 AI 免费培训了数万个随时上岗的顶级员工。最实用的十个高频 skills 已经给大家打包整理好了，评论区回复 666 免费领取。",
+      "dur": 14.235,
+      "start": 75.201,
+      "end": 89.436,
+      "startFrame": 2256,
+      "endFrame": 2683
+    },
+    {
+      "id": 8,
+      "scene": 6,
+      "text": "我是胖猫 AI，带你探索 AI 超级个体之路，咱们下期见！",
+      "dur": 6.14,
+      "start": 89.936,
+      "end": 96.076,
+      "startFrame": 2698,
+      "endFrame": 2882
+    }
+  ],
+  "scenes": {
+    "scene1": {
+      "fromFrame": 0,
+      "durationInFrames": 511
+    },
+    "scene2": {
+      "fromFrame": 511,
+      "durationInFrames": 320
+    },
+    "scene3": {
+      "fromFrame": 831,
+      "durationInFrames": 398
+    },
+    "scene4": {
+      "fromFrame": 1229,
+      "durationInFrames": 570
+    },
+    "scene5": {
+      "fromFrame": 1799,
+      "durationInFrames": 453
+    },
+    "scene6": {
+      "fromFrame": 2252,
+      "durationInFrames": 696
+    }
+  }
+}

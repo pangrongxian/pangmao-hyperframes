@@ -1,0 +1,486 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Stage 1: Official Prototype Poster & CTA Card */
+    .stage1-container {
+      position: absolute;
+      top: 130px;
+      left: 180px;
+      width: 1560px;
+      height: 640px;
+      display: flex;
+      gap: 36px;
+      z-index: 20;
+    }
+
+    /* Left: Mobile Viewport housing the Official Prototype Poster */
+    .poster-viewport-card {
+      width: 520px;
+      height: 100%;
+      background: #090D16;
+      border-radius: 28px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .poster-header-pill {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      color: #FCD34D;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 16px;
+      border-radius: 9999px;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      letter-spacing: 0.04em;
+    }
+    .poster-scroll-window {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .poster-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+      will-change: transform;
+    }
+
+    /* Right: High-Conversion CTA Card */
+    .cta-card {
+      flex: 1;
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1.5px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      padding: 44px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .cta-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cta-tag {
+      font-size: 14px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #FEF3C7;
+      padding: 6px 18px;
+      border-radius: 9999px;
+    }
+    .cta-pill-count {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0369A1;
+      background: #E0F2FE;
+      padding: 6px 16px;
+      border-radius: 9999px;
+    }
+
+    .cta-main-box {
+      background: linear-gradient(135deg, #FFFDF7 0%, #FEF9EC 100%);
+      border: 2px dashed #EAB308;
+      border-radius: 24px;
+      padding: 30px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.08);
+      position: relative;
+    }
+    .cta-box-sub {
+      font-size: 18px;
+      font-weight: 800;
+      color: #78350F;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .cta-btn-text {
+      font-size: 46px;
+      font-weight: 900;
+      color: #B45309;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 4px rgba(180, 83, 9, 0.15);
+    }
+    .cta-box-desc {
+      font-size: 16px;
+      font-weight: 800;
+      color: #D97706;
+      letter-spacing: 0.04em;
+    }
+
+    .perks-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      background: #F8FAFC;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 14px;
+    }
+    .perk-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #10B981;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .perk-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .perk-sub {
+      font-size: 13px;
+      color: #64748B;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    /* Stage 2: Grand Outro Screen */
+    .grand-outro {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      z-index: 70;
+    }
+    .outro-avatar-ring {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 6px solid #FFFFFF;
+      box-shadow: 0 16px 40px rgba(50, 38, 25, 0.16), 0 0 0 4px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .outro-avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .outro-brand-arch {
+      width: 52px;
+      height: 9px;
+      border-top: 5px solid #C58B35;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+    }
+    .outro-title {
+      font-size: 54px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+    .outro-sub {
+      font-size: 28px;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+    .outro-pill {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(220, 214, 204, 0.9);
+      padding: 14px 38px;
+      border-radius: 9999px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #C58B35;
+      box-shadow: 0 12px 28px rgba(45, 35, 20, 0.08);
+      letter-spacing: 0.04em;
+    }
+
+    /* Presenter HUD & Subtitle */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="scene6">
+    <div class="header-nav">
+      <span class="nav-num">06</span>
+      <span class="nav-title">超级个体</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <span class="brand-title">胖猫</span>
+    </div>
+
+    <!-- Stage 1: Official Prototype Poster & CTA Card -->
+    <div class="stage1-container" id="s6-stage1">
+      <!-- Left: Official Prototype Poster Viewport -->
+      <div class="poster-viewport-card" id="s6-poster-card">
+        <div class="poster-header-pill">🔥 2026 官方下载榜单 TOP 10</div>
+        <div class="poster-scroll-window">
+          <img class="poster-img" id="s6-poster-img" src="assets/top10_poster.jpg" alt="Vercel AI Skill 热门技能 TOP 10" />
+        </div>
+      </div>
+
+      <!-- Right: High-Conversion CTA Card -->
+      <div class="cta-card" id="s6-reply-card">
+        <div class="cta-top-bar">
+          <div class="cta-tag">✦ 粉丝专属免费福利 ✦</div>
+          <div class="cta-pill-count">10 款高频技能配置文件全打包</div>
+        </div>
+
+        <div class="cta-main-box">
+          <div class="cta-box-sub">评论区直接回复</div>
+          <div class="cta-btn-text">「 666 」</div>
+          <div class="cta-box-desc">免费私信自动发送全套资源包</div>
+        </div>
+
+        <div class="perks-checklist">
+          <div class="perk-item">
+            <div class="perk-icon">✓</div>
+            <div class="perk-title">10 个官方热门 Skills 配置文件</div>
+            <div class="perk-sub">支持 Cursor / Claude 即插即用</div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">✓</div>
+            <div class="perk-title">零基础 Vibe Coding 实操手搓视频教程</div>
+            <div class="perk-sub">10 分钟手把手带练</div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">✓</div>
+            <div class="perk-title">KidsLingo 商业级完整项目工程开源源码</div>
+            <div class="perk-sub">一键本地启动调试</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 2: Grand Outro Screen -->
+    <div class="grand-outro" id="s6-grand-outro">
+      <div class="outro-avatar-ring">
+        <img src="assets/avatar.jpg" alt="胖猫AI" />
+      </div>
+      <div>
+        <div class="outro-brand-arch"></div>
+        <div class="outro-title">胖猫 AI</div>
+      </div>
+      <div class="outro-sub">带你探索 AI 时代超级个体之路</div>
+      <div class="outro-pill">点赞 · 收藏 · 关注 ✦ 咱们下期见！</div>
+    </div>
+
+    <!-- Presenter Avatar HUD -->
+    <div class="avatar-hud" id="s6-avatar">
+      <img src="assets/avatar.jpg" alt="胖猫AI" />
+    </div>
+
+    <!-- Bottom Center Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s6-sub">最实用的 10 个高频 skills 已打包整理好，评论区回复 <span class="sub-hl">「666」</span> 免费领！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s6-stage1", 
+      { opacity: 0.9, y: 30, scale: 0.98 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0
+    );
+
+    // Auto-scroll the official prototype poster smoothly to show all 10 skills
+    tl.fromTo("#s6-poster-img", 
+      { y: 0 }, 
+      { y: -390, duration: 11.5, ease: "power1.inOut" }, 
+      1.0
+    );
+
+    // Pulse on reply CTA
+    tl.to("#s6-reply-card", { scale: 1.03, duration: 1.2, yoyo: true, repeat: 5, ease: "sine.inOut" }, 1.5);
+
+    // Grand Outro at 14.5s (global 85.9s)
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 超级个体之路，咱们下期见！";
+
+      const s1 = document.getElementById("s6-stage1");
+      const outro = document.getElementById("s6-grand-outro");
+      const avHud = document.getElementById("s6-avatar");
+      if (s1) s1.style.display = "none";
+      if (avHud) avHud.style.display = "none";
+      if (outro) outro.style.display = "flex";
+    }, null, 14.5);
+
+    tl.fromTo("#s6-grand-outro", 
+      { opacity: 0, scale: 0.92 }, 
+      { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      14.6
+    );
+
+    // Gentle Avatar Breathing
+    tl.fromTo("#s6-avatar", { y: 0 }, { y: -8, duration: 1.8, yoyo: true, repeat: 7, ease: "sine.inOut" }, 0.2);
+
+    window.__timelines = window.__timelines || {};
+    // Final frame holds on grand outro page without fadeout
+    window.__timelines["scene6"] = tl;
+  </script>
+</template>

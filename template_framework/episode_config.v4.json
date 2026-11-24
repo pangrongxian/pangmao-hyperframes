@@ -1,0 +1,66 @@
+{
+  "title": "胖猫AI - 1分钟学会Agent Skills手搓网站 (v4 模版风格精制版)",
+  "totalDuration": 92.0,
+  "audio": "assets/audio.mp3",
+  "brand": {
+    "name": "胖猫",
+    "subname": "AI 超级个体实验室",
+    "avatar": "assets/avatar.jpg"
+  },
+  "scenes": [
+    {
+      "id": "scene1",
+      "file": "scene1_hook.html",
+      "chapter": "01 发现神器",
+      "start": 0.0,
+      "duration": 14.0,
+      "type": "card_matrix",
+      "description": "官网检索触发 + 4列拟态功能卡片光标点击"
+    },
+    {
+      "id": "scene2",
+      "file": "scene2_70k.html",
+      "chapter": "02 浩瀚生态",
+      "start": 14.0,
+      "duration": 10.5,
+      "type": "leaderboard",
+      "description": "天梯评测榜单Elo进度条 + 151万动态翻滚数字卡"
+    },
+    {
+      "id": "scene3",
+      "file": "scene3_install.html",
+      "chapter": "03 一键安装",
+      "start": 24.5,
+      "duration": 12.5,
+      "type": "pipeline_comparison",
+      "description": "传统流程 vs 极速流双轨管道对比 + Cursor代码键入秒级装配"
+    },
+    {
+      "id": "scene4",
+      "file": "scene4_product.html",
+      "chapter": "04 需求企划",
+      "start": 37.0,
+      "duration": 20.8,
+      "type": "workflow_prd",
+      "description": "全流程横向里程碑 + 需求对话气泡 + PRD逐条确认 + 自动编码进度"
+    },
+    {
+      "id": "scene5",
+      "file": "scene5_app.html",
+      "chapter": "05 极速交付",
+      "start": 57.8,
+      "duration": 13.6,
+      "type": "product_showcase",
+      "description": "3分钟上线成品展示 + 四角核心功能卡片 + 动态音频波形"
+    },
+    {
+      "id": "scene6",
+      "file": "scene6_outro.html",
+      "chapter": "06 超级个体",
+      "start": 71.4,
+      "duration": 20.6,
+      "type": "checklist_cta_outro",
+      "description": "Top 10高频Skills清单 + 666领取卡片 + 品牌全屏收尾"
+    }
+  ]
+}

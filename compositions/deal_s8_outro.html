@@ -1,0 +1,215 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Grand Outro Center Screen */
+    .grand-outro-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+    }
+    .outro-avatar-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 5px solid #FFFFFF;
+      box-shadow: 0 16px 40px rgba(50, 38, 25, 0.14), 0 0 0 4px #E5DBC7;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .outro-avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .outro-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .outro-desc {
+      font-size: 22px;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.05em;
+      margin-bottom: 32px;
+    }
+    .outro-btn-capsule {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 14px 44px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #C58B35;
+      box-shadow: 0 10px 24px rgba(45, 35, 20, 0.06);
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s8_outro">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">08</span>
+      <span class="nav-title">超级个体</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Grand Outro Center Screen -->
+    <div class="grand-outro-screen" id="grand-outro">
+      <div class="outro-avatar-ring">
+        <img src="assets/avatar.jpg" alt="Outro Presenter" />
+      </div>
+      <div class="outro-title">胖猫 AI</div>
+      <div class="outro-desc">带你探索 AI 时代超级个体之路</div>
+      <div class="outro-btn-capsule">✦ 点赞 · 收藏 · 关注 ✦ 咱们下期见！✦</div>
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text">
+          我是<span class="sub-hl">胖猫 AI</span>，带你探索 AI 超级个体之路，咱们下期见！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#grand-outro", 
+      { opacity: 0, scale: 0.92 }, 
+      { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0.1
+    );
+
+    // Subtle gentle avatar pulse
+    tl.fromTo(".outro-avatar-ring", 
+      { y: 0 }, 
+      { y: -8, duration: 1.8, yoyo: true, repeat: -1, ease: "sine.inOut" }, 
+      0.3
+    );
+
+    window.__timelines = window.__timelines || {};
+    // CONTRACT: Permanent hold on final outro screen, NO opacity fadeout!
+    window.__timelines["deal_s8_outro"] = tl;
+  </script>
+</template>
+

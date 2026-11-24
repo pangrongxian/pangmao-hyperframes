@@ -1,0 +1,65 @@
+{
+  "theme": "warm-tech-editorial",
+  "name": "亚里温暖纸质编排设计系统 (Warm-Tech Editorial)",
+  "colors": {
+    "background": "#F7F5EE",
+    "backgroundRadial": "radial-gradient(ellipse at 50% 40%, #FCFAF5 0%, #F5F1E6 100%)",
+    "gridLine": "rgba(185, 170, 150, 0.22)",
+    "textPrimary": "#1A1C20",
+    "textSecondary": "#64748B",
+    "textMuted": "#94A3B8",
+    "accentGold": "#C58B35",
+    "accentGoldBg": "#FEF3C7",
+    "accentGoldBorder": "#FDE68A",
+    "cardBackground": "#FFFFFF",
+    "cardBorder": "rgba(220, 214, 204, 0.75)",
+    "capsuleBackground": "rgba(255, 255, 255, 0.94)",
+    "capsuleBorder": "rgba(220, 214, 204, 0.85)",
+    "successGreen": "#10B981",
+    "successGreenBg": "#ECFDF5",
+    "errorRed": "#EF4444"
+  },
+  "grid": {
+    "size": "54px 54px",
+    "lineWidth": "1.5px"
+  },
+  "typography": {
+    "fontFamily": "'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "codeFont": "'SF Mono', Menlo, Monaco, Consolas, monospace",
+    "chapterNumberSize": "26px",
+    "chapterTitleSize": "24px",
+    "brandTitleSize": "26px",
+    "subtitleSize": "36px",
+    "cardTitleSize": "26px",
+    "cardBodySize": "16px"
+  },
+  "shadows": {
+    "clayCard": "0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF",
+    "cardFocused": "0 24px 56px -4px rgba(197, 139, 53, 0.22), 0 8px 24px rgba(45, 35, 20, 0.06), inset 0 1px 0 #FFFFFF",
+    "capsule": "0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF",
+    "avatarHud": "0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7",
+    "pointerShadow": "0 8px 16px rgba(0, 0, 0, 0.22)"
+  },
+  "layout": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "headerTop": "48px",
+    "headerLeft": "64px",
+    "headerRight": "68px",
+    "avatarBottom": "52px",
+    "avatarLeft": "64px",
+    "avatarSize": "110px",
+    "subtitleBottom": "64px",
+    "subtitlePaddingX": "200px"
+  },
+  "audioMastering": {
+    "voiceoverBoost": 2.2,
+    "voiceoverLimiter": 0.95,
+    "bgmVolume": 0.06,
+    "bgmFadeInSeconds": 1.5,
+    "bgmFadeOutSeconds": 2.0,
+    "targetMeanVolumeDb": -18.9,
+    "sampleRate": 48000
+  }
+}

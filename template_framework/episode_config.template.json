@@ -1,0 +1,170 @@
+{
+  "title": "项目标题 - 副标题描述",
+  "totalDuration": 92.0,
+  "voiceover": "assets/voiceover.mp3",
+  "bgm": "assets/bgm/dreamer.mp3",
+  "audio": "assets/audio_master.mp3",
+  "brand": {
+    "name": "品牌名",
+    "subname": "子标语",
+    "avatar": "assets/avatar.jpg"
+  },
+  "sfx_events": [
+    [0.5, "assets/sfx/whoosh.wav", 0.3],
+    [1.4, "assets/sfx/ding.wav", 0.3],
+    [8.3, "assets/sfx/whoosh.wav", 0.3],
+    [9.3, "assets/sfx/pop_click.wav", 0.5],
+    [10.3, "assets/sfx/pop_click.wav", 0.5],
+    [11.3, "assets/sfx/pop_click.wav", 0.5],
+    [12.3, "assets/sfx/pop_click.wav", 0.5],
+    [14.0, "assets/sfx/whoosh.wav", 0.3],
+    [17.5, "assets/sfx/ding.wav", 0.3],
+    [24.5, "assets/sfx/whoosh.wav", 0.3],
+    [28.5, "assets/sfx/pop_click.wav", 0.4],
+    [31.0, "assets/sfx/tap.wav", 0.35],
+    [34.0, "assets/sfx/check.wav", 0.35],
+    [37.0, "assets/sfx/whoosh.wav", 0.3],
+    [44.5, "assets/sfx/check.wav", 0.3],
+    [52.0, "assets/sfx/ding.wav", 0.35],
+    [57.8, "assets/sfx/whoosh.wav", 0.3],
+    [62.0, "assets/sfx/pop_click.wav", 0.5],
+    [63.8, "assets/sfx/pop_click.wav", 0.5],
+    [65.7, "assets/sfx/pop_click.wav", 0.5],
+    [67.5, "assets/sfx/pop_click.wav", 0.5],
+    [71.4, "assets/sfx/whoosh.wav", 0.3],
+    [75.5, "assets/sfx/check.wav", 0.35],
+    [80.5, "assets/sfx/ding.wav", 0.4],
+    [86.0, "assets/sfx/whoosh.wav", 0.3]
+  ],
+  "scenes": [
+    {
+      "id": "scene1",
+      "file": "scene1_hook.html",
+      "type": "grid_cards",
+      "chapter_num": "01",
+      "chapter_title": "发现神器",
+      "brand_name": "胖猫",
+      "start": 0.0,
+      "duration": 14.0,
+      "browser_url": "https://skills.sh",
+      "cards": [
+        {
+          "id": "c1",
+          "title": "连数据库",
+          "desc": "Supabase / PG / MySQL<br>秒级打通业务数据底座",
+          "tag": "实时直连",
+          "color": "#0284C7",
+          "icon": "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+        },
+        {
+          "id": "c2",
+          "title": "做 PPT",
+          "desc": "PptxGenJS 智能排版<br>商务演说级美学输出",
+          "tag": "一键排版",
+          "color": "#F59E0B",
+          "icon": "M7 4V20M17 4V20M3 8H7M17 8H21M3 12H21M3 16H7M17 16H21M4 20H20C20.5523 20 21 19.5523 21 19V5C21 4.44772 20.5523 4 20 4H4C3.44772 4 3 4.44772 3 5V19C3 19.5523 3.44772 20 4 20Z"
+        },
+        {
+          "id": "c3",
+          "title": "写长文",
+          "desc": "万字专业行业研报<br>深度拆解与知识逻辑",
+          "tag": "万字研报",
+          "color": "#10B981",
+          "icon": "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        },
+        {
+          "id": "c4",
+          "title": "做海报",
+          "desc": "SVG & Canvas 矢量绘图<br>品牌级视觉宣发物料",
+          "tag": "视觉工坊",
+          "color": "#8B5CF6",
+          "icon": "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        }
+      ],
+      "subtitles": [
+        {"start": 0.0, "text": "想要手搓<span class='sub-hl'>全栈应用</span>，但不知道从何开始？"},
+        {"start": 4.5, "text": "别慌！打开这个目前全球最火的 <span class='sub-hl'>Skills 生态站</span>。"},
+        {"start": 8.5, "text": "有帮你<span class='sub-hl'>连数据库</span>的、<span class='sub-hl'>做 PPT</span>的、<span class='sub-hl'>写长文</span>的，应有尽有！"}
+      ]
+    },
+    {
+      "id": "scene2",
+      "file": "scene2_70k.html",
+      "type": "leaderboard",
+      "chapter_num": "02",
+      "chapter_title": "浩瀚生态",
+      "brand_name": "胖猫",
+      "start": 14.0,
+      "duration": 10.5,
+      "counter_target": "1,514,280",
+      "subtitles": [
+        {"start": 0.0, "text": "光是官方收录的技能，就已经超过了 <span class='sub-hl'>151 万次</span>安装！"},
+        {"start": 5.0, "text": "它就像一个巨大的 <span class='sub-hl'>AI 外挂超市</span>，让普通人也能瞬间拥有顶级工程师的能力。"}
+      ]
+    },
+    {
+      "id": "scene3",
+      "file": "scene3_install.html",
+      "type": "process_flow",
+      "chapter_num": "03",
+      "chapter_title": "一键安装",
+      "brand_name": "胖猫",
+      "start": 24.5,
+      "duration": 12.5,
+      "subtitles": [
+        {"start": 0.0, "text": "以前我们要写一堆配置、查半天文档，还容易报错。"},
+        {"start": 4.5, "text": "现在只需要在 <span class='sub-hl'>Cursor</span> 里输入一条命令，技能自动装载！"}
+      ]
+    },
+    {
+      "id": "scene4",
+      "file": "scene4_product.html",
+      "type": "workspace_prd",
+      "chapter_num": "04",
+      "chapter_title": "需求企划",
+      "brand_name": "胖猫",
+      "start": 37.0,
+      "duration": 20.8,
+      "subtitles": [
+        {"start": 0.0, "text": "比如我想做一款<span class='sub-hl'>儿童英语分级绘本站</span>。"},
+        {"start": 5.0, "text": "我们让 AI 扮演产品经理，逐条审查边界条件与技术可行性。"},
+        {"start": 12.0, "text": "确认完毕后，直接交给自动化流水线并行编写全栈代码！"}
+      ]
+    },
+    {
+      "id": "scene5",
+      "file": "scene5_app.html",
+      "type": "app_satellites",
+      "chapter_num": "05",
+      "chapter_title": "极速交付",
+      "brand_name": "胖猫",
+      "start": 57.8,
+      "duration": 13.6,
+      "app_url": "https://kidslingo.ai · 实时运行中",
+      "subtitles": [
+        {"start": 0.0, "text": "只需要 <span class='sub-hl'>3 分钟</span>，你的网站就做好了！"},
+        {"start": 4.0, "text": "分级阅读、发音纠错、生词本，功能一应俱全！"}
+      ]
+    },
+    {
+      "id": "scene6",
+      "file": "scene6_outro.html",
+      "type": "poster_outro",
+      "chapter_num": "06",
+      "chapter_title": "超级个体",
+      "brand_name": "胖猫",
+      "start": 71.4,
+      "duration": 20.6,
+      "poster_src": "../assets/top10_poster.jpg",
+      "cta_code": "666",
+      "cta_reward": "免费领取全套资源包",
+      "outro_title": "胖猫 AI",
+      "outro_desc": "带你探索 AI 时代超级个体之路",
+      "outro_button": "点赞 · 收藏 · 关注 ✦ 咱们下期见！",
+      "subtitles": [
+        {"start": 0.0, "text": "最实用的 <span class='sub-hl'>10 个高频 Skills</span> 也为你整理好了，评论区回复 <span class='sub-hl'>「666」</span> 免费领！"},
+        {"start": 14.5, "text": "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 超级个体之路，咱们下期见！"}
+      ]
+    }
+  ]
+}

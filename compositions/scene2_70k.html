@@ -1,0 +1,555 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Leaderboard Container (Exact Frame 12 Homage) */
+    .arena-container {
+      position: absolute;
+      top: 130px;
+      left: 140px;
+      width: 1140px;
+      height: 700px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+      z-index: 20;
+    }
+    .arena-header-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 32px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .arena-badge {
+      font-size: 14px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #F3E8FF;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+    .arena-sub {
+      font-size: 15px;
+      color: #64748B;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    /* Filter Tabs (Homage to Frame 12) */
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .filter-tab {
+      padding: 7px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .filter-tab.active {
+      background: #1E2024;
+      color: #FFFFFF;
+      border-color: #1E2024;
+    }
+
+    /* Ranking Table Rows */
+    .rank-table {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .rank-row-header {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94A3B8;
+      padding: 0 16px 8px;
+      border-bottom: 1px solid rgba(241, 245, 249, 1);
+      letter-spacing: 0.05em;
+    }
+    .rank-row {
+      display: flex;
+      align-items: center;
+      height: 68px;
+      padding: 0 20px;
+      background: #F8FAFC;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      transition: all 0.3s ease;
+    }
+    .rank-row.highlighted {
+      background: #FFFBEB;
+      border: 2px solid #F59E0B;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+    }
+
+    .col-rank {
+      width: 50px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .col-name {
+      width: 320px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .col-name-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+    .icon-anthropic { background: #CC785C; }
+    .icon-vibe { background: #0284C7; }
+    .icon-db { background: #10B981; }
+    .icon-ppt { background: #D97706; }
+
+    .col-bar-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-right: 20px;
+    }
+    .elo-bar-track {
+      flex: 1;
+      height: 12px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .elo-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+    }
+    .fill-green { background: #10B981; }
+    .fill-teal { background: #14B8A6; }
+    .fill-orange { background: #F97316; }
+    .fill-dark { background: #334155; }
+
+    .col-elo {
+      width: 90px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #1E2024;
+      font-family: "SF Mono", monospace;
+    }
+    .col-samples {
+      width: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #64748B;
+      text-align: right;
+    }
+
+    /* Side Stat Cards */
+    .side-cards-wrap {
+      position: absolute;
+      top: 130px;
+      right: 140px;
+      width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 20;
+    }
+    .side-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 18px 42px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      padding: 36px 32px;
+    }
+    .side-card-top-tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .side-card-stat {
+      font-size: 50px;
+      font-weight: 900;
+      color: #1E2024;
+      font-family: "SF Mono", "PingFang SC", sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .side-card-desc {
+      font-size: 15px;
+      color: #64748B;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .vibe-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FEF3C7;
+      color: #92400E;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-top: 16px;
+    }
+
+    /* Pointer */
+    .hand-pointer {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      pointer-events: none;
+      z-index: 100;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.22));
+      opacity: 0;
+    }
+
+    /* Presenter HUD & Subtitle */
+    
+    /* Presenter HUD & Elevated Large Subtitle Capsule */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+
+  </style>
+
+  <div id="root" data-composition-id="scene2">
+    <div class="header-nav">
+      <span class="nav-num">02</span>
+      <span class="nav-title">浩瀚生态</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <span class="brand-title">胖猫</span>
+    </div>
+
+    <!-- Leaderboard Container -->
+    <div class="arena-container" id="s2-arena">
+      <div class="arena-header-title">
+        <span>Skills Arena Leaderboard</span>
+        <span class="arena-badge">✦ Verified Metrics</span>
+      </div>
+      <div class="arena-sub">全球顶级 AI Agent 技能库评测排行 · 零基础 Vibe Coding 实战精选</div>
+
+      <div class="filter-tabs">
+        <div class="filter-tab active">All Skills</div>
+        <div class="filter-tab">Web Dev</div>
+        <div class="filter-tab">Data & DB</div>
+        <div class="filter-tab">Office & Design</div>
+      </div>
+
+      <div class="rank-table">
+        <div class="rank-row-header">
+          <span style="width: 50px;">#</span>
+          <span style="width: 320px;">MODEL / SKILL</span>
+          <span style="flex: 1;">COMMUNITY ELO RATING</span>
+          <span style="width: 90px;">SCORE</span>
+          <span style="width: 100px; text-align: right;">SAMPLES</span>
+        </div>
+
+        <!-- Row 1: Anthropic Brainstorming -->
+        <div class="rank-row" id="row-brainstorm">
+          <div class="col-rank">1</div>
+          <div class="col-name">
+            <div class="col-name-icon icon-anthropic">A</div>
+            <span>Anthropic / Brainstorming</span>
+          </div>
+          <div class="col-bar-wrap">
+            <div class="elo-bar-track">
+              <div class="elo-bar-fill fill-green" style="width: 96%;"></div>
+            </div>
+          </div>
+          <div class="col-elo">1338<span style="font-size: 11px; color: #10B981;"> ±17</span></div>
+          <div class="col-samples">261.6K</div>
+        </div>
+
+        <!-- Row 2: Vibe Coding -->
+        <div class="rank-row" id="row-vibe">
+          <div class="col-rank">2</div>
+          <div class="col-name">
+            <div class="col-name-icon icon-vibe">V</div>
+            <span>Vibe Coding / Web Builder</span>
+          </div>
+          <div class="col-bar-wrap">
+            <div class="elo-bar-track">
+              <div class="elo-bar-fill fill-teal" style="width: 93%;"></div>
+            </div>
+          </div>
+          <div class="col-elo">1334<span style="font-size: 11px; color: #14B8A6;"> ±16</span></div>
+          <div class="col-samples">198.2K</div>
+        </div>
+
+        <!-- Row 3: Database Engine -->
+        <div class="rank-row" id="row-db">
+          <div class="col-rank">3</div>
+          <div class="col-name">
+            <div class="col-name-icon icon-db">D</div>
+            <span>Supabase / Database Linker</span>
+          </div>
+          <div class="col-bar-wrap">
+            <div class="elo-bar-track">
+              <div class="elo-bar-fill fill-orange" style="width: 86%;"></div>
+            </div>
+          </div>
+          <div class="col-elo">1310<span style="font-size: 11px; color: #F97316;"> ±15</span></div>
+          <div class="col-samples">142.5K</div>
+        </div>
+
+        <!-- Row 4: PPT & Docx Wizard -->
+        <div class="rank-row" id="row-ppt">
+          <div class="col-rank">4</div>
+          <div class="col-name">
+            <div class="col-name-icon icon-ppt">P</div>
+            <span>Office / PPT & Docx Wizard</span>
+          </div>
+          <div class="col-bar-wrap">
+            <div class="elo-bar-track">
+              <div class="elo-bar-fill fill-dark" style="width: 81%;"></div>
+            </div>
+          </div>
+          <div class="col-elo">1291<span style="font-size: 11px; color: #64748B;"> ±14</span></div>
+          <div class="col-samples">119.0K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Stat Cards -->
+    <div class="side-cards-wrap" id="s2-side-cards">
+      <div class="side-card">
+        <div class="side-card-top-tag">GLOBAL REPOSITORY</div>
+        <div class="side-card-stat" id="s2-counter">1,517,216+</div>
+        <div class="side-card-desc">海量 Skills 全球开发者持续开源贡献<br>即插即用的 AI 顶级员工</div>
+      </div>
+
+      <div class="side-card">
+        <div class="side-card-top-tag">VIBE CODING ERA</div>
+        <div style="font-size: 26px; font-weight: 800; color: #1E2024; margin-bottom: 6px;">零基础文科生友好</div>
+        <div class="side-card-desc">不用学复杂的后端架构与算法，对话即可手搓上线全功能商业级网站。</div>
+        <div class="vibe-pill">
+          <span>⚡</span>
+          <span>手搓网站 · 实时交付</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hand Pointer -->
+    <div class="hand-pointer" id="s2-pointer">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 2V13.5M9.5 13.5V17.5C9.5 20.5 12 23 15 23H17C20.5 23 23 20.5 23 17V12.5C23 11.4 22.1 10.5 21 10.5C20.7 10.5 20.4 10.6 20.1 10.7C19.8 9.7 18.9 9 17.8 9C17.4 9 17 9.1 16.7 9.3C16.3 8.5 15.5 8 14.5 8C14.3 8 14.1 8 13.9 8.1V3.5C13.9 2.4 13 1.5 11.9 1.5C10.6 1.5 9.5 2.5 9.5 3.8V13.5Z" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 14L6.2 16.2C5.3 16.8 5 18 5.6 18.9C6.1 19.7 7.2 20 8.1 19.5L9.5 18.5" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Presenter Avatar HUD -->
+    <div class="avatar-hud" id="s2-avatar">
+      <img src="assets/avatar.jpg" alt="胖猫AI" />
+    </div>
+
+    <!-- Subtitle -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s2-sub">面对如今浩如烟海的 <span class="sub-hl">151 万多个 skills</span>，哪怕你是零基础文科生，也能通过 <span class="sub-hl">Vibe Coding</span> 轻松手搓出网站！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s2-arena", 
+      { opacity: 0.8, x: -40, scale: 0.98 }, 
+      { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0
+    );
+
+    tl.fromTo("#s2-side-cards", 
+      { opacity: 0, x: 50 }, 
+      { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }, 
+      0.2
+    );
+
+    // Number Counter Animation
+    const counterObj = { val: 1200000 };
+    tl.to(counterObj, {
+      val: 1517216,
+      duration: 2.5,
+      ease: "power2.out",
+      onUpdate: () => {
+        const el = document.getElementById("s2-counter");
+        if (el) el.innerHTML = Math.floor(counterObj.val).toLocaleString() + "+";
+      }
+    }, 0.5);
+
+    // Elo bars growth
+    tl.fromTo(".fill-green", { width: "0%" }, { width: "96%", duration: 1.2, ease: "power2.out" }, 0.6);
+    tl.fromTo(".fill-teal", { width: "0%" }, { width: "93%", duration: 1.2, ease: "power2.out" }, 0.8);
+    tl.fromTo(".fill-orange", { width: "0%" }, { width: "86%", duration: 1.2, ease: "power2.out" }, 1.0);
+    tl.fromTo(".fill-dark", { width: "0%" }, { width: "81%", duration: 1.2, ease: "power2.out" }, 1.2);
+
+    // Pointer clicks on Rank 1 Anthropic Brainstorming
+    tl.fromTo("#s2-pointer", 
+      { opacity: 0, x: 200, y: 400 }, 
+      { opacity: 1, x: 340, y: 310, duration: 0.6, ease: "power2.out" }, 
+      3.0
+    );
+    tl.to("#s2-pointer", { scale: 0.85, duration: 0.15, yoyo: true, repeat: 1 }, 3.7);
+    tl.to("#row-brainstorm", { className: "rank-row highlighted", duration: 0.3 }, 3.7);
+
+    // Gentle Avatar Breathing
+    tl.fromTo("#s2-avatar", { y: 0 }, { y: -8, duration: 1.8, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0.2);
+
+    window.__timelines = window.__timelines || {};
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 10.25);
+    window.__timelines["scene2"] = tl;
+  </script>
+</template>

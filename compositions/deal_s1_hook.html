@@ -1,0 +1,384 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Bills Stage (Phase 1) */
+    .bills-stage {
+      position: absolute;
+      top: 140px;
+      left: 200px;
+      width: 1520px;
+      height: 620px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      z-index: 20;
+    }
+    .bill-card {
+      width: 360px;
+      height: 460px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 44px 30px;
+      position: relative;
+    }
+    .bill-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+    .bill-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1E2024;
+      margin-top: 16px;
+    }
+    .bill-price {
+      font-size: 42px;
+      font-weight: 900;
+      color: #EF4444;
+      letter-spacing: -0.02em;
+      margin: 10px 0;
+    }
+    .bill-tag {
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    /* Cumulative Counter HUD */
+    .counter-badge {
+      position: absolute;
+      top: 140px;
+      right: 280px;
+      background: #FFFBEB;
+      border: 2px solid #FDE68A;
+      border-radius: 20px;
+      padding: 14px 28px;
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #B45309;
+      z-index: 30;
+      opacity: 0;
+    }
+
+    /* Black Friday Gold Deal Card (Phase 2) */
+    .deal-hero-card {
+      position: absolute;
+      top: 140px;
+      left: 360px;
+      width: 1200px;
+      height: 600px;
+      background: #FFFFFF;
+      border-radius: 36px;
+      border: 2.5px solid #C58B35;
+      box-shadow: 0 32px 80px rgba(197, 139, 53, 0.22), 0 12px 32px rgba(45, 35, 20, 0.08), inset 0 1px 0 #FFFFFF;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 60px;
+      z-index: 40;
+      text-align: center;
+    }
+    .deal-badge {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 1px solid #F59E0B;
+      color: #B45309;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 8px 24px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
+    }
+    .deal-title {
+      font-size: 52px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .deal-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .deal-price-big {
+      font-size: 88px;
+      font-weight: 900;
+      color: #C58B35;
+      letter-spacing: -0.04em;
+    }
+    .deal-price-old {
+      font-size: 36px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+    .deal-sub-highlight {
+      font-size: 26px;
+      font-weight: 800;
+      color: #10B981;
+      background: #ECFDF5;
+      border: 1.5px solid #A7F3D0;
+      padding: 10px 28px;
+      border-radius: 999px;
+    }
+
+    /* Subtitle & Presenter */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s1_hook">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">01</span>
+      <span class="nav-title">钱包告急</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Stage 1: The Pain Point Bills -->
+    <div class="bills-stage" id="bills-stage">
+      <div class="bill-card" id="bill-gpt">
+        <div class="bill-icon" style="background: #E6F4EA;">🤖</div>
+        <div class="bill-name">ChatGPT Plus</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
+      </div>
+      <div class="bill-card" id="bill-claude">
+        <div class="bill-icon" style="background: #FFF7ED;">⚡</div>
+        <div class="bill-name">Claude Pro</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
+      </div>
+      <div class="bill-card" id="bill-cursor">
+        <div class="bill-icon" style="background: #F3E8FF;">💻</div>
+        <div class="bill-name">Cursor Pro</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
+      </div>
+    </div>
+
+    <div class="counter-badge" id="counter-badge">
+      <span>💸 综合成本：</span>
+      <span style="font-size: 26px; color: #DC2626;">¥5,000+ / 年</span>
+    </div>
+
+    <!-- Stage 2: Black Friday 50% Off Hero Card -->
+    <div class="deal-hero-card" id="deal-hero-card">
+      <div class="deal-badge">✦ 2026 谷歌黑五限定福利 ✦</div>
+      <div class="deal-title">Google One · Gemini Pro 5 折年付</div>
+      <div class="deal-price-row">
+        <div class="deal-price-big">$99.99 <span style="font-size: 36px; font-weight: 700;">/ 年</span></div>
+        <div class="deal-price-old">$239.88/年</div>
+      </div>
+      <div class="deal-sub-highlight">✦ 折合每月只要 $8 刀出头！直降 50%！✦</div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s1-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s1-sub">
+          现在的 AI 会员越买越肉疼，各家一个月 <span class="sub-hl">20 刀</span>，多开两个一年大几千块！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 1. Bills fly in sequentially
+    tl.fromTo("#bill-gpt", { opacity: 0, y: 60, rotation: -4 }, { opacity: 1, y: 0, rotation: 0, duration: 0.6, ease: "back.out(1.2)" }, 0.3);
+    tl.fromTo("#bill-claude", { opacity: 0, y: 60, rotation: 2 }, { opacity: 1, y: 0, rotation: 0, duration: 0.6, ease: "back.out(1.2)" }, 1.2);
+    tl.fromTo("#bill-cursor", { opacity: 0, y: 60, rotation: -2 }, { opacity: 1, y: 0, rotation: 0, duration: 0.6, ease: "back.out(1.2)" }, 2.2);
+
+    // Counter badge pops in
+    tl.fromTo("#counter-badge", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, 3.5);
+
+    // 2. Subtitle 2 transition at 9.0s
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "谷歌放出 Gemini Pro <span class='sub-hl'>年付 5 折</span>，一年只要 <span class='sub-hl'>$99.99</span>，每月才 8 刀出头！";
+      
+      const bStage = document.getElementById("bills-stage");
+      const cBadge = document.getElementById("counter-badge");
+      const dHero = document.getElementById("deal-hero-card");
+      if (bStage) bStage.style.display = "none";
+      if (cBadge) cBadge.style.display = "none";
+      if (dHero) dHero.style.display = "flex";
+    }, null, 9.0);
+
+    // Black Friday Hero Card impacts in
+    tl.fromTo("#deal-hero-card", 
+      { opacity: 0, scale: 0.85, y: 40 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out" },
+      9.1
+    );
+
+    // Avatar breathing
+    tl.fromTo("#s1-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 12, ease: "sine.inOut" }, 0.2);
+
+    // Scene transition exit fadeout
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 20.31);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s1_hook"] = tl;
+  </script>
+</template>
+

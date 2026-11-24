@@ -1,0 +1,356 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Decision Stage */
+    .decision-stage {
+      position: absolute;
+      top: 135px;
+      left: 180px;
+      width: 1560px;
+      height: 630px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      z-index: 20;
+    }
+
+    /* Top Notice Banner */
+    .notice-bar {
+      background: #FFFBEB;
+      border: 1.5px solid #FDE68A;
+      border-radius: 18px;
+      padding: 12px 36px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 19px;
+      font-weight: 800;
+      color: #B45309;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.08);
+    }
+
+    /* Dual Track Columns */
+    .tracks-row {
+      display: flex;
+      gap: 48px;
+      width: 100%;
+      justify-content: center;
+    }
+    .track-col {
+      width: 580px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1.5px solid rgba(220, 214, 204, 0.8);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .track-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .track-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      margin-bottom: 12px;
+    }
+    .track-desc {
+      font-size: 16px;
+      color: #64748B;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .track-action {
+      margin-top: auto;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Track 1: JIO Conflict */
+    .track-jio .track-tag {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+    .track-jio .track-action {
+      background: #FEF2F2;
+      border: 1.5px solid #FCA5A5;
+      color: #DC2626;
+    }
+
+    /* Track 2: Clean Account */
+    .track-clean .track-tag {
+      background: #ECFDF5;
+      color: #059669;
+    }
+    .track-clean .track-action {
+      background: #F0FDF4;
+      border: 1.5px solid #86EFAC;
+      color: #16A34A;
+    }
+
+    /* Bottom 1.99 Lever Ribbon */
+    .lever-ribbon {
+      background: #FFFFFF;
+      border: 2px solid #C58B35;
+      border-radius: 20px;
+      padding: 14px 44px;
+      font-size: 21px;
+      font-weight: 900;
+      color: #C58B35;
+      box-shadow: 0 14px 32px rgba(197, 139, 53, 0.16);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+    }
+
+    /* Subtitle & Presenter */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s3_check">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">03</span>
+      <span class="nav-title">账号自检</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Decision Tree Stage -->
+    <div class="decision-stage">
+      <div class="notice-bar" id="notice-bar">
+        <span>⚠️</span>
+        <span>门槛机制：黑五五折是冲着老用户去的，白号直接进刷不出，旧订阅还会冲突！</span>
+      </div>
+
+      <div class="tracks-row">
+        <!-- Track 1: Has Old Subscription -->
+        <div class="track-col track-jio" id="col-jio">
+          <div class="track-tag"><span>⚠️</span> 方案 A：已有老旧订阅</div>
+          <div class="track-title">号里挂着 JIO / 赠送方案</div>
+          <div class="track-desc">系统已绑定其他优惠，会与黑五活动冲突，导致升级入口被死锁。</div>
+          <div class="track-action">
+            <span>执行动作</span>
+            <span style="font-weight: 900;">➔ 从第 1 步开始清理</span>
+          </div>
+        </div>
+
+        <!-- Track 2: Clean New Account -->
+        <div class="track-col track-clean" id="col-clean">
+          <div class="track-tag"><span>✓</span> 方案 B：纯净未订阅</div>
+          <div class="track-title">干干净净的全新号 / 无订阅</div>
+          <div class="track-desc">无任何套餐冲突，无需注销老方案，直接购买敲门砖即可。</div>
+          <div class="track-action">
+            <span>执行动作</span>
+            <span style="font-weight: 900;">➔ 直接跳到第 2 步开通</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lever-ribbon" id="lever-ribbon">
+        <span>🔑 破局秘籍：</span>
+        <span>花 $1.99 买张“老用户入场券”，全程不到 5 分钟！</span>
+      </div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s3-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s3-sub">
+          白号直接进大概率刷不到，手里挂着旧套餐还会<span class="sub-hl">直接冲突</span>。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#notice-bar", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.3);
+    tl.fromTo("#col-jio", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power2.out" }, 0.6);
+    tl.fromTo("#col-clean", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power2.out" }, 0.8);
+
+    // Subtitle 2 transition at 11.0s
+    tl.call(() => {
+      const sub = document.getElementById("s3-sub");
+      if (sub) sub.innerHTML = "实测花 <span class='sub-hl'>$1.99</span> 买张“入场券”，五分钟刷出五折入口，直接抄作业！";
+    }, null, 11.0);
+
+    tl.fromTo("#lever-ribbon", 
+      { opacity: 0, scale: 0.9, y: 20 }, 
+      { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 
+      11.2
+    );
+
+    // Subtitle 3 transition at 19.0s
+    tl.call(() => {
+      const sub = document.getElementById("s3-sub");
+      if (sub) sub.innerHTML = "先看账号情况：有老订阅的<span class='sub-hl'>从第 1 步开始</span>，纯净白号<span class='sub-hl'>直跳第 2 步</span>！";
+    }, null, 19.0);
+
+    // Subtle highlight pulse on track action buttons
+    tl.to("#col-jio .track-action", { scale: 1.04, duration: 0.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 19.5);
+    tl.to("#col-clean .track-action", { scale: 1.04, duration: 0.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 22.5);
+
+    // Avatar breathing
+    tl.fromTo("#s3-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 16, ease: "sine.inOut" }, 0.2);
+
+    // Scene exit fadeout
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 26.36);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s3_check"] = tl;
+  </script>
+</template>
+

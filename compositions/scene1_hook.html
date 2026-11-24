@@ -1,0 +1,590 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Top Navigation */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Claymorphic Pure White Browser Card */
+    .browser-card {
+      position: absolute;
+      top: 130px;
+      left: 280px;
+      width: 1360px;
+      height: 680px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 1px solid rgba(220, 214, 204, 0.7);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1), 0 6px 16px rgba(45, 35, 20, 0.04), inset 0 1px 0 #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform-origin: center center;
+    }
+    .browser-header {
+      height: 52px;
+      background: #FAF8F5;
+      border-bottom: 1px solid rgba(224, 218, 208, 0.6);
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      gap: 20px;
+    }
+    .mac-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-r { background: #FF5F56; }
+    .dot-y { background: #FFBD2E; }
+    .dot-g { background: #27C93F; }
+
+    .url-bar {
+      flex: 1;
+      max-width: 640px;
+      height: 34px;
+      background: #FFFFFF;
+      border: 1px solid rgba(215, 208, 196, 0.8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 15px;
+      color: #64748B;
+      font-family: "SF Mono", Menlo, monospace;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .url-prefix { color: #94A3B8; }
+    .url-main { color: #1E2024; font-weight: 700; }
+    .url-sh {
+      color: #C58B35;
+      font-weight: 800;
+      background: #FEF3C7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 1px;
+    }
+
+    .browser-content {
+      flex: 1;
+      position: relative;
+      background: #F8FAFC;
+      overflow: hidden;
+    }
+    .browser-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* Floating Ecosystem Badge */
+    .eco-badge {
+      position: absolute;
+      top: 155px;
+      right: 320px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(210, 195, 175, 0.6);
+      border-radius: 16px;
+      padding: 12px 24px;
+      box-shadow: 0 12px 30px rgba(45, 35, 20, 0.12);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+    }
+    .badge-icon {
+      font-size: 22px;
+    }
+    .badge-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .badge-sub {
+      font-size: 12px;
+      color: #C58B35;
+      font-weight: 700;
+    }
+
+    /* Part 2: 4-Column Squircle App Card Grid */
+    .categories-stage {
+      position: absolute;
+      top: 155px;
+      left: 180px;
+      width: 1560px;
+      height: 560px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      z-index: 25;
+    }
+    .app-card {
+      width: 340px;
+      height: 440px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1.5px solid rgba(224, 218, 206, 0.75);
+      box-shadow: 0 18px 40px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      position: relative;
+      opacity: 0.28;
+      transform: scale(0.94);
+      filter: grayscale(20%);
+      transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  filter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .app-card.focused {
+      opacity: 1 !important;
+      transform: scale(1.08) translateY(-10px) !important;
+      filter: grayscale(0%) !important;
+      border-color: #C58B35 !important;
+      box-shadow: 0 28px 60px -8px rgba(45, 35, 20, 0.18), 0 0 0 3px rgba(197, 139, 53, 0.35), inset 0 1px 0 #FFFFFF !important;
+    }
+    .app-icon-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+    .app-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1E2024;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    .app-desc {
+      font-size: 16px;
+      color: #64748B;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .app-tag {
+      margin-top: 24px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    /* Card Variants */
+    .card-db .app-icon-wrap {
+      background: linear-gradient(135deg, #0284C7, #0369A1);
+    }
+    .card-db .app-tag {
+      background: #E0F2FE;
+      color: #0369A1;
+    }
+
+    .card-ppt .app-icon-wrap {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+    }
+    .card-ppt .app-tag {
+      background: #FEF3C7;
+      color: #B45309;
+    }
+
+    .card-write .app-icon-wrap {
+      background: linear-gradient(135deg, #10B981, #059669);
+    }
+    .card-write .app-tag {
+      background: #D1FAE5;
+      color: #047857;
+    }
+
+    .card-poster .app-icon-wrap {
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+    }
+    .card-poster .app-tag {
+      background: #EDE9FE;
+      color: #6D28D9;
+    }
+
+    /* Hand Pointer Cursor */
+    .hand-pointer {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      pointer-events: none;
+      z-index: 100;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.22));
+      opacity: 0;
+    }
+
+    /* Bottom Presenter HUD & Subtitle */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="scene1">
+    <!-- Header Navigation -->
+    <div class="header-nav">
+      <span class="nav-num">01</span>
+      <span class="nav-title">发现神器</span>
+    </div>
+
+    <!-- Top Right Brand -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <span class="brand-title">胖猫</span>
+    </div>
+
+    <!-- Part 1: Browser Card -->
+    <div class="browser-card" id="s1-browser">
+      <div class="browser-header">
+        <div class="mac-dots">
+          <div class="mac-dot dot-r"></div>
+          <div class="mac-dot dot-y"></div>
+          <div class="mac-dot dot-g"></div>
+        </div>
+        <div class="url-bar">
+          <span class="url-prefix">https://</span>
+          <span class="url-main">skills</span>
+          <span class="url-sh" id="s1-url-sh">.sh</span>
+        </div>
+      </div>
+      <div class="browser-content">
+        <img src="assets/skills_sh_latest.png" alt="Skills.sh" />
+      </div>
+    </div>
+
+    <!-- Floating Badge -->
+    <div class="eco-badge" id="s1-eco-badge">
+      <span class="badge-icon">🌐</span>
+      <div>
+        <div class="badge-title">全球最大 AI Agent Skills 生态</div>
+        <div class="badge-sub">1,517,216+ 开发者即插即用</div>
+      </div>
+    </div>
+
+    <!-- Part 2: 4-Column Squircle App Cards -->
+    <div class="categories-stage" id="s1-categories">
+      <!-- Database Card -->
+      <div class="app-card card-db" id="card-db">
+        <div class="app-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+        </div>
+        <div class="app-title">连数据库</div>
+        <div class="app-desc">Supabase / PG / MySQL<br>秒级打通业务数据底座</div>
+        <div class="app-tag">实时直连</div>
+      </div>
+
+      <!-- PPT Card -->
+      <div class="app-card card-ppt" id="card-ppt">
+        <div class="app-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+            <path d="M7 10h4"></path>
+            <path d="M7 7h6"></path>
+          </svg>
+        </div>
+        <div class="app-title">做 PPT</div>
+        <div class="app-desc">PptxGenJS 智能排版<br>商务演说级美学输出</div>
+        <div class="app-tag">一键排版</div>
+      </div>
+
+      <!-- Writing Card -->
+      <div class="app-card card-write" id="card-write">
+        <div class="app-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <div class="app-title">写长文</div>
+        <div class="app-desc">万字专业行业研报<br>深度拆解与知识逻辑</div>
+        <div class="app-tag">万字研报</div>
+      </div>
+
+      <!-- Poster Card -->
+      <div class="app-card card-poster" id="card-poster">
+        <div class="app-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+            <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+            <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+            <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+          </svg>
+        </div>
+        <div class="app-title">做海报</div>
+        <div class="app-desc">SVG & Canvas 矢量绘图<br>品牌级视觉宣发物料</div>
+        <div class="app-tag">视觉工坊</div>
+      </div>
+    </div>
+
+    <!-- Hand Pointer Cursor -->
+    <div class="hand-pointer" id="s1-pointer">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 2V13.5M9.5 13.5V17.5C9.5 20.5 12 23 15 23H17C20.5 23 23 20.5 23 17V12.5C23 11.4 22.1 10.5 21 10.5C20.7 10.5 20.4 10.6 20.1 10.7C19.8 9.7 18.9 9 17.8 9C17.4 9 17 9.1 16.7 9.3C16.3 8.5 15.5 8 14.5 8C14.3 8 14.1 8 13.9 8.1V3.5C13.9 2.4 13 1.5 11.9 1.5C10.6 1.5 9.5 2.5 9.5 3.8V13.5Z" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 14L6.2 16.2C5.3 16.8 5 18 5.6 18.9C6.1 19.7 7.2 20 8.1 19.5L9.5 18.5" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Presenter Avatar HUD -->
+    <div class="avatar-hud" id="s1-avatar">
+      <img src="assets/avatar.jpg" alt="胖猫AI" />
+    </div>
+
+    <!-- Bottom Center Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s1-sub">当你一不小心在 skills 后面加了个 <span class="sub-hl">sh</span>，你就进入了这个全球最大的技能库！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // Initial appearance of browser card
+    tl.fromTo("#s1-browser", 
+      { opacity: 0.9, scale: 0.96, y: 15 }, 
+      { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out" }, 
+      0
+    );
+
+    tl.fromTo("#s1-eco-badge", 
+      { opacity: 0, y: -20, scale: 0.9 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.5)" }, 
+      0.5
+    );
+
+    // .sh pulse
+    tl.to("#s1-url-sh", { scale: 1.15, duration: 0.4, yoyo: true, repeat: 3, ease: "power1.inOut" }, 1.2);
+
+    // Transition to Part 2 at 8.2s
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "有帮你<span class='sub-hl'>连数据库</span>的、<span class='sub-hl'>做 PPT</span> 的、<span class='sub-hl'>写长文</span>的、<span class='sub-hl'>做海报</span>的。";
+      
+      const b = document.getElementById("s1-browser");
+      const badge = document.getElementById("s1-eco-badge");
+      const cats = document.getElementById("s1-categories");
+      if (b) b.style.display = "none";
+      if (badge) badge.style.display = "none";
+      if (cats) cats.style.display = "flex";
+    }, null, 8.2);
+
+    // Cards enter in inactive/dimmed state (opacity 0.28, scale 0.94)
+    tl.fromTo(".app-card", 
+      { opacity: 0, y: 35, scale: 0.9 }, 
+      { opacity: 0.28, y: 0, scale: 0.94, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 
+      8.3
+    );
+
+    // Hand Pointer appears
+    tl.fromTo("#s1-pointer", 
+      { opacity: 0, x: 260, y: 560 }, 
+      { opacity: 1, x: 380, y: 380, duration: 0.5, ease: "power2.out" }, 
+      8.7
+    );
+
+    // 1. Focus on Card 1 (连数据库) ONLY
+    tl.call(() => {
+      document.getElementById("card-db")?.classList.add("focused");
+      document.getElementById("card-ppt")?.classList.remove("focused");
+      document.getElementById("card-write")?.classList.remove("focused");
+      document.getElementById("card-poster")?.classList.remove("focused");
+    }, null, 9.0);
+    // Click Card 1
+    tl.to("#s1-pointer", { scale: 0.82, duration: 0.14, yoyo: true, repeat: 1 }, 9.3);
+
+    // 2. Glide to Card 2 (做 PPT)
+    tl.to("#s1-pointer", { x: 740, y: 380, duration: 0.65, ease: "power2.inOut" }, 9.7);
+    tl.call(() => {
+      document.getElementById("card-db")?.classList.remove("focused");
+      document.getElementById("card-ppt")?.classList.add("focused");
+    }, null, 10.05);
+    // Click Card 2
+    tl.to("#s1-pointer", { scale: 0.82, duration: 0.14, yoyo: true, repeat: 1 }, 10.3);
+
+    // 3. Glide to Card 3 (写长文)
+    tl.to("#s1-pointer", { x: 1110, y: 380, duration: 0.65, ease: "power2.inOut" }, 10.7);
+    tl.call(() => {
+      document.getElementById("card-ppt")?.classList.remove("focused");
+      document.getElementById("card-write")?.classList.add("focused");
+    }, null, 11.05);
+    // Click Card 3
+    tl.to("#s1-pointer", { scale: 0.82, duration: 0.14, yoyo: true, repeat: 1 }, 11.3);
+
+    // 4. Glide to Card 4 (做海报)
+    tl.to("#s1-pointer", { x: 1470, y: 380, duration: 0.65, ease: "power2.inOut" }, 11.7);
+    tl.call(() => {
+      document.getElementById("card-write")?.classList.remove("focused");
+      document.getElementById("card-poster")?.classList.add("focused");
+    }, null, 12.05);
+    // Click Card 4
+    tl.to("#s1-pointer", { scale: 0.82, duration: 0.14, yoyo: true, repeat: 1 }, 12.3);
+
+    // Pointer departs & all cards gracefully equalize to full color
+    tl.to("#s1-pointer", { opacity: 0, duration: 0.3 }, 12.8);
+    tl.call(() => {
+      const cards = document.querySelectorAll(".app-card");
+      cards.forEach(c => {
+        c.classList.remove("focused");
+        c.style.opacity = "1";
+        c.style.transform = "scale(1)";
+        c.style.filter = "none";
+      });
+    }, null, 12.9);
+
+    // Gentle Avatar Breathing
+    tl.fromTo("#s1-avatar", { y: 0 }, { y: -8, duration: 1.8, yoyo: true, repeat: 7, ease: "sine.inOut" }, 0.2);
+
+    window.__timelines = window.__timelines || {};
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 13.75);
+    window.__timelines["scene1"] = tl;
+  </script>
+</template>

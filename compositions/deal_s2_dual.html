@@ -1,0 +1,381 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Dual Reactor Stage */
+    .dual-stage {
+      position: absolute;
+      top: 140px;
+      left: 160px;
+      width: 1600px;
+      height: 620px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+      z-index: 20;
+    }
+
+    .reactor-pod {
+      width: 680px;
+      height: 480px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 44px;
+      position: relative;
+    }
+
+    .pod-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .pod-avatar-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .pod-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #1E2024;
+    }
+    .pod-sub {
+      font-size: 15px;
+      color: #64748B;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .model-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .model-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 22px;
+      background: #F8FAFC;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .pill-badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    /* Grand Fusion Master Banner */
+    .fusion-banner {
+      position: absolute;
+      top: 640px;
+      left: 360px;
+      width: 1200px;
+      background: #FFFDF9;
+      border: 2px dashed #FDE68A;
+      border-radius: 20px;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 30;
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.08);
+      opacity: 0;
+    }
+    .fusion-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #B45309;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fusion-tags {
+      display: flex;
+      gap: 12px;
+    }
+    .f-tag {
+      background: #FFFFFF;
+      border: 1px solid #FDE68A;
+      color: #C58B35;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 999px;
+    }
+
+    /* Subtitle & Presenter */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s2_dual">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">02</span>
+      <span class="nav-title">双核一锅端</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Dual Reactor Pods -->
+    <div class="dual-stage">
+      <!-- Pod 1: Google Gemini 4 -->
+      <div class="reactor-pod" id="pod-google">
+        <div class="pod-header">
+          <div class="pod-avatar-logo" style="background: linear-gradient(135deg, #E0F2FE, #BAE6FD);">✨</div>
+          <div>
+            <div class="pod-title">Google 旗舰核心矩阵</div>
+            <div class="pod-sub">全系列 Gemini 4 任意切换</div>
+          </div>
+        </div>
+        <div class="model-pills">
+          <div class="model-pill">
+            <span>Gemini 4 Hydrogen</span>
+            <span class="pill-badge" style="background: #E0F2FE; color: #0284C7;">超高速轻量</span>
+          </div>
+          <div class="model-pill">
+            <span>Gemini 4 Argon</span>
+            <span class="pill-badge" style="background: #F3E8FF; color: #7C3AED;">平衡推理</span>
+          </div>
+          <div class="model-pill" style="border-color: #F59E0B; background: #FFFBEB;">
+            <span style="color: #B45309;">Gemini 4 Neon</span>
+            <span class="pill-badge" style="background: #FEF3C7; color: #B45309;">顶级超大模型</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pod 2: Anthropic Claude -->
+      <div class="reactor-pod" id="pod-claude">
+        <div class="pod-header">
+          <div class="pod-avatar-logo" style="background: linear-gradient(135deg, #FFEDD5, #FED7AA);">👑</div>
+          <div>
+            <div class="pod-title">Anthropic 顶级王炸</div>
+            <div class="pod-sub">套餐内罕见直接集成</div>
+          </div>
+        </div>
+        <div class="model-pills">
+          <div class="model-pill" style="border: 2px solid #C58B35; background: #FFFDF9; padding: 22px 24px;">
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-size: 24px; color: #C58B35;">Claude Opus 5.5</span>
+              <span style="font-size: 13px; color: #94A3B8; font-weight: 600; margin-top: 4px;">全球公认最强代码与复杂推理神兽</span>
+            </div>
+            <span class="pill-badge" style="background: #FEF3C7; color: #B45309; font-size: 14px;">免翻直接调用</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fusion Bottom Banner -->
+    <div class="fusion-banner" id="fusion-banner">
+      <div class="fusion-title">
+        <span>⚡️</span>
+        <span>一份打折的钱，两家全球主力模型一网打尽！</span>
+      </div>
+      <div class="fusion-tags">
+        <div class="f-tag">全栈编程</div>
+        <div class="f-tag">深度研报</div>
+        <div class="f-tag">百万上下文</div>
+      </div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s2-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s2-sub">
+          不止打五折：除了谷歌自家 <span class="sub-hl">Gemini 4 全系列</span>随便切！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#pod-google", 
+      { opacity: 0, x: -60, scale: 0.94 }, 
+      { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0.3
+    );
+
+    tl.fromTo("#pod-claude", 
+      { opacity: 0, x: 60, scale: 0.94 }, 
+      { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0.6
+    );
+
+    // Subtitle transition at 10.0s
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "居然连 <span class='sub-hl'>Claude Opus 5.5</span> 也能直接用，一份打折钱两家主力一锅端！";
+    }, null, 10.0);
+
+    // Banner slides up
+    tl.fromTo("#fusion-banner", 
+      { opacity: 0, y: 30 }, 
+      { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.4)" }, 
+      10.2
+    );
+
+    // Subtle breathing pulse on the Claude card
+    tl.to("#pod-claude", { borderColor: "#C58B35", boxShadow: "0 24px 60px rgba(197, 139, 53, 0.2)", duration: 1.2, yoyo: true, repeat: 7, ease: "sine.inOut" }, 11.0);
+
+    // Avatar breathing
+    tl.fromTo("#s2-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 14, ease: "sine.inOut" }, 0.2);
+
+    // Scene exit fadeout
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 22.76);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s2_dual"] = tl;
+  </script>
+</template>
+

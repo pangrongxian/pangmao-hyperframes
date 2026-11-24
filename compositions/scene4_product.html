@@ -1,0 +1,502 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Top Process Flow Pipeline */
+    .flow-pipeline {
+      position: absolute;
+      top: 125px;
+      left: 280px;
+      width: 1360px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 20;
+    }
+    .pipeline-line-bg {
+      position: absolute;
+      top: 45px;
+      left: 60px;
+      right: 60px;
+      height: 2px;
+      background: #E2D7C5;
+      z-index: 1;
+    }
+    .step-node {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      border: 1px solid rgba(220, 214, 204, 0.8);
+      box-shadow: 0 8px 20px rgba(45, 35, 20, 0.06);
+      transition: all 0.3s ease;
+    }
+    .step-node.active {
+      border: 2px solid #C58B35;
+      background: #FFFBEB;
+      transform: scale(1.05);
+      box-shadow: 0 10px 24px rgba(197, 139, 53, 0.2);
+    }
+    .step-icon { font-size: 20px; }
+    .step-text { font-size: 16px; font-weight: 800; color: #1E2024; }
+
+    /* Center Main Workspace Card */
+    .workspace-card {
+      position: absolute;
+      top: 240px;
+      left: 200px;
+      width: 1520px;
+      height: 600px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      overflow: hidden;
+      z-index: 20;
+    }
+
+    /* Left Column: Chat Dialogue */
+    .chat-col {
+      width: 58%;
+      background: #FCFAF7;
+      border-right: 1px solid rgba(224, 218, 208, 0.7);
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .bubble {
+      padding: 20px 26px;
+      border-radius: 20px;
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 90%;
+      position: relative;
+    }
+    .user-bubble {
+      align-self: flex-start;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(215, 208, 196, 0.8);
+      color: #1E2024;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+    .ai-bubble {
+      align-self: flex-start;
+      background: #FFFBEB;
+      border: 1.5px solid #FDE68A;
+      color: #92400E;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.08);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .ai-bubble-tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: #D97706;
+      background: #FEF3C7;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    /* Right Column: PRD Document */
+    .prd-col {
+      flex: 1;
+      padding: 36px 40px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .prd-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(241, 245, 249, 1);
+    }
+    .prd-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .prd-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #334155;
+      padding: 12px 18px;
+      background: #F8FAFC;
+      border-radius: 12px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    .prd-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #10B981;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    /* Coding Status Bar */
+    .coding-status-bar {
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: #1E2024;
+      border-radius: 14px;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    .status-text-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .status-progress-track {
+      width: 100%;
+      height: 8px;
+      background: #334155;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .status-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #10B981, #34D399);
+      border-radius: 9999px;
+    }
+
+    /* Pointer */
+    .hand-pointer {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      pointer-events: none;
+      z-index: 100;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.22));
+      opacity: 0;
+    }
+
+    /* Presenter HUD & Subtitle */
+    
+    /* Presenter HUD & Elevated Large Subtitle Capsule */
+    .avatar-hud {
+      position: absolute;
+      bottom: 52px;
+      left: 64px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FAF7F0;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      bottom: 64px;
+      left: 200px;
+      right: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      border-radius: 9999px;
+      padding: 12px 42px;
+      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1440px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.55);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+
+  </style>
+
+  <div id="root" data-composition-id="scene4">
+    <div class="header-nav">
+      <span class="nav-num">04</span>
+      <span class="nav-title">需求企划</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <span class="brand-title">胖猫</span>
+    </div>
+
+    <!-- Top Flow Pipeline -->
+    <div class="flow-pipeline">
+      <div class="pipeline-line-bg"></div>
+      <div class="step-node active" id="p-step-1">
+        <span class="step-icon">🗣️</span>
+        <span class="step-text">自然语言需求</span>
+      </div>
+      <div class="step-node" id="p-step-2">
+        <span class="step-icon">💡</span>
+        <span class="step-text">智能头脑风暴</span>
+      </div>
+      <div class="step-node" id="p-step-3">
+        <span class="step-icon">📋</span>
+        <span class="step-text">输出 PRD 企划案</span>
+      </div>
+      <div class="step-node" id="p-step-4">
+        <span class="step-icon">⚡</span>
+        <span class="step-text">自动写代码</span>
+      </div>
+    </div>
+
+    <!-- Main Workspace Card -->
+    <div class="workspace-card" id="s4-workspace">
+      <!-- Left: Dialogue -->
+      <div class="chat-col">
+        <div class="bubble user-bubble" id="s4-user-bubble">
+          <div style="font-size: 13px; color: #64748B; margin-bottom: 4px;">USER 需求描述</div>
+          “我想做一个适合家长带孩子学英语的网站，先帮我头脑风暴，再写代码。”
+        </div>
+
+        <div class="bubble ai-bubble" id="s4-ai-bubble">
+          <div class="ai-bubble-tag">✦ Cursor Product Manager Mode</div>
+          <div>收到！已启动 <b>Brainstorming Skill</b>。为您梳理核心用户旅程，梳理出 4 大核心模块，并自动输出完整产品架构 PRD！</div>
+        </div>
+      </div>
+
+      <!-- Right: PRD Checklist & Code progress -->
+      <div class="prd-col">
+        <div>
+          <div class="prd-header">
+            <span>KidsLingo PRD 企划案</span>
+            <span style="font-size: 13px; color: #10B981; font-weight: 800; background: #D1FAE5; padding: 4px 10px; border-radius: 9999px;">AI 生成确认</span>
+          </div>
+          <div class="prd-list">
+            <div class="prd-item" id="prd-1">
+              <div class="prd-check">✓</div>
+              <span>1. 幼儿分级阶梯阅读库 (Level 1 - Level 6)</span>
+            </div>
+            <div class="prd-item" id="prd-2">
+              <div class="prd-check">✓</div>
+              <span>2. AI 实时语音发音纠错 & 音标打分</span>
+            </div>
+            <div class="prd-item" id="prd-3">
+              <div class="prd-check">✓</div>
+              <span>3. 趣味生词卡片与记忆曲线复习</span>
+            </div>
+            <div class="prd-item" id="prd-4">
+              <div class="prd-check">✓</div>
+              <span>4. 家长独立伴学仪表盘 & 学习报表</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coding Bar -->
+        <div class="coding-status-bar" id="s4-coding-bar">
+          <div class="status-text-row">
+            <span>⚡ Cursor 全自动编写代码中...</span>
+            <span id="s4-code-pct">0%</span>
+          </div>
+          <div class="status-progress-track">
+            <div class="status-progress-fill" id="s4-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hand Pointer -->
+    <div class="hand-pointer" id="s4-pointer">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 2V13.5M9.5 13.5V17.5C9.5 20.5 12 23 15 23H17C20.5 23 23 20.5 23 17V12.5C23 11.4 22.1 10.5 21 10.5C20.7 10.5 20.4 10.6 20.1 10.7C19.8 9.7 18.9 9 17.8 9C17.4 9 17 9.1 16.7 9.3C16.3 8.5 15.5 8 14.5 8C14.3 8 14.1 8 13.9 8.1V3.5C13.9 2.4 13 1.5 11.9 1.5C10.6 1.5 9.5 2.5 9.5 3.8V13.5Z" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 14L6.2 16.2C5.3 16.8 5 18 5.6 18.9C6.1 19.7 7.2 20 8.1 19.5L9.5 18.5" fill="#FFFFFF" stroke="#1E2024" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Presenter Avatar HUD -->
+    <div class="avatar-hud" id="s4-avatar">
+      <img src="assets/avatar.jpg" alt="胖猫AI" />
+    </div>
+
+    <!-- Subtitle -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s4-sub">然后你对 Cursor 说：“我想做一个适合家长带孩子学英语的网站，<span class="sub-hl">先帮我头脑风暴，再写代码</span>。”</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s4-workspace", 
+      { opacity: 0.9, y: 30, scale: 0.98 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0
+    );
+
+    // AI message replies at 2.5s
+    tl.to("#p-step-2", { className: "step-node active", duration: 0.3 }, 2.5);
+    tl.to("#s4-ai-bubble", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.2)" }, 2.8);
+
+    // Beat 2: Cursor PM PRD output at 8.7s (45.9s global)
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "Cursor 瞬间变身顶尖产品经理，不仅梳理需求，还自动输出完整 <span class='sub-hl'>PRD 企划案</span>！";
+    }, null, 8.7);
+
+    tl.to("#p-step-3", { className: "step-node active", duration: 0.3 }, 8.8);
+
+    // PRD checklist items appear
+    tl.to("#prd-1", { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 9.2);
+    tl.to("#prd-2", { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 9.6);
+    tl.to("#prd-3", { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 10.0);
+    tl.to("#prd-4", { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 10.4);
+
+    // Beat 3: Confirmation and auto coding at 13.0s
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "确认后，Cursor 直接开始<span class='sub-hl'>全自动写代码</span>！";
+    }, null, 13.0);
+
+    tl.to("#p-step-4", { className: "step-node active", duration: 0.3 }, 13.2);
+    tl.to("#s4-coding-bar", { opacity: 1, y: 0, duration: 0.5 }, 13.4);
+
+    // Progress bar fill
+    tl.to("#s4-progress-fill", { width: "100%", duration: 6.0, ease: "power1.inOut" }, 13.6);
+    const pctObj = { val: 0 };
+    tl.to(pctObj, {
+      val: 100,
+      duration: 6.0,
+      ease: "power1.inOut",
+      onUpdate: () => {
+        const el = document.getElementById("s4-code-pct");
+        if (el) el.innerText = Math.floor(pctObj.val) + "%";
+      }
+    }, 13.6);
+
+    // Gentle Avatar Breathing
+    tl.fromTo("#s4-avatar", { y: 0 }, { y: -8, duration: 1.8, yoyo: true, repeat: 10, ease: "sine.inOut" }, 0.2);
+
+    window.__timelines = window.__timelines || {};
+    tl.to("#root", { opacity: 0, duration: 0.25 }, 20.55);
+    window.__timelines["scene4"] = tl;
+  </script>
+</template>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>花 $1.99 撬动 Gemini Pro 五折年付，实测上车路子 - 胖猫 AI</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "PingFang SC";
+        src: local("PingFang SC");
+        font-display: swap;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #F7F5EE;
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #1A1C20;
+        -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #F7F5EE;
+      }
+
+      /* Subtle Paper Texture Radial Background */
+      .paper-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 40%, #FCFAF5 0%, #F5F1E6 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Architectural Subtle Grid (Exact Homage to 亚里) */
+      .ambient-grid {
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(rgba(185, 170, 150, 0.22) 1.5px, transparent 1.5px),
+          linear-gradient(90deg, rgba(185, 170, 150, 0.22) 1.5px, transparent 1.5px);
+        background-size: 54px 54px;
+        pointer-events: none;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="151.27"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+      data-hold
+    >
+      <div class="paper-bg"></div>
+      <div class="ambient-grid"></div>
+
+      <!-- Master Audio Track (Voiceover + BGM + SFX) -->
+      <audio
+        id="voiceover"
+        src="assets/deal_master_audio.mp3"
+        data-start="0"
+        data-duration="151.27"
+        data-volume="1"
+      ></audio>
+
+      <!-- Scene 1: 0 - 20.76s Hook & Black Friday 50% Deal -->
+      <div
+        id="deal_s1_hook"
+        data-composition-id="deal_s1_hook"
+        data-composition-src="compositions/deal_s1_hook.html"
+        data-start="0"
+        data-duration="20.76"
+        data-track-index="0"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 2: 20.76 - 43.77s Dual Reactor: Gemini 4 + Claude Opus 5.5 -->
+      <div
+        id="deal_s2_dual"
+        data-composition-id="deal_s2_dual"
+        data-composition-src="compositions/deal_s2_dual.html"
+        data-start="20.76"
+        data-duration="23.01"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 3: 43.77 - 70.38s Account Pre-check & Bifurcation Tree -->
+      <div
+        id="deal_s3_check"
+        data-composition-id="deal_s3_check"
+        data-composition-src="compositions/deal_s3_check.html"
+        data-start="43.77"
+        data-duration="26.61"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 4: 70.38 - 91.78s Step 1: Delete Old Conflict Subscription -->
+      <div
+        id="deal_s4_delete"
+        data-composition-id="deal_s4_delete"
+        data-composition-src="compositions/deal_s4_delete.html"
+        data-start="70.38"
+        data-duration="21.40"
+        data-track-index="3"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 5: 91.78 - 108.98s Step 2: $1.99 Lite Trigger on Mobile App -->
+      <div
+        id="deal_s5_app"
+        data-composition-id="deal_s5_app"
+        data-composition-src="compositions/deal_s5_app.html"
+        data-start="91.78"
+        data-duration="17.20"
+        data-track-index="4"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 6: 108.98 - 124.88s Step 3: Web Refresh & 50% Off Entry Switch -->
+      <div
+        id="deal_s6_web"
+        data-composition-id="deal_s6_web"
+        data-composition-src="compositions/deal_s6_web.html"
+        data-start="108.98"
+        data-duration="15.90"
+        data-track-index="5"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 7: 124.88 - 145.32s Warning: Deadline 11-27 14:00 & IP Region Match -->
+      <div
+        id="deal_s7_warning"
+        data-composition-id="deal_s7_warning"
+        data-composition-src="compositions/deal_s7_warning.html"
+        data-start="124.88"
+        data-duration="20.44"
+        data-track-index="6"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- Scene 8: 145.32 - 151.27s Grand Outro Brand Hold Screen -->
+      <div
+        id="deal_s8_outro"
+        data-composition-id="deal_s8_outro"
+        data-composition-src="compositions/deal_s8_outro.html"
+        data-start="145.32"
+        data-duration="5.95"
+        data-track-index="7"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
