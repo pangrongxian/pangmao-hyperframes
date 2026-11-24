@@ -105,3 +105,4 @@ hyperframes render --out out/gemini_pro_deal_v1.mp4 --fps 30 --width 1920 --heig
 - **作者**：胖猫 AI (Pangmao AI)
 - **宗旨**：带你探索 AI 时代超级个体之路
 - **开源协议**：[MIT License](LICENSE)
+
