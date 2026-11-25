@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>胖猫 AI - 9:16 爆款封面</title>
+    <style>
+      @font-face {
+        font-family: "PingFang SC";
+        src: local("PingFang SC");
+        font-display: swap;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #F7F5EE;
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #1A1C20;
+        -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #F7F5EE;
+      }
+
+      /* Subtle Paper Texture Radial Background */
+      .paper-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 30%, #FCFAF5 0%, #F5EFE0 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Architectural Grid (54px Exact Homage to 亚里) */
+      .ambient-grid {
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(rgba(185, 170, 150, 0.25) 1.5px, transparent 1.5px),
+          linear-gradient(90deg, rgba(185, 170, 150, 0.25) 1.5px, transparent 1.5px);
+        background-size: 54px 54px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 1080px;
+        height: 1920px;
+        padding: 60px 54px 50px 54px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Top Header */
+      .top-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .topic-badge {
+        background: #FFFBEB;
+        border: 1.5px solid #FDE68A;
+        color: #B45309;
+        font-size: 20px;
+        font-weight: 850;
+        padding: 10px 26px;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+      }
+      .brand-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .brand-arch {
+        width: 32px;
+        height: 6px;
+        border-top: 3.5px solid #C58B35;
+        border-radius: 50%;
+        margin-bottom: 2px;
+      }
+      .brand-title {
+        font-size: 26px;
+        font-weight: 900;
+        color: #1E2024;
+        letter-spacing: 0.16em;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: #FFFFFF;
+        border-radius: 36px;
+        border: 2.5px solid #C58B35;
+        box-shadow: 0 32px 80px rgba(197, 139, 53, 0.22), 0 12px 28px rgba(45, 35, 20, 0.08), inset 0 1px 0 #FFFFFF;
+        padding: 44px 44px 38px 44px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .hero-pill {
+        background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+        border: 1.5px solid #F59E0B;
+        color: #B45309;
+        font-size: 18px;
+        font-weight: 900;
+        padding: 6px 24px;
+        border-radius: 9999px;
+        margin-bottom: 16px;
+        letter-spacing: 0.06em;
+      }
+
+      .hero-headline-1 {
+        font-size: 52px;
+        font-weight: 900;
+        color: #1E2024;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .hero-headline-1 .key-price {
+        color: #C58B35;
+        background: rgba(254, 243, 199, 0.65);
+        padding: 2px 12px;
+        border-radius: 12px;
+        margin: 0 6px;
+      }
+
+      .hero-headline-2 {
+        font-size: 66px;
+        font-weight: 950;
+        color: #1E2024;
+        margin-top: 10px;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+
+      .price-compare-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 18px;
+        margin: 22px 0 14px 0;
+      }
+      .price-now {
+        font-size: 86px;
+        font-weight: 950;
+        color: #C58B35;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .price-now span {
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .price-was {
+        font-size: 34px;
+        font-weight: 700;
+        color: #94A3B8;
+        text-decoration: line-through;
+      }
+      .badge-save {
+        background: #DC2626;
+        color: #FFFFFF;
+        font-size: 22px;
+        font-weight: 900;
+        padding: 6px 18px;
+        border-radius: 12px;
+        transform: rotate(-3deg);
+        box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+      }
+
+      .hero-sub-tip {
+        font-size: 22px;
+        font-weight: 850;
+        color: #78350F;
+        background: #FFFBEB;
+        border: 1px solid #FDE68A;
+        padding: 8px 24px;
+        border-radius: 9999px;
+      }
+
+      /* Dual Flagship Section */
+      .dual-section {
+        background: #FFFFFF;
+        border-radius: 30px;
+        border: 1.5px solid rgba(220, 214, 204, 0.85);
+        box-shadow: 0 16px 40px rgba(45, 35, 20, 0.08), inset 0 1px 0 #FFFFFF;
+        padding: 28px 32px;
+      }
+      .dual-title-bar {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 900;
+        color: #1E2024;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .dual-cards-row {
+        display: flex;
+        gap: 20px;
+      }
+      .dual-card {
+        flex: 1;
+        background: #FAF8F5;
+        border-radius: 20px;
+        border: 1.5px solid rgba(220, 214, 204, 0.8);
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .dual-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+      .dual-name {
+        font-size: 24px;
+        font-weight: 900;
+        color: #1E2024;
+      }
+      .dual-desc {
+        font-size: 15px;
+        font-weight: 700;
+        color: #64748B;
+        margin-top: 3px;
+      }
+
+      /* Real Screenshot Proof Card */
+      .proof-section {
+        background: #FFFFFF;
+        border-radius: 28px;
+        border: 1.5px solid rgba(220, 214, 204, 0.85);
+        box-shadow: 0 20px 48px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
+        overflow: hidden;
+      }
+      .proof-header {
+        height: 44px;
+        background: #FAF8F5;
+        border-bottom: 1px solid rgba(224, 218, 208, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+      .proof-dots {
+        display: flex;
+        gap: 8px;
+      }
+      .proof-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .proof-badge {
+        font-size: 13px;
+        font-weight: 850;
+        color: #059669;
+        background: #ECFDF5;
+        padding: 2px 10px;
+        border-radius: 6px;
+      }
+      .proof-body {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+        background: #FFFFFF;
+      }
+      .proof-body img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 65%;
+      }
+      .proof-highlight-box {
+        position: absolute;
+        bottom: 30px;
+        left: 280px;
+        width: 440px;
+        height: 64px;
+        border: 3px solid #EF4444;
+        border-radius: 10px;
+        background: rgba(239, 68, 68, 0.15);
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 14px;
+      }
+      .proof-tag {
+        background: #EF4444;
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 900;
+        padding: 3px 12px;
+        border-radius: 6px;
+      }
+
+      /* 3 Steps Cheat Sheet Pill Bar */
+      .steps-bar {
+        background: #FFFFFF;
+        border-radius: 24px;
+        border: 1.5px solid rgba(220, 214, 204, 0.85);
+        padding: 20px 28px;
+        box-shadow: 0 12px 30px rgba(45, 35, 20, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .step-unit {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .step-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #C58B35;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .step-label {
+        font-size: 18px;
+        font-weight: 850;
+        color: #1E2024;
+      }
+      .step-arrow {
+        color: #C58B35;
+        font-weight: 900;
+        font-size: 20px;
+      }
+
+      /* Bottom Alert Banner */
+      .bottom-alert {
+        background: #FFF1F2;
+        border: 1.5px solid #FECDD3;
+        border-radius: 20px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .alert-text {
+        font-size: 16px;
+        font-weight: 800;
+        color: #9F1239;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .screenshot-save-tip {
+        background: #FEF3C7;
+        border: 1px solid #FDE68A;
+        color: #B45309;
+        font-size: 14px;
+        font-weight: 850;
+        padding: 6px 14px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="paper-bg"></div>
+      <div class="ambient-grid"></div>
+
+      <div class="content-wrapper">
+        <!-- Top Header -->
+        <div class="top-header">
+          <div class="topic-badge">
+            <span>✦</span> 2026 谷歌黑五限定福利 · 实测指南
+          </div>
+          <div class="brand-block">
+            <div class="brand-arch"></div>
+            <div class="brand-title">胖猫 AI</div>
+          </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-pill">✦ 避坑抄作业 · 手把手实测 ✦</div>
+          <div class="hero-headline-1">
+            花 <span class="key-price">$1.99</span> 撬动
+          </div>
+          <div class="hero-headline-2">
+            Gemini Pro 五折年付
+          </div>
+
+          <div class="price-compare-row">
+            <div class="price-now">$99.99 <span>/ 年</span></div>
+            <div class="price-was">$239.88/年</div>
+            <div class="badge-save">立省 50% ⚡</div>
+          </div>
+
+          <div class="hero-sub-tip">
+            ✦ 折合每月才 8 刀出头！直降千元！✦
+          </div>
+        </div>
+
+        <!-- Dual Flagship Section -->
+        <div class="dual-section">
+          <div class="dual-title-bar">
+            <span>⚛️</span>
+            <span>花一份打折的钱，两家顶流模型一锅端！</span>
+          </div>
+          <div class="dual-cards-row">
+            <div class="dual-card" style="border-color: #FDE68A;">
+              <div class="dual-icon" style="background: #EFF6FF;">✨</div>
+              <div>
+                <div class="dual-name">Gemini 4</div>
+                <div class="dual-desc">Hydrogen/Argon/Neon 全通</div>
+              </div>
+            </div>
+            <div class="dual-card" style="border-color: #FED7AA;">
+              <div class="dual-icon" style="background: #FFF7ED;">⚡</div>
+              <div>
+                <div class="dual-name">Claude Opus 5.5</div>
+                <div class="dual-desc">Anthropic 顶级旗舰直接送</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Screenshot Proof Section -->
+        <div class="proof-section">
+          <div class="proof-header">
+            <div class="proof-dots">
+              <div class="proof-dot" style="background: #FF5F56;"></div>
+              <div class="proof-dot" style="background: #FFBD2E;"></div>
+              <div class="proof-dot" style="background: #27C93F;"></div>
+            </div>
+            <div style="font-size: 13px; font-family: monospace; color: #64748B;">one.google.com/settings</div>
+            <div class="proof-badge">实测上车有效 ✓</div>
+          </div>
+          <div class="proof-body">
+            <img src="assets/deal_googleone_upgrade.png" alt="Google One Upgrade Proof" />
+            <div class="proof-highlight-box">
+              <span class="proof-tag">锁定 $99.99/年 入口 ➜</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Steps Bar -->
+        <div class="steps-bar">
+          <div class="step-unit">
+            <div class="step-circle">1</div>
+            <div class="step-label">清冲突旧套餐</div>
+          </div>
+          <div class="step-arrow">➜</div>
+          <div class="step-unit">
+            <div class="step-circle">2</div>
+            <div class="step-label">$1.99买敲门砖</div>
+          </div>
+          <div class="step-arrow">➜</div>
+          <div class="step-unit">
+            <div class="step-circle">3</div>
+            <div class="step-label">刷新五折上车</div>
+          </div>
+        </div>
+
+        <!-- Bottom Warning & Tip -->
+        <div class="bottom-alert">
+          <div class="alert-text">
+            <span>⏰</span>
+            <span>11 月 27 日 14:00 准时截止 · 付款资料需与网络地区对齐</span>
+          </div>
+          <div class="screenshot-save-tip">
+            📸 尾帧附实操清单
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
