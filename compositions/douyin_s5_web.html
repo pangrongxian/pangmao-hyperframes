@@ -1,0 +1,288 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-bar {
+      position: absolute;
+      top: 176px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .header-nav { display: flex; align-items: baseline; gap: 10px; }
+    .nav-num { font-size: 28px; font-weight: 900; color: #C58B35; }
+    .nav-title { font-size: 26px; font-weight: 850; color: #1E2024; }
+    .header-brand { display: flex; flex-direction: column; align-items: center; }
+    .brand-arch { width: 30px; height: 5px; border-top: 3.5px solid #C58B35; border-radius: 50%; margin-bottom: 2px; }
+    .brand-title { font-size: 24px; font-weight: 900; color: #1E2024; letter-spacing: 0.14em; }
+
+    .top-hook-banner {
+      position: absolute;
+      top: 244px;
+      left: 48px;
+      width: 880px;
+      background: linear-gradient(135deg, #1E2024, #2D3138);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 28px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(30, 32, 36, 0.18);
+      border: 1.5px solid #C58B35;
+      z-index: 30;
+    }
+    .top-hook-text { font-size: 32px; font-weight: 900; }
+    .top-hook-hl { color: #FDE047; }
+
+    .stage {
+      position: absolute;
+      top: 350px;
+      left: 48px;
+      width: 880px;
+      height: 920px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 20;
+    }
+
+    .browser-box {
+      width: 880px;
+      height: 620px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 24px 60px -8px rgba(45, 35, 20, 0.12);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .browser-header {
+      height: 50px;
+      background: #FAF8F5;
+      border-bottom: 1px solid rgba(224, 218, 208, 0.7);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 14px;
+    }
+    .mac-dots { display: flex; gap: 8px; }
+    .mac-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .url-bar {
+      flex: 1;
+      height: 32px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E2DCD2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      font-size: 14px;
+      color: #475569;
+      font-family: monospace;
+    }
+    .refresh-btn { font-size: 16px; color: #0284C7; }
+
+    .browser-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+    .screenshot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform-origin: center 65%;
+    }
+
+    .aim-target {
+      position: absolute;
+      bottom: 84px;
+      left: 190px;
+      width: 500px;
+      height: 76px;
+      border: 3.5px solid #EF4444;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.15);
+      box-shadow: 0 0 28px rgba(239, 68, 68, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 16px;
+      opacity: 0;
+      z-index: 30;
+    }
+    .target-tag {
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .stamp {
+      position: absolute;
+      top: 90px;
+      right: 40px;
+      width: 240px;
+      height: 92px;
+      border: 4px dashed #10B981;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #059669;
+      font-size: 22px;
+      font-weight: 900;
+      transform: rotate(-8deg) scale(0);
+      background: rgba(236, 253, 245, 0.94);
+      box-shadow: 0 12px 32px rgba(16, 185, 129, 0.25);
+      z-index: 50;
+    }
+
+    .tip-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      padding: 26px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 16px 36px rgba(45, 35, 20, 0.08);
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      top: 1320px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.9);
+      border-radius: 28px;
+      padding: 20px 32px;
+      box-shadow: 0 18px 42px -6px rgba(45, 35, 20, 0.14);
+      width: 100%;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.65);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="douyin_s5_web">
+    <div class="header-bar">
+      <div class="header-nav">
+        <span class="nav-num">05</span>
+        <span class="nav-title">步骤三·刷新上车</span>
+      </div>
+      <div class="header-brand">
+        <div class="brand-arch"></div>
+        <div class="brand-title">胖猫 AI</div>
+      </div>
+    </div>
+
+    <div class="top-hook-banner">
+      <div class="top-hook-text">🎯 第三步：<span class="top-hook-hl">网页端刷新，直冲 $99.99 年付</span></div>
+    </div>
+
+    <div class="stage">
+      <div class="browser-box" id="browser-box">
+        <div class="browser-header">
+          <div class="mac-dots">
+            <div class="mac-dot" style="background: #FF5F56;"></div>
+            <div class="mac-dot" style="background: #FFBD2E;"></div>
+            <div class="mac-dot" style="background: #27C93F;"></div>
+          </div>
+          <div class="url-bar">
+            <span>🔒 one.google.com/settings</span>
+            <span class="refresh-btn" id="refresh-icon">🔄</span>
+          </div>
+        </div>
+        <div class="browser-viewport">
+          <img class="screenshot-img" id="web-img" src="assets/deal_googleone_upgrade.png" alt="Google One Upgrade Switch" />
+          <div class="aim-target" id="aim-target">
+            <span class="target-tag">点击 Switch 上车 ➜</span>
+          </div>
+          <div class="stamp" id="stamp">
+            <div>黑五 5 折神车</div>
+            <div style="font-size: 15px; margin-top: 4px;">锁定成功 ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div style="font-size: 40px;">✨</div>
+        <div style="font-size: 21px; font-weight: 800; color: #334155; line-height: 1.5;">
+          扣款生效后回网页刷新，就会出现 <span style="color: #C58B35;">Save 16% ($99.99/年)</span> 升级入口，直接付款上车！
+        </div>
+      </div>
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s5-sub">
+          第三步：等扣款生效后，切回电脑端订阅页面<span class="sub-hl">刷新一下</span>！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#browser-box", { y: 20, opacity: 0.85 }, { y: 0, opacity: 1, duration: 0.5 }, 0.0);
+    tl.to("#refresh-icon", { rotation: 720, duration: 0.8, ease: "power2.inOut" }, 1.5);
+
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "页面就会乖乖冒出 <span class='sub-hl'>黑五 5 折（$99.99/年）</span> 升级入口，直接上车！";
+    }, null, 5.8);
+
+    tl.to("#web-img", { scale: 1.28, x: -60, y: -30, duration: 1.0, ease: "power2.out" }, 5.8);
+    tl.to("#aim-target", { opacity: 1, duration: 0.5, ease: "power2.out" }, 6.6);
+    tl.to("#stamp", { scale: 1, duration: 0.5, ease: "back.out(2.0)" }, 8.5);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 12.8);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["douyin_s5_web"] = tl;
+  </script>
+</template>
+

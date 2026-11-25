@@ -1,0 +1,231 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-bar {
+      position: absolute;
+      top: 176px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .header-nav { display: flex; align-items: baseline; gap: 10px; }
+    .nav-num { font-size: 28px; font-weight: 900; color: #C58B35; }
+    .nav-title { font-size: 26px; font-weight: 850; color: #1E2024; }
+    .header-brand { display: flex; flex-direction: column; align-items: center; }
+    .brand-arch { width: 30px; height: 5px; border-top: 3.5px solid #C58B35; border-radius: 50%; margin-bottom: 2px; }
+    .brand-title { font-size: 24px; font-weight: 900; color: #1E2024; letter-spacing: 0.14em; }
+
+    .top-hook-banner {
+      position: absolute;
+      top: 244px;
+      left: 48px;
+      width: 880px;
+      background: linear-gradient(135deg, #1E2024, #2D3138);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 28px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(30, 32, 36, 0.18);
+      border: 1.5px solid #C58B35;
+      z-index: 30;
+    }
+    .top-hook-text { font-size: 32px; font-weight: 900; }
+    .top-hook-hl { color: #FDE047; }
+
+    .warning-stage {
+      position: absolute;
+      top: 350px;
+      left: 48px;
+      width: 880px;
+      height: 920px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 20;
+    }
+
+    .warning-card {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 30px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1);
+      padding: 34px 38px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .warn-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 850;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+    .warn-title { font-size: 32px; font-weight: 900; color: #1E2024; }
+
+    .clock-display {
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid #334155;
+    }
+    .clock-time {
+      font-family: monospace;
+      font-size: 42px;
+      font-weight: 900;
+      color: #EF4444;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    }
+    .clock-desc { font-size: 16px; color: #94A3B8; font-weight: 700; }
+
+    .match-box { display: flex; flex-direction: column; gap: 14px; }
+    .match-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 22px;
+      background: #FAF8F5;
+      border-radius: 16px;
+      border: 1px solid rgba(220, 214, 204, 0.8);
+    }
+    .match-label { font-size: 20px; font-weight: 800; color: #334155; display: flex; align-items: center; gap: 10px; }
+    .match-status { font-size: 16px; font-weight: 900; padding: 5px 14px; border-radius: 8px; }
+
+    .subtitle-hud {
+      position: absolute;
+      top: 1320px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.9);
+      border-radius: 28px;
+      padding: 20px 32px;
+      box-shadow: 0 18px 42px -6px rgba(45, 35, 20, 0.14);
+      width: 100%;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.65);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="douyin_s6_warning">
+    <div class="header-bar">
+      <div class="header-nav">
+        <span class="nav-num">06</span>
+        <span class="nav-title">避坑排雷</span>
+      </div>
+      <div class="header-brand">
+        <div class="brand-arch"></div>
+        <div class="brand-title">胖猫 AI</div>
+      </div>
+    </div>
+
+    <div class="top-hook-banner">
+      <div class="top-hook-text">⚠️ 必看：<span class="top-hook-hl">两大关键避坑提醒</span></div>
+    </div>
+
+    <div class="warning-stage">
+      <!-- Card 1: Deadline -->
+      <div class="warning-card" id="warn-card-1" style="border-top: 6px solid #EF4444;">
+        <div class="warn-tag" style="background: #FEE2E2; color: #DC2626;">⏰ 坑 1 · 截止时间</div>
+        <div class="warn-title">活动死线准时关闭，切勿拖延</div>
+        <div class="clock-display">
+          <div class="clock-desc">北京时间 · 准时结束</div>
+          <div class="clock-time">2026-11-27 14:00</div>
+          <div class="clock-desc" style="color: #F87171;">⚠️ 谨防最后时刻拥堵卡单或规则变动</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Douyin-Compliant Region Match (NO "IP" word!) -->
+      <div class="warning-card" id="warn-card-2" style="border-top: 6px solid #F59E0B;">
+        <div class="warn-tag" style="background: #FEF3C7; color: #B45309;">🛡️ 坑 2 · 付款报错</div>
+        <div class="warn-title">付款失败优先核对地区一致</div>
+        <div class="match-box">
+          <div class="match-item">
+            <div class="match-label"><span>🌐</span> 当前网络环境地区</div>
+            <div class="match-status" style="background: #E0E7FF; color: #3730A3;">对标地区</div>
+          </div>
+          <div class="match-item">
+            <div class="match-label"><span>💳</span> Google 付款资料地区</div>
+            <div class="match-status" style="background: #E0E7FF; color: #3730A3;">对标地区</div>
+          </div>
+          <div style="background: #ECFDF5; border: 1.5px solid #A7F3D0; border-radius: 14px; padding: 14px; text-align: center; color: #065F46; font-weight: 850; font-size: 18px;">
+            ✓ 两者严格一致即可顺利付款，避免系统拦截
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s6-sub">
+          坑 1：截止时间卡死：<span class="sub-hl">11 月 27 日 14:00</span> 准时结束，千万别拖！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#warn-card-1", { y: 20, opacity: 0.85 }, { y: 0, opacity: 1, duration: 0.5 }, 0.0);
+    tl.fromTo("#warn-card-2", { y: 20, opacity: 0.85 }, { y: 0, opacity: 1, duration: 0.5 }, 0.2);
+
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "坑 2：付款报错优先排查<span class='sub-hl'>网络环境</span>与<span class='sub-hl'>付款资料地区</span>是否一致！";
+    }, null, 7.0);
+
+    tl.to("#warn-card-2", { scale: 1.03, duration: 0.3, yoyo: true, repeat: 1, ease: "power2.out" }, 7.1);
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 17.2);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["douyin_s6_warning"] = tl;
+  </script>
+</template>
+

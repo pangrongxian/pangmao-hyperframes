@@ -1,0 +1,286 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-bar {
+      position: absolute;
+      top: 176px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .header-nav { display: flex; align-items: baseline; gap: 10px; }
+    .nav-num { font-size: 28px; font-weight: 900; color: #C58B35; }
+    .nav-title { font-size: 26px; font-weight: 850; color: #1E2024; }
+    .header-brand { display: flex; flex-direction: column; align-items: center; }
+    .brand-arch { width: 30px; height: 5px; border-top: 3.5px solid #C58B35; border-radius: 50%; margin-bottom: 2px; }
+    .brand-title { font-size: 24px; font-weight: 900; color: #1E2024; letter-spacing: 0.14em; }
+
+    .top-hook-banner {
+      position: absolute;
+      top: 244px;
+      left: 48px;
+      width: 880px;
+      background: linear-gradient(135deg, #1E2024, #2D3138);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 28px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(30, 32, 36, 0.18);
+      border: 1.5px solid #C58B35;
+      z-index: 30;
+    }
+    .top-hook-text { font-size: 32px; font-weight: 900; }
+    .top-hook-hl { color: #FDE047; }
+
+    /* Phase 1: Vertical Bills Stack */
+    .bills-stage {
+      position: absolute;
+      top: 350px;
+      left: 48px;
+      width: 880px;
+      height: 920px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 20;
+    }
+    .bill-row {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 26px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 16px 36px -8px rgba(45, 35, 20, 0.08);
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bill-left { display: flex; align-items: center; gap: 20px; }
+    .bill-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+    }
+    .bill-name { font-size: 28px; font-weight: 850; color: #1E2024; }
+    .bill-sub { font-size: 16px; font-weight: 700; color: #94A3B8; margin-top: 2px; }
+    .bill-price { font-size: 36px; font-weight: 900; color: #EF4444; }
+
+    .counter-badge {
+      background: #FFFBEB;
+      border: 2px solid #FDE68A;
+      border-radius: 24px;
+      padding: 24px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 26px;
+      font-weight: 850;
+      color: #B45309;
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Phase 2: Mechanism Stage */
+    .mechanism-stage {
+      position: absolute;
+      top: 350px;
+      left: 48px;
+      width: 880px;
+      height: 920px;
+      display: none;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 25;
+    }
+    .mech-box {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 30px;
+      border: 2px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 44px -8px rgba(45, 35, 20, 0.1);
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+    .mech-icon { font-size: 52px; }
+    .mech-title { font-size: 34px; font-weight: 900; color: #1E2024; }
+    .mech-desc { font-size: 22px; font-weight: 650; color: #64748B; line-height: 1.55; }
+    .mech-tag {
+      margin-top: 8px;
+      padding: 8px 28px;
+      border-radius: 999px;
+      font-size: 20px;
+      font-weight: 850;
+    }
+    .key-solution-box {
+      border: 2.5px solid #C58B35;
+      box-shadow: 0 24px 60px rgba(197, 139, 53, 0.2);
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      top: 1320px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.9);
+      border-radius: 28px;
+      padding: 20px 32px;
+      box-shadow: 0 18px 42px -6px rgba(45, 35, 20, 0.14);
+      width: 100%;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.65);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="douyin_s2_dual">
+    <div class="header-bar">
+      <div class="header-nav">
+        <span class="nav-num">02</span>
+        <span class="nav-title">机制逆向</span>
+      </div>
+      <div class="header-brand">
+        <div class="brand-arch"></div>
+        <div class="brand-title">胖猫 AI</div>
+      </div>
+    </div>
+
+    <div class="top-hook-banner">
+      <div class="top-hook-text">💸 告别按月交钱！<span class="top-hook-hl">老用户机制一招触发</span></div>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="bills-stage" id="bills-stage">
+      <div class="bill-row" id="b1">
+        <div class="bill-left">
+          <div class="bill-icon" style="background: #E6F4EA;">🤖</div>
+          <div>
+            <div class="bill-name">ChatGPT Plus</div>
+            <div class="bill-sub">单开年费 ≈ ¥1,700</div>
+          </div>
+        </div>
+        <div class="bill-price">$20 / 月</div>
+      </div>
+
+      <div class="bill-row" id="b2">
+        <div class="bill-left">
+          <div class="bill-icon" style="background: #FFF7ED;">⚡️</div>
+          <div>
+            <div class="bill-name">Claude Pro</div>
+            <div class="bill-sub">单开年费 ≈ ¥1,700</div>
+          </div>
+        </div>
+        <div class="bill-price">$20 / 月</div>
+      </div>
+
+      <div class="bill-row" id="b3">
+        <div class="bill-left">
+          <div class="bill-icon" style="background: #F3E8FF;">💻</div>
+          <div>
+            <div class="bill-name">Cursor Pro</div>
+            <div class="bill-sub">单开年费 ≈ ¥1,700</div>
+          </div>
+        </div>
+        <div class="bill-price">$20 / 月</div>
+      </div>
+
+      <div class="counter-badge">
+        <span>多开综合成本：</span>
+        <span style="font-size: 36px; color: #DC2626; font-weight: 900;">¥5,000+ / 年 💸</span>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="mechanism-stage" id="mechanism-stage">
+      <div class="mech-box" style="border-color: #F87171;">
+        <div class="mech-icon">⚠️</div>
+        <div class="mech-title">白号直接进：刷不到</div>
+        <div class="mech-desc">活动专为老用户定制，白号无法弹出入口<br/>手里若挂着旧套餐还会直接冲突</div>
+        <div class="mech-tag" style="background: #FEE2E2; color: #DC2626;">规则壁垒 ❌</div>
+      </div>
+
+      <div class="mech-box key-solution-box">
+        <div class="mech-icon">🔑</div>
+        <div class="mech-title">$1.99 买个引子轻松搞定</div>
+        <div class="mech-desc">开通最便宜的 $1.99 Lite 套餐<br/>瞬间触发“老用户升级”机制，全程不到 5 分钟！</div>
+        <div class="mech-tag" style="background: #FEF3C7; color: #B45309;">一键直达 ✅</div>
+      </div>
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s2-sub">
+          各家动不动月付 <span class="sub-hl">20 刀</span>，多开两个一年大几千，五折年付性价比无敌！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#b1", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.0);
+    tl.fromTo("#b2", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.1);
+    tl.fromTo("#b3", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.2);
+
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "白号刷不到，旧套餐会冲突；花 <span class='sub-hl'>$1.99 买个引子</span>轻松搞定，马上抄作业！";
+      const bStage = document.getElementById("bills-stage");
+      const mStage = document.getElementById("mechanism-stage");
+      if (bStage) bStage.style.display = "none";
+      if (mStage) mStage.style.display = "flex";
+    }, null, 7.0);
+
+    tl.fromTo("#mechanism-stage", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 7.1);
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 22.6);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["douyin_s2_dual"] = tl;
+  </script>
+</template>
+

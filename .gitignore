@@ -22,6 +22,9 @@ __pycache__/
 
 # HyperFrames Cache & Logs
 .hyperframes/
+douyin/.hyperframes/
+douyin/assets/
+douyin/compositions/
 
 # Intermediate Scratches & Analysis Frame Extractions
 scratch/

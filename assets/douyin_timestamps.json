@@ -1,0 +1,124 @@
+{
+  "total_duration": 127.02,
+  "scenes": [
+    {
+      "id": "douyin_s1_hook",
+      "title": "黄金底牌",
+      "start": 0.0,
+      "duration": 19.01,
+      "end": 19.01,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "今天教大家：如何只花 <span class='sub-hl'>$1.99</span>，撬动官方 <span class='sub-hl'>Gemini Pro 五折年付</span>！"
+        },
+        {
+          "time_offset": 5.2,
+          "html": "一年只要 <span class='sub-hl'>$99.99</span>，折合每月才 8 刀，连 <span class='sub-hl'>Claude Opus 5.5</span> 也能直接用！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s2_dual",
+      "title": "机制逆向",
+      "start": 19.41,
+      "duration": 22.92,
+      "end": 42.33,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "各家动不动月付 <span class='sub-hl'>20 刀</span>，多开两个一年大几千，五折年付性价比无敌！"
+        },
+        {
+          "time_offset": 7.0,
+          "html": "白号刷不到，旧套餐会冲突；花 <span class='sub-hl'>$1.99 买个引子</span>轻松搞定，马上抄作业！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s3_delete",
+      "title": "步骤一·清冲突",
+      "start": 42.73,
+      "duration": 18.24,
+      "end": 60.97,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "第一步：打开谷歌<span class='sub-hl'>服务删除页面</span>，删掉冲突的旧套餐腾出位置。"
+        },
+        {
+          "time_offset": 7.2,
+          "html": "顺手提醒一句：旧服务里有重要资料的，删前<span class='sub-hl'>务必先备个份</span>！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s4_app",
+      "title": "步骤二·两刀引子",
+      "start": 61.37,
+      "duration": 16.3,
+      "end": 77.66,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "第二步：手机打开 Google One App，开通最便宜的 <span class='sub-hl'>$1.99 Lite 套餐</span>。"
+        },
+        {
+          "time_offset": 6.2,
+          "html": "别心疼这两刀，这是用来触发系统<span class='sub-hl'>“老用户升级”机制</span>的核心引子！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s5_web",
+      "title": "步骤三·刷新上车",
+      "start": 78.06,
+      "duration": 13.08,
+      "end": 91.14,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "第三步：等扣款生效后，切回电脑端订阅页面<span class='sub-hl'>刷新一下</span>！"
+        },
+        {
+          "time_offset": 5.8,
+          "html": "页面就会乖乖冒出 <span class='sub-hl'>黑五 5 折（$99.99/年）</span> 升级入口，直接上车！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s6_warning",
+      "title": "避坑排雷",
+      "start": 91.54,
+      "duration": 17.57,
+      "end": 109.11,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "坑 1：截止时间卡死：<span class='sub-hl'>11 月 27 日 14:00</span> 准时结束，千万别拖！"
+        },
+        {
+          "time_offset": 7.0,
+          "html": "坑 2：付款报错优先排查<span class='sub-hl'>网络环境</span>与<span class='sub-hl'>付款资料地区</span>是否一致！"
+        }
+      ]
+    },
+    {
+      "id": "douyin_s7_summary",
+      "title": "抄作业清单",
+      "start": 109.51,
+      "duration": 16.01,
+      "end": 125.52,
+      "sub_lines": [
+        {
+          "time_offset": 0.0,
+          "html": "全套实操清单帮你总结好了，直接<span class='sub-hl'>截图保存</span>！"
+        },
+        {
+          "time_offset": 7.5,
+          "html": "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！"
+        }
+      ]
+    }
+  ]
+}

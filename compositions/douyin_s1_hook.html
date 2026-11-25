@@ -1,0 +1,321 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Douyin Safe Zone Header (below top 170px, clear of right 140px icons) */
+    .header-bar {
+      position: absolute;
+      top: 176px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .header-nav {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .nav-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #C58B35;
+    }
+    .nav-title {
+      font-size: 26px;
+      font-weight: 850;
+      color: #1E2024;
+    }
+    .header-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .brand-arch {
+      width: 30px;
+      height: 5px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.14em;
+    }
+
+    /* Top Douyin Hook Banner */
+    .top-hook-banner {
+      position: absolute;
+      top: 244px;
+      left: 48px;
+      width: 880px;
+      background: linear-gradient(135deg, #1E2024, #2D3138);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 28px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(30, 32, 36, 0.18);
+      border: 1.5px solid #C58B35;
+      z-index: 30;
+    }
+    .top-hook-text {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+    .top-hook-hl {
+      color: #FDE047;
+    }
+
+    /* Main Stage (Safe Zone: left 48px, width 880px) */
+    .main-stage {
+      position: absolute;
+      top: 348px;
+      left: 48px;
+      width: 880px;
+      height: 920px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 28px;
+      z-index: 20;
+    }
+
+    .deal-hero-card {
+      width: 880px;
+      background: #FFFFFF;
+      border-radius: 36px;
+      border: 2.5px solid #C58B35;
+      box-shadow: 0 28px 64px rgba(197, 139, 53, 0.22), 0 10px 24px rgba(45, 35, 20, 0.08), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 44px 36px;
+      text-align: center;
+    }
+    .deal-badge {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 1.5px solid #F59E0B;
+      color: #B45309;
+      font-size: 20px;
+      font-weight: 850;
+      padding: 8px 28px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+    .deal-title {
+      font-size: 46px;
+      font-weight: 900;
+      color: #1E2024;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .deal-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .deal-price-big {
+      font-size: 84px;
+      font-weight: 900;
+      color: #C58B35;
+      letter-spacing: -0.04em;
+    }
+    .deal-price-old {
+      font-size: 32px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+    .deal-discount-tag {
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 900;
+      padding: 6px 16px;
+      border-radius: 12px;
+      transform: rotate(-3deg);
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+    }
+    .deal-sub-highlight {
+      font-size: 24px;
+      font-weight: 850;
+      color: #C58B35;
+    }
+
+    /* Dual Models Vertical Stack */
+    .models-container {
+      width: 880px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .model-badge {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #FFFFFF;
+      border: 2px solid rgba(220, 214, 204, 0.85);
+      border-radius: 24px;
+      padding: 24px 32px;
+      box-shadow: 0 14px 32px rgba(45, 35, 20, 0.1);
+    }
+    .model-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      flex-shrink: 0;
+    }
+    .model-info-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #1E2024;
+    }
+    .model-info-desc {
+      font-size: 18px;
+      font-weight: 700;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    /* Douyin Safe Zone Subtitle Capsule (above bottom 400px caption area) */
+    .subtitle-hud {
+      position: absolute;
+      top: 1320px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.9);
+      border-radius: 28px;
+      padding: 20px 32px;
+      box-shadow: 0 18px 42px -6px rgba(45, 35, 20, 0.14);
+      width: 100%;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.65);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="douyin_s1_hook">
+    <div class="header-bar">
+      <div class="header-nav">
+        <span class="nav-num">01</span>
+        <span class="nav-title">黄金底牌</span>
+      </div>
+      <div class="header-brand">
+        <div class="brand-arch"></div>
+        <div class="brand-title">胖猫 AI</div>
+      </div>
+    </div>
+
+    <div class="top-hook-banner">
+      <div class="top-hook-text">🔥 实测：<span class="top-hook-hl">$1.99 撬动 Gemini Pro 五折年付</span></div>
+    </div>
+
+    <div class="main-stage">
+      <div class="deal-hero-card" id="deal-hero-card">
+        <div class="deal-badge">✦ 2026 谷歌黑五限定福利 ✦</div>
+        <div class="deal-title">Gemini Pro 官方五折年付</div>
+        <div class="deal-price-row">
+          <div class="deal-price-big">$99.99 <span style="font-size: 30px; font-weight: 700;">/ 年</span></div>
+          <div class="deal-price-old">$239.88</div>
+          <div class="deal-discount-tag" id="discount-tag">立省 50% ⚡️</div>
+        </div>
+        <div class="deal-sub-highlight">✦ 折合每月仅 8 刀出头！两家主力一锅端 ✦</div>
+      </div>
+
+      <div class="models-container" id="models-container">
+        <div class="model-badge" style="border-color: #F59E0B;">
+          <div class="model-icon" style="background: linear-gradient(135deg, #EFF6FF, #DBEAFE);">✨</div>
+          <div>
+            <div class="model-info-title">Google Gemini 4 全系</div>
+            <div class="model-info-desc">Hydrogen · Argon · Neon 随便切换</div>
+          </div>
+        </div>
+        <div class="model-badge" style="border-color: #EA580C;">
+          <div class="model-icon" style="background: linear-gradient(135deg, #FFF7ED, #FFEDD5);">⚡️</div>
+          <div>
+            <div class="model-info-title">Claude Opus 5.5</div>
+            <div class="model-info-desc">Anthropic 顶级旗舰模型直接包含</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s1-sub">
+          今天教大家：如何只花 <span class="sub-hl">$1.99</span>，撬动官方 <span class="sub-hl">Gemini Pro 五折年付</span>！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#deal-hero-card", { scale: 0.94, opacity: 0.85 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#discount-tag", { scale: 0, rotation: -20 }, { scale: 1, rotation: -3, duration: 0.5, ease: "back.out(1.8)" }, 0.3);
+    tl.to("#deal-hero-card", { y: -6, duration: 2.2, yoyo: true, repeat: 8, ease: "sine.inOut" }, 0.6);
+
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "一年只要 <span class='sub-hl'>$99.99</span>，折合每月才 8 刀，连 <span class='sub-hl'>Claude Opus 5.5</span> 也能直接用！";
+    }, null, 5.2);
+
+    tl.to("#models-container", { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" }, 5.2);
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 18.7);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["douyin_s1_hook"] = tl;
+  </script>
+</template>
+

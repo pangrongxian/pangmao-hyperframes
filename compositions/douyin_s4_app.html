@@ -1,0 +1,294 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-bar {
+      position: absolute;
+      top: 176px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    .header-nav { display: flex; align-items: baseline; gap: 10px; }
+    .nav-num { font-size: 28px; font-weight: 900; color: #C58B35; }
+    .nav-title { font-size: 26px; font-weight: 850; color: #1E2024; }
+    .header-brand { display: flex; flex-direction: column; align-items: center; }
+    .brand-arch { width: 30px; height: 5px; border-top: 3.5px solid #C58B35; border-radius: 50%; margin-bottom: 2px; }
+    .brand-title { font-size: 24px; font-weight: 900; color: #1E2024; letter-spacing: 0.14em; }
+
+    .top-hook-banner {
+      position: absolute;
+      top: 244px;
+      left: 48px;
+      width: 880px;
+      background: linear-gradient(135deg, #1E2024, #2D3138);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 28px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(30, 32, 36, 0.18);
+      border: 1.5px solid #C58B35;
+      z-index: 30;
+    }
+    .top-hook-text { font-size: 32px; font-weight: 900; }
+    .top-hook-hl { color: #FDE047; }
+
+    .app-stage {
+      position: absolute;
+      top: 344px;
+      left: 48px;
+      width: 880px;
+      height: 940px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      z-index: 20;
+    }
+
+    .phone-mock {
+      width: 880px;
+      height: 540px;
+      background: #111827;
+      border-radius: 32px;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 24px 60px -8px rgba(45, 35, 20, 0.18), 0 0 0 1px rgba(220, 214, 204, 0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .phone-notch-bar {
+      height: 36px;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      z-index: 10;
+    }
+    .phone-screen {
+      flex: 1;
+      position: relative;
+      background: #0B0F17;
+      overflow: hidden;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .aim-box {
+      position: absolute;
+      top: 86px;
+      left: 310px;
+      width: 260px;
+      height: 220px;
+      border: 3.5px solid #EF4444;
+      border-radius: 16px;
+      background: rgba(239, 68, 68, 0.14);
+      box-shadow: 0 0 24px rgba(239, 68, 68, 0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 12px;
+    }
+    .aim-tag {
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+
+    .coin {
+      position: absolute;
+      top: -60px;
+      left: 410px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #FDE047, #CA8A04);
+      border: 2px solid #FEF08A;
+      box-shadow: 0 8px 24px rgba(202, 138, 4, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: #713F12;
+      z-index: 20;
+    }
+
+    .logic-card {
+      width: 880px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 2px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1);
+      padding: 28px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #FAF8F5;
+      padding: 16px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(224, 218, 208, 0.65);
+    }
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #C58B35;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .step-text {
+      font-size: 20px;
+      font-weight: 750;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    .subtitle-hud {
+      position: absolute;
+      top: 1320px;
+      left: 48px;
+      width: 880px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.9);
+      border-radius: 28px;
+      padding: 20px 32px;
+      box-shadow: 0 18px 42px -6px rgba(45, 35, 20, 0.14);
+      width: 100%;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.65);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="douyin_s4_app">
+    <div class="header-bar">
+      <div class="header-nav">
+        <span class="nav-num">04</span>
+        <span class="nav-title">步骤二·两刀引子</span>
+      </div>
+      <div class="header-brand">
+        <div class="brand-arch"></div>
+        <div class="brand-title">胖猫 AI</div>
+      </div>
+    </div>
+
+    <div class="top-hook-banner">
+      <div class="top-hook-text">📱 第二步：<span class="top-hook-hl">App 买 $1.99 Lite 当敲门砖</span></div>
+    </div>
+
+    <div class="app-stage">
+      <div class="phone-mock" id="phone-mock">
+        <div class="phone-notch-bar">
+          <span>9:41</span>
+          <span>Google One App · 5G 📶</span>
+        </div>
+        <div class="phone-screen">
+          <img src="assets/deal_plans_dark.jpg" alt="Google One App Plans" />
+          <div class="aim-box" id="aim-box">
+            <span class="aim-tag">开通 $1.99 Lite</span>
+          </div>
+          <div class="coin" id="coin">$</div>
+        </div>
+      </div>
+
+      <div class="logic-card" id="logic-card">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">手机打开 <strong>Google One App</strong>，找到最便宜的 <strong>$1.99/月 Lite 套餐</strong> 开通</div>
+        </div>
+        <div class="step-item" style="background: #FEF3C7; border-color: #FDE68A;">
+          <div class="step-num" style="background: #B45309;">🔑</div>
+          <div class="step-text" style="color: #92400E;"><strong>别心疼这两刀！</strong> 这是用来触发系统“老用户升级”机制的核心引子！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s4-sub">
+          第二步：手机打开 Google One App，开通最便宜的 <span class="sub-hl">$1.99 Lite 套餐</span>。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#phone-mock", { y: 20, opacity: 0.85 }, { y: 0, opacity: 1, duration: 0.5 }, 0.0);
+    tl.fromTo("#logic-card", { y: 20, opacity: 0.85 }, { y: 0, opacity: 1, duration: 0.5 }, 0.2);
+
+    tl.fromTo("#coin", { top: -60, opacity: 0, scale: 0.5 }, { top: 130, opacity: 1, scale: 1, duration: 0.6, ease: "bounce.out" }, 2.5);
+    tl.to("#aim-box", { scale: 1.06, duration: 0.3, yoyo: true, repeat: 2, ease: "power2.out" }, 4.5);
+
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "别心疼这两刀，这是用来触发系统<span class='sub-hl'>“老用户升级”机制</span>的核心引子！";
+    }, null, 6.2);
+
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 16.0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["douyin_s4_app"] = tl;
+  </script>
+</template>
+
