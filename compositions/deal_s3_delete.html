@@ -1,0 +1,381 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Browser Mock Stage */
+    .browser-stage {
+      position: absolute;
+      top: 130px;
+      left: 180px;
+      width: 1120px;
+      height: 610px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.8);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1), 0 6px 16px rgba(45, 35, 20, 0.04), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 20;
+    }
+    .browser-header {
+      height: 52px;
+      background: #FAF8F5;
+      border-bottom: 1px solid rgba(224, 218, 208, 0.7);
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      gap: 18px;
+    }
+    .mac-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .url-bar {
+      flex: 1;
+      height: 32px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E2DCD2;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      font-size: 14px;
+      color: #475569;
+      font-family: monospace;
+      gap: 8px;
+    }
+
+    .browser-body {
+      flex: 1;
+      padding: 36px 44px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      border-radius: 18px;
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+    }
+    .service-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .trash-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #FEE2E2;
+      color: #DC2626;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Yellow Backup Reminder Sticky Note */
+    .sticky-note {
+      position: absolute;
+      top: 140px;
+      right: 180px;
+      width: 380px;
+      background: #FEF08A;
+      border-radius: 16px;
+      box-shadow: 0 16px 36px rgba(180, 83, 9, 0.18), 0 4px 12px rgba(0,0,0,0.05);
+      padding: 32px 28px;
+      transform: rotate(3deg);
+      z-index: 40;
+      border-left: 6px solid #F59E0B;
+    }
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 35%;
+      width: 110px;
+      height: 24px;
+      background: rgba(254, 240, 138, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px dashed rgba(217, 119, 6, 0.4);
+      transform: rotate(-2deg);
+    }
+    .sticky-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #92400E;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sticky-body {
+      font-size: 16px;
+      font-weight: 700;
+      color: #78350F;
+      line-height: 1.6;
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.85);
+      border-radius: 9999px;
+      padding: 18px 48px;
+      box-shadow: 0 20px 48px -6px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.05);
+      max-width: 1560px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.6);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+
+    .avatar-hud {
+      position: absolute;
+      bottom: 50px;
+      left: 64px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 3px;
+      box-shadow: 0 8px 24px rgba(45, 35, 20, 0.15);
+      border: 2px solid #C58B35;
+      z-index: 100;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s3_delete">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">03</span>
+      <span class="nav-title">步骤一·清冲突</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Browser Mock -->
+    <div class="browser-stage" id="browser-stage">
+      <div class="browser-header">
+        <div class="mac-dots">
+          <div class="mac-dot" style="background: #FF5F56;"></div>
+          <div class="mac-dot" style="background: #FFBD2E;"></div>
+          <div class="mac-dot" style="background: #27C93F;"></div>
+        </div>
+        <div class="url-bar">
+          <span style="color: #10B981;">🔒</span>
+          https://myaccount.google.com/deleteservices
+        </div>
+      </div>
+      <div class="browser-body">
+        <div style="font-size: 20px; font-weight: 800; color: #1E2024; margin-bottom: 4px;">Google 账号服务管理</div>
+        <div style="font-size: 14px; color: #64748B; margin-bottom: 12px;">删除现有冲突订阅（如 JIO、旧试用方案），为黑五 5 折腾出空位</div>
+
+        <div class="service-row" id="conflict-row" style="background: #FFF1F2; border-color: #FECDD3;">
+          <div class="service-info">
+            <div class="service-icon" style="background: #FFE4E6;">📦</div>
+            <div>
+              <div style="font-size: 18px; font-weight: 800; color: #9F1239;">旧版冲突订阅 (如 JIO 遗留套餐)</div>
+              <div style="font-size: 13px; color: #E11D48;">状态：占用名额中，导致黑五五折无法触发</div>
+            </div>
+          </div>
+          <div class="trash-btn" id="trash-trigger">🗑️</div>
+        </div>
+
+        <div class="service-row" id="cleared-row" style="display: none; background: #ECFDF5; border-color: #A7F3D0;">
+          <div class="service-info">
+            <div class="service-icon" style="background: #D1FAE5;">✅</div>
+            <div>
+              <div style="font-size: 18px; font-weight: 800; color: #065F46;">空间已成功腾空</div>
+              <div style="font-size: 13px; color: #059669;">账号已恢复干净状态，具备触发黑五老用户升级资格</div>
+            </div>
+          </div>
+          <div style="font-weight: 800; color: #059669; font-size: 15px;">准备就绪 ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Backup Reminder Note -->
+    <div class="sticky-note" id="sticky-note">
+      <div class="tape"></div>
+      <div class="sticky-title">⚠️ 顺手备个份！</div>
+      <div class="sticky-body">
+        如果该旧服务里存有重要文件或资料，<strong>删除之前先顺手下载备份</strong>！<br/><br/>
+        腾出空位后，才能顺利触发黑五 5 折升级入口。
+      </div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s3-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s3-sub">
+          第一步：打开谷歌<span class="sub-hl">服务删除页面</span>，删掉冲突的旧套餐腾出位置。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 0.0s: Browser and note display
+    tl.fromTo("#browser-stage", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.5 }, 0.0);
+    tl.fromTo("#sticky-note", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" }, 0.4);
+
+    // 4.0s: Delete animation
+    tl.to("#conflict-row", {
+      scale: 0.95,
+      opacity: 0,
+      duration: 0.4,
+      onComplete: () => {
+        const cRow = document.getElementById("conflict-row");
+        const clRow = document.getElementById("cleared-row");
+        if (cRow) cRow.style.display = "none";
+        if (clRow) clRow.style.display = "flex";
+      }
+    }, 4.0);
+
+    tl.fromTo("#cleared-row", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 4.4);
+
+    // 7.2s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s3-sub");
+      if (sub) sub.innerHTML = "顺手提醒一句：旧服务里有重要资料的，删前<span class='sub-hl'>务必先备个份</span>！";
+    }, null, 7.2);
+
+    // Highlight sticky note on backup reminder
+    tl.to("#sticky-note", { scale: 1.05, duration: 0.3, yoyo: true, repeat: 1, ease: "power2.out" }, 7.3);
+
+    // Avatar breathing
+    tl.fromTo("#s3-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 11, ease: "sine.inOut" }, 0.2);
+
+    // Scene transition exit fadeout at 17.9s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 17.9);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s3_delete"] = tl;
+  </script>
+</template>
+

@@ -66,170 +66,158 @@
       letter-spacing: 0.16em;
     }
 
-    /* Dual Reactor Stage */
-    .dual-stage {
+    /* Phase 1: High AI Subscription Bills */
+    .bills-stage {
       position: absolute;
-      top: 140px;
+      top: 130px;
       left: 160px;
       width: 1600px;
-      height: 620px;
+      height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 80px;
+      gap: 40px;
       z-index: 20;
     }
-
-    .reactor-pod {
-      width: 680px;
-      height: 480px;
+    .bill-card {
+      width: 360px;
+      height: 440px;
       background: #FFFFFF;
-      border-radius: 32px;
+      border-radius: 28px;
       border: 1px solid rgba(220, 214, 204, 0.75);
       box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.08), 0 6px 16px rgba(45, 35, 20, 0.03), inset 0 1px 0 #FFFFFF;
       display: flex;
       flex-direction: column;
-      padding: 40px 44px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 38px 28px;
       position: relative;
     }
-
-    .pod-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .pod-avatar-logo {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
+    .bill-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      font-size: 40px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
     }
-    .pod-title {
+    .bill-name {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1E2024;
+      margin-top: 12px;
+    }
+    .bill-price {
+      font-size: 38px;
+      font-weight: 900;
+      color: #EF4444;
+      letter-spacing: -0.02em;
+      margin: 8px 0;
+    }
+    .bill-tag {
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+    .counter-badge {
+      position: absolute;
+      top: 130px;
+      right: 280px;
+      background: #FFFBEB;
+      border: 2px solid #FDE68A;
+      border-radius: 20px;
+      padding: 12px 28px;
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #B45309;
+      z-index: 30;
+    }
+
+    /* Phase 2: Mechanism Bypass & Decision Flow */
+    .mechanism-stage {
+      position: absolute;
+      top: 130px;
+      left: 160px;
+      width: 1600px;
+      height: 600px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      z-index: 25;
+    }
+    .mech-box {
+      width: 480px;
+      height: 480px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 2px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+    }
+    .mech-icon {
+      font-size: 54px;
+      margin-bottom: 16px;
+    }
+    .mech-title {
       font-size: 28px;
       font-weight: 900;
       color: #1E2024;
+      margin-bottom: 12px;
     }
-    .pod-sub {
-      font-size: 15px;
-      color: #64748B;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-
-    .model-pills {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .model-pill {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 22px;
-      background: #F8FAFC;
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      border-radius: 16px;
+    .mech-desc {
       font-size: 18px;
-      font-weight: 800;
-      color: #1E2024;
+      font-weight: 600;
+      color: #64748B;
+      line-height: 1.6;
     }
-    .pill-badge {
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 12px;
+    .mech-tag {
+      margin-top: auto;
+      padding: 8px 24px;
       border-radius: 999px;
-    }
-
-    /* Grand Fusion Master Banner */
-    .fusion-banner {
-      position: absolute;
-      top: 640px;
-      left: 360px;
-      width: 1200px;
-      background: #FFFDF9;
-      border: 2px dashed #FDE68A;
-      border-radius: 20px;
-      padding: 18px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 30;
-      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.08);
-      opacity: 0;
-    }
-    .fusion-title {
-      font-size: 22px;
-      font-weight: 900;
-      color: #B45309;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .fusion-tags {
-      display: flex;
-      gap: 12px;
-    }
-    .f-tag {
-      background: #FFFFFF;
-      border: 1px solid #FDE68A;
-      color: #C58B35;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 999px;
     }
 
-    /* Subtitle & Presenter */
-    .avatar-hud {
-      position: absolute;
-      bottom: 52px;
-      left: 64px;
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #FAF7F0;
-      border: 4px solid #FFFFFF;
-      box-shadow: 0 10px 24px rgba(50, 38, 25, 0.12), 0 0 0 3px #E5DBC7;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 60;
-    }
-    .avatar-hud img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .key-solution-box {
+      border: 2.5px solid #C58B35;
+      box-shadow: 0 24px 60px rgba(197, 139, 53, 0.2);
     }
 
+    /* Subtitle Capsule */
     .subtitle-hud {
       position: absolute;
-      bottom: 64px;
-      left: 200px;
-      right: 200px;
+      bottom: 60px;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: center;
-      align-items: center;
-      z-index: 60;
+      z-index: 100;
       pointer-events: none;
     }
     .subtitle-capsule {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.85);
       border-radius: 9999px;
-      padding: 12px 42px;
-      box-shadow: 0 12px 32px rgba(45, 35, 20, 0.09), inset 0 1px 0 #FFFFFF;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 1440px;
+      padding: 18px 48px;
+      box-shadow: 0 20px 48px -6px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.05);
+      max-width: 1560px;
     }
     .subtitle-text {
       font-size: 36px;
@@ -242,9 +230,29 @@
     .sub-hl {
       color: #C58B35;
       font-weight: 900;
-      background: rgba(254, 243, 199, 0.55);
+      background: rgba(254, 243, 199, 0.6);
       padding: 1px 8px;
       border-radius: 6px;
+    }
+
+    .avatar-hud {
+      position: absolute;
+      bottom: 50px;
+      left: 64px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 3px;
+      box-shadow: 0 8px 24px rgba(45, 35, 20, 0.15);
+      border: 2px solid #C58B35;
+      z-index: 100;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
     }
   </style>
 
@@ -252,7 +260,7 @@
     <!-- Top Navigation Header -->
     <div class="header-nav">
       <span class="nav-num">02</span>
-      <span class="nav-title">双核一锅端</span>
+      <span class="nav-title">机制逆向</span>
     </div>
 
     <!-- Top Right Brand Arch -->
@@ -261,64 +269,46 @@
       <div class="brand-title">胖猫</div>
     </div>
 
-    <!-- Dual Reactor Pods -->
-    <div class="dual-stage">
-      <!-- Pod 1: Google Gemini 4 -->
-      <div class="reactor-pod" id="pod-google">
-        <div class="pod-header">
-          <div class="pod-avatar-logo" style="background: linear-gradient(135deg, #E0F2FE, #BAE6FD);">✨</div>
-          <div>
-            <div class="pod-title">Google 旗舰核心矩阵</div>
-            <div class="pod-sub">全系列 Gemini 4 任意切换</div>
-          </div>
-        </div>
-        <div class="model-pills">
-          <div class="model-pill">
-            <span>Gemini 4 Hydrogen</span>
-            <span class="pill-badge" style="background: #E0F2FE; color: #0284C7;">超高速轻量</span>
-          </div>
-          <div class="model-pill">
-            <span>Gemini 4 Argon</span>
-            <span class="pill-badge" style="background: #F3E8FF; color: #7C3AED;">平衡推理</span>
-          </div>
-          <div class="model-pill" style="border-color: #F59E0B; background: #FFFBEB;">
-            <span style="color: #B45309;">Gemini 4 Neon</span>
-            <span class="pill-badge" style="background: #FEF3C7; color: #B45309;">顶级超大模型</span>
-          </div>
-        </div>
+    <!-- Phase 1: The AI Price Burden -->
+    <div class="bills-stage" id="bills-stage">
+      <div class="bill-card" id="b1">
+        <div class="bill-icon" style="background: #E6F4EA;">🤖</div>
+        <div class="bill-name">ChatGPT Plus</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
       </div>
-
-      <!-- Pod 2: Anthropic Claude -->
-      <div class="reactor-pod" id="pod-claude">
-        <div class="pod-header">
-          <div class="pod-avatar-logo" style="background: linear-gradient(135deg, #FFEDD5, #FED7AA);">👑</div>
-          <div>
-            <div class="pod-title">Anthropic 顶级王炸</div>
-            <div class="pod-sub">套餐内罕见直接集成</div>
-          </div>
-        </div>
-        <div class="model-pills">
-          <div class="model-pill" style="border: 2px solid #C58B35; background: #FFFDF9; padding: 22px 24px;">
-            <div style="display: flex; flex-direction: column;">
-              <span style="font-size: 24px; color: #C58B35;">Claude Opus 5.5</span>
-              <span style="font-size: 13px; color: #94A3B8; font-weight: 600; margin-top: 4px;">全球公认最强代码与复杂推理神兽</span>
-            </div>
-            <span class="pill-badge" style="background: #FEF3C7; color: #B45309; font-size: 14px;">免翻直接调用</span>
-          </div>
-        </div>
+      <div class="bill-card" id="b2">
+        <div class="bill-icon" style="background: #FFF7ED;">⚡️</div>
+        <div class="bill-name">Claude Pro</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
+      </div>
+      <div class="bill-card" id="b3">
+        <div class="bill-icon" style="background: #F3E8FF;">💻</div>
+        <div class="bill-name">Cursor Pro</div>
+        <div class="bill-price">$20 / 月</div>
+        <div class="bill-tag">单开 ¥1,700/年</div>
+      </div>
+      <div class="counter-badge" id="counter-badge">
+        <span>综合成本：</span>
+        <span style="font-size: 26px; color: #DC2626;">¥5,000+ / 年 💸</span>
       </div>
     </div>
 
-    <!-- Fusion Bottom Banner -->
-    <div class="fusion-banner" id="fusion-banner">
-      <div class="fusion-title">
-        <span>⚡️</span>
-        <span>一份打折的钱，两家全球主力模型一网打尽！</span>
+    <!-- Phase 2: Mechanism Bypass Solution -->
+    <div class="mechanism-stage" id="mechanism-stage">
+      <div class="mech-box" style="border-color: #F87171;">
+        <div class="mech-icon">⚠️</div>
+        <div class="mech-title">白号直接进：刷不到</div>
+        <div class="mech-desc">活动专为老用户定制<br/>白号访问无法触发折扣入口<br/>挂着旧套餐还会直接冲突</div>
+        <div class="mech-tag" style="background: #FEE2E2; color: #DC2626;">规则壁垒 ❌</div>
       </div>
-      <div class="fusion-tags">
-        <div class="f-tag">全栈编程</div>
-        <div class="f-tag">深度研报</div>
-        <div class="f-tag">百万上下文</div>
+
+      <div class="mech-box key-solution-box">
+        <div class="mech-icon">🔑</div>
+        <div class="mech-title">$1.99 敲门砖引子</div>
+        <div class="mech-desc">购买最便宜的 $1.99 Lite 套餐<br/>瞬间激活系统“老用户”特权<br/>全程不到 5 分钟极速上车！</div>
+        <div class="mech-tag" style="background: #FEF3C7; color: #B45309;">一键破局 ✅</div>
       </div>
     </div>
 
@@ -331,7 +321,7 @@
     <div class="subtitle-hud">
       <div class="subtitle-capsule">
         <div class="subtitle-text" id="s2-sub">
-          不止打五折：除了谷歌自家 <span class="sub-hl">Gemini 4 全系列</span>随便切！
+          各家动不动月付 <span class="sub-hl">20 刀</span>，多开两个一年大几千，五折年付性价比无敌！
         </div>
       </div>
     </div>
@@ -340,42 +330,35 @@
   <script>
     const tl = gsap.timeline({ paused: true });
 
-    tl.fromTo("#pod-google", 
-      { opacity: 0, x: -60, scale: 0.94 }, 
-      { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
-      0.3
-    );
+    // 0.0s: Bills displayed immediately with subtle dynamic drop
+    tl.fromTo("#b1", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.0);
+    tl.fromTo("#b2", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.1);
+    tl.fromTo("#b3", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.4 }, 0.2);
 
-    tl.fromTo("#pod-claude", 
-      { opacity: 0, x: 60, scale: 0.94 }, 
-      { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
-      0.6
-    );
-
-    // Subtitle transition at 10.0s
+    // 7.0s: Transition to Mechanism Stage
     tl.call(() => {
       const sub = document.getElementById("s2-sub");
-      if (sub) sub.innerHTML = "居然连 <span class='sub-hl'>Claude Opus 5.5</span> 也能直接用，一份打折钱两家主力一锅端！";
-    }, null, 10.0);
+      if (sub) sub.innerHTML = "白号刷不到，旧套餐会冲突；花 <span class='sub-hl'>$1.99 买敲门砖</span>一键破解，马上抄作业！";
 
-    // Banner slides up
-    tl.fromTo("#fusion-banner", 
-      { opacity: 0, y: 30 }, 
-      { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.4)" }, 
-      10.2
+      const bStage = document.getElementById("bills-stage");
+      const mStage = document.getElementById("mechanism-stage");
+      if (bStage) bStage.style.display = "none";
+      if (mStage) mStage.style.display = "flex";
+    }, null, 7.0);
+
+    tl.fromTo("#mechanism-stage", 
+      { opacity: 0, scale: 0.92 }, 
+      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 
+      7.1
     );
-
-    // Subtle breathing pulse on the Claude card
-    tl.to("#pod-claude", { borderColor: "#C58B35", boxShadow: "0 24px 60px rgba(197, 139, 53, 0.2)", duration: 1.2, yoyo: true, repeat: 7, ease: "sine.inOut" }, 11.0);
 
     // Avatar breathing
     tl.fromTo("#s2-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 14, ease: "sine.inOut" }, 0.2);
 
-    // Scene exit fadeout
-    tl.to("#root", { opacity: 0, duration: 0.25 }, 22.76);
+    // Scene transition exit fadeout at 23.0s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 23.0);
 
     window.__timelines = window.__timelines || {};
     window.__timelines["deal_s2_dual"] = tl;
   </script>
 </template>
-

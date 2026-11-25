@@ -61,7 +61,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="151.27"
+      data-duration="127.74"
       data-width="1920"
       data-height="1080"
       data-fps="30"
@@ -73,111 +73,98 @@
       <!-- Master Audio Track (Voiceover + BGM + SFX) -->
       <audio
         id="voiceover"
-        src="assets/deal_master_audio.mp3"
+        src="assets/deal_master_audio_v2.mp3"
         data-start="0"
-        data-duration="151.27"
+        data-duration="127.74"
         data-volume="1"
       ></audio>
 
-      <!-- Scene 1: 0 - 20.76s Hook & Black Friday 50% Deal -->
+      <!-- Scene 1: 0 - 19.01s 黄金底牌 (0秒直接亮出底牌) -->
       <div
         id="deal_s1_hook"
         data-composition-id="deal_s1_hook"
         data-composition-src="compositions/deal_s1_hook.html"
         data-start="0"
-        data-duration="20.76"
+        data-duration="19.01"
         data-track-index="0"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 2: 20.76 - 43.77s Dual Reactor: Gemini 4 + Claude Opus 5.5 -->
+      <!-- Scene 2: 19.41 - 42.81s 机制逆向与痛点对比 -->
       <div
         id="deal_s2_dual"
         data-composition-id="deal_s2_dual"
         data-composition-src="compositions/deal_s2_dual.html"
-        data-start="20.76"
-        data-duration="23.01"
+        data-start="19.41"
+        data-duration="23.40"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 3: 43.77 - 70.38s Account Pre-check & Bifurcation Tree -->
+      <!-- Scene 3: 43.21 - 61.45s 步骤一·清冲突 (删老订阅 & 资料备份) -->
       <div
-        id="deal_s3_check"
-        data-composition-id="deal_s3_check"
-        data-composition-src="compositions/deal_s3_check.html"
-        data-start="43.77"
-        data-duration="26.61"
+        id="deal_s3_delete"
+        data-composition-id="deal_s3_delete"
+        data-composition-src="compositions/deal_s3_delete.html"
+        data-start="43.21"
+        data-duration="18.24"
         data-track-index="2"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 4: 70.38 - 91.78s Step 1: Delete Old Conflict Subscription -->
+      <!-- Scene 4: 61.85 - 78.14s 步骤二·两刀引子 ($1.99 Lite 手机开通) -->
       <div
-        id="deal_s4_delete"
-        data-composition-id="deal_s4_delete"
-        data-composition-src="compositions/deal_s4_delete.html"
-        data-start="70.38"
-        data-duration="21.40"
+        id="deal_s4_app"
+        data-composition-id="deal_s4_app"
+        data-composition-src="compositions/deal_s4_app.html"
+        data-start="61.85"
+        data-duration="16.30"
         data-track-index="3"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 5: 91.78 - 108.98s Step 2: $1.99 Lite Trigger on Mobile App -->
+      <!-- Scene 5: 78.54 - 91.62s 步骤三·刷新上车 (网页刷新 & 准星瞄准 Switch) -->
       <div
-        id="deal_s5_app"
-        data-composition-id="deal_s5_app"
-        data-composition-src="compositions/deal_s5_app.html"
-        data-start="91.78"
-        data-duration="17.20"
+        id="deal_s5_web"
+        data-composition-id="deal_s5_web"
+        data-composition-src="compositions/deal_s5_web.html"
+        data-start="78.54"
+        data-duration="13.08"
         data-track-index="4"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 6: 108.98 - 124.88s Step 3: Web Refresh & 50% Off Entry Switch -->
+      <!-- Scene 6: 92.02 - 109.83s 避坑排雷 (截止时间 & 地区一致性) -->
       <div
-        id="deal_s6_web"
-        data-composition-id="deal_s6_web"
-        data-composition-src="compositions/deal_s6_web.html"
-        data-start="108.98"
-        data-duration="15.90"
+        id="deal_s6_warning"
+        data-composition-id="deal_s6_warning"
+        data-composition-src="compositions/deal_s6_warning.html"
+        data-start="92.02"
+        data-duration="17.81"
         data-track-index="5"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Scene 7: 124.88 - 145.32s Warning: Deadline 11-27 14:00 & IP Region Match -->
+      <!-- Scene 7: 110.23 - 127.74s 终极实操抄作业总结大卡 & 品牌永恒定格 -->
       <div
-        id="deal_s7_warning"
-        data-composition-id="deal_s7_warning"
-        data-composition-src="compositions/deal_s7_warning.html"
-        data-start="124.88"
-        data-duration="20.44"
+        id="deal_s7_summary"
+        data-composition-id="deal_s7_summary"
+        data-composition-src="compositions/deal_s7_summary.html"
+        data-start="110.23"
+        data-duration="17.51"
         data-track-index="6"
-        data-track-kind="graphics"
-        data-width="1920"
-        data-height="1080"
-      ></div>
-
-      <!-- Scene 8: 145.32 - 151.27s Grand Outro Brand Hold Screen -->
-      <div
-        id="deal_s8_outro"
-        data-composition-id="deal_s8_outro"
-        data-composition-src="compositions/deal_s8_outro.html"
-        data-start="145.32"
-        data-duration="5.95"
-        data-track-index="7"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"

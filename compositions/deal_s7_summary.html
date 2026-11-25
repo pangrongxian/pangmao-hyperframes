@@ -1,0 +1,367 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Full-Screen Summary Cheat Sheet Card */
+    .summary-card {
+      position: absolute;
+      top: 110px;
+      left: 200px;
+      width: 1520px;
+      height: 700px;
+      background: #FFFFFF;
+      border-radius: 36px;
+      border: 2px solid #C58B35;
+      box-shadow: 0 32px 80px rgba(197, 139, 53, 0.18), 0 12px 32px rgba(45, 35, 20, 0.08), inset 0 1px 0 #FFFFFF;
+      padding: 38px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 20;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #F3EDE2;
+      padding-bottom: 18px;
+    }
+    .summary-title-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .summary-icon {
+      font-size: 32px;
+    }
+    .summary-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: -0.01em;
+    }
+    .screenshot-badge {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 1.5px solid #F59E0B;
+      color: #B45309;
+      font-size: 16px;
+      font-weight: 850;
+      padding: 6px 20px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    /* Structured Steps List */
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 12px 0;
+    }
+    .step-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: #FAF8F5;
+      border-radius: 18px;
+      border: 1px solid rgba(220, 214, 204, 0.75);
+    }
+    .step-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .step-tag {
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 850;
+      flex-shrink: 0;
+    }
+    .step-main {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1E2024;
+    }
+    .step-note {
+      font-size: 15px;
+      color: #64748B;
+      font-weight: 600;
+      margin-left: 12px;
+    }
+    .step-action-tag {
+      font-size: 14px;
+      font-weight: 850;
+      padding: 4px 14px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E2DCD2;
+      color: #C58B35;
+    }
+
+    /* Summary Footer with Brand & Action */
+    .summary-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1.5px dashed #E2DCD2;
+      padding-top: 16px;
+    }
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-avatar-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid #C58B35;
+    }
+    .brand-text-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: #1E2024;
+    }
+    .brand-slogan {
+      font-size: 14px;
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    .cta-capsule {
+      background: #FFFBEB;
+      border: 1.5px solid #FDE68A;
+      color: #B45309;
+      font-size: 16px;
+      font-weight: 850;
+      padding: 10px 28px;
+      border-radius: 9999px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.85);
+      border-radius: 9999px;
+      padding: 16px 44px;
+      box-shadow: 0 20px 48px -6px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.05);
+      max-width: 1560px;
+    }
+    .subtitle-text {
+      font-size: 34px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.6);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s7_summary">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">07</span>
+      <span class="nav-title">抄作业清单</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Full-Screen Summary Cheat Sheet Card -->
+    <div class="summary-card" id="summary-card">
+      <div class="summary-header">
+        <div class="summary-title-row">
+          <span class="summary-icon">📋</span>
+          <span class="summary-title">Gemini Pro 五折极速上车 · 实操抄作业清单</span>
+        </div>
+        <div class="screenshot-badge">
+          <span>📸</span> 建议截图保存
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <!-- Step 1: Delete Old -->
+        <div class="step-card">
+          <div class="step-left">
+            <span class="step-tag" style="background: #FEE2E2; color: #DC2626;">准备</span>
+            <span class="step-main">自检清坑：进入 deleteservices 页面删掉老冲突套餐</span>
+            <span class="step-note">(⚠️ 重要资料删前顺手备个份)</span>
+          </div>
+          <span class="step-action-tag">腾出资格 ➜</span>
+        </div>
+
+        <!-- Step 2: Buy $1.99 Lite -->
+        <div class="step-card">
+          <div class="step-left">
+            <span class="step-tag" style="background: #FEF3C7; color: #B45309;">第 1 步</span>
+            <span class="step-main">两刀钥匙：手机 Google One App 开通最便宜 $1.99 Lite</span>
+            <span class="step-note">(触发系统“老用户升级”判定核心引子)</span>
+          </div>
+          <span class="step-action-tag">激活老用户 ➜</span>
+        </div>
+
+        <!-- Step 3: Refresh Web -->
+        <div class="step-card">
+          <div class="step-left">
+            <span class="step-tag" style="background: #D1FAE5; color: #065F46;">第 2 步</span>
+            <span class="step-main">刷新上车：电脑端切回页面刷新，弹出黑五 5 折入口</span>
+            <span class="step-note">(锁定 $99.99/年，月付仅 8 刀出头)</span>
+          </div>
+          <span class="step-action-tag">神车到手 ➜</span>
+        </div>
+
+        <!-- Step 4: Deadlines & Anti-risk -->
+        <div class="step-card" style="background: #FFFBEB; border-color: #FDE68A;">
+          <div class="step-left">
+            <span class="step-tag" style="background: #EF4444; color: #FFFFFF;">避坑</span>
+            <span class="step-main">死线卡死：11 月 27 日 14:00 准时关闭；报错核对网络与付款地区一致</span>
+          </div>
+          <span class="step-action-tag" style="color: #DC2626;">准时截单 ⚠️</span>
+        </div>
+      </div>
+
+      <div class="summary-footer">
+        <div class="brand-block">
+          <img class="brand-avatar-img" src="assets/avatar.jpg" alt="Avatar" />
+          <div class="brand-text-col">
+            <span class="brand-name">胖猫 AI</span>
+            <span class="brand-slogan">带你探索 AI 时代超级个体之路</span>
+          </div>
+        </div>
+        <div class="cta-capsule">
+          ✦ 点赞 · 收藏 · 关注 · 咱们下期见！✦
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s7-sub">
+          全套实操清单帮你总结好了，直接<span class="sub-hl">截图保存</span>！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 0.0s: Summary card is immediately visible and pops forward
+    tl.fromTo("#summary-card", 
+      { scale: 0.95, opacity: 0.8 }, 
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.2)" }, 
+      0.0
+    );
+
+    // 7.5s: Subtitle transition to Brand Outro
+    tl.call(() => {
+      const sub = document.getElementById("s7-sub");
+      if (sub) sub.innerHTML = "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！";
+    }, null, 7.5);
+
+    // CRITICAL: NO FADEOUT! End indefinitely on this summary card!
+    // Timeline finishes without hiding or changing opacity of #root.
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s7_summary"] = tl;
+  </script>
+</template>
+

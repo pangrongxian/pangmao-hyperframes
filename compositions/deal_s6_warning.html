@@ -1,0 +1,324 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Warning Dual Stage */
+    .warning-stage {
+      position: absolute;
+      top: 130px;
+      left: 180px;
+      width: 1560px;
+      height: 620px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      z-index: 20;
+    }
+
+    .warning-card {
+      width: 720px;
+      height: 520px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 1.5px solid rgba(220, 214, 204, 0.85);
+      box-shadow: 0 20px 48px -8px rgba(45, 35, 20, 0.1), inset 0 1px 0 #FFFFFF;
+      padding: 44px 48px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .warn-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 850;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .warn-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: #1E2024;
+      margin-bottom: 22px;
+    }
+
+    /* LED Countdown Clock Card */
+    .clock-display {
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 2px solid #334155;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .clock-time {
+      font-family: monospace;
+      font-size: 40px;
+      font-weight: 900;
+      color: #EF4444;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    }
+    .clock-desc {
+      font-size: 16px;
+      color: #94A3B8;
+      font-weight: 700;
+    }
+
+    /* Risk Match Rows */
+    .match-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .match-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: #FAF8F5;
+      border-radius: 16px;
+      border: 1px solid rgba(220, 214, 204, 0.8);
+    }
+    .match-label {
+      font-size: 18px;
+      font-weight: 800;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .match-status {
+      font-size: 15px;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 8px;
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.85);
+      border-radius: 9999px;
+      padding: 18px 48px;
+      box-shadow: 0 20px 48px -6px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.05);
+      max-width: 1560px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.6);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+
+    .avatar-hud {
+      position: absolute;
+      bottom: 50px;
+      left: 64px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 3px;
+      box-shadow: 0 8px 24px rgba(45, 35, 20, 0.15);
+      border: 2px solid #C58B35;
+      z-index: 100;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s6_warning">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">06</span>
+      <span class="nav-title">避坑排雷</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Warning Cards -->
+    <div class="warning-stage">
+      <!-- Card 1: Deadline -->
+      <div class="warning-card" id="warn-card-1" style="border-top: 6px solid #EF4444;">
+        <div class="warn-tag" style="background: #FEE2E2; color: #DC2626;">
+          <span>⏰</span> 致命死线
+        </div>
+        <div class="warn-title">活动截止时间卡得很死</div>
+        <div class="clock-display">
+          <div class="clock-desc">北京时间 · 准时结束</div>
+          <div class="clock-time">2026-11-27 14:00</div>
+          <div class="clock-desc" style="color: #F87171;">⚠️ 千万别拖到最后一刻，谨防临时卡单改规</div>
+        </div>
+        <div style="margin-top: 24px; font-size: 16px; color: #64748B; font-weight: 700; line-height: 1.5;">
+          预计在活动最后一小时可能出现支付网关拥堵或活动提早下线，建议抓紧上车。
+        </div>
+      </div>
+
+      <!-- Card 2: IP & Profile region match -->
+      <div class="warning-card" id="warn-card-2" style="border-top: 6px solid #F59E0B;">
+        <div class="warn-tag" style="background: #FEF3C7; color: #B45309;">
+          <span>🛡️</span> 避免风控
+        </div>
+        <div class="warn-title">付款报错优先查地区</div>
+        <div class="match-box">
+          <div class="match-item">
+            <div class="match-label"><span>🌐</span> 网络环境 IP 地区</div>
+            <div class="match-status" style="background: #E0E7FF; color: #3730A3;">美区 / 对标地区</div>
+          </div>
+          <div class="match-item">
+            <div class="match-label"><span>💳</span> Google 付款资料地区</div>
+            <div class="match-status" style="background: #E0E7FF; color: #3730A3;">美区 / 对标地区</div>
+          </div>
+          <div style="background: #ECFDF5; border: 1.5px solid #A7F3D0; border-radius: 14px; padding: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #065F46; font-weight: 800; font-size: 16px;">
+            <span>✓</span> 两者一致方可通过风控拦截
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s6-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s6-sub">
+          坑 1：截止时间卡死：<span class="sub-hl">11 月 27 日 14:00</span> 准时结束，千万别拖！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 0.0s: Entrance
+    tl.fromTo("#warn-card-1", { x: -30, opacity: 0.8 }, { x: 0, opacity: 1, duration: 0.5 }, 0.0);
+    tl.fromTo("#warn-card-2", { x: 30, opacity: 0.8 }, { x: 0, opacity: 1, duration: 0.5 }, 0.2);
+
+    // 7.0s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "坑 2：付款报错优先排查<span class='sub-hl'>网络 IP</span>与<span class='sub-hl'>付款资料地区</span>是否一致！";
+    }, null, 7.0);
+
+    // Card 2 highlight
+    tl.to("#warn-card-2", { scale: 1.03, duration: 0.3, yoyo: true, repeat: 1, ease: "power2.out" }, 7.1);
+
+    // Avatar breathing
+    tl.fromTo("#s6-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 11, ease: "sine.inOut" }, 0.2);
+
+    // Scene transition exit fadeout at 17.5s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 17.5);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s6_warning"] = tl;
+  </script>
+</template>
+

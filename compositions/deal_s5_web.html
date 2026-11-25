@@ -1,0 +1,354 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Navigation & Brand */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #C58B35;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #C58B35;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1E2024;
+      letter-spacing: 0.16em;
+    }
+
+    /* Web Browser Stage with Real Screenshot */
+    .browser-box {
+      position: absolute;
+      top: 130px;
+      left: 180px;
+      width: 1560px;
+      height: 620px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 214, 204, 0.8);
+      box-shadow: 0 24px 60px -8px rgba(45, 35, 20, 0.12), inset 0 1px 0 #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 20;
+    }
+    .browser-header {
+      height: 52px;
+      background: #FAF8F5;
+      border-bottom: 1px solid rgba(224, 218, 208, 0.7);
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      gap: 20px;
+    }
+    .mac-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .url-bar {
+      flex: 1;
+      height: 34px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E2DCD2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-size: 14px;
+      color: #475569;
+      font-family: monospace;
+    }
+    .refresh-btn {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #0284C7;
+    }
+
+    .browser-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+    .screenshot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform-origin: center 70%;
+    }
+
+    /* Red Laser Target Box */
+    .aim-target {
+      position: absolute;
+      bottom: 95px;
+      left: 545px;
+      width: 480px;
+      height: 80px;
+      border: 3.5px solid #EF4444;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.15);
+      box-shadow: 0 0 28px rgba(239, 68, 68, 0.5), inset 0 0 12px rgba(239, 68, 68, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 18px;
+      opacity: 0;
+      z-index: 30;
+      pointer-events: none;
+    }
+    .target-tag {
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Success Stamp */
+    .stamp {
+      position: absolute;
+      top: 180px;
+      right: 180px;
+      width: 260px;
+      height: 100px;
+      border: 4px dashed #10B981;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #059669;
+      font-size: 24px;
+      font-weight: 900;
+      transform: rotate(-8deg) scale(0);
+      background: rgba(236, 253, 245, 0.9);
+      box-shadow: 0 12px 32px rgba(16, 185, 129, 0.2);
+      z-index: 50;
+    }
+
+    /* Subtitle Capsule */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(215, 205, 190, 0.85);
+      border-radius: 9999px;
+      padding: 18px 48px;
+      box-shadow: 0 20px 48px -6px rgba(45, 35, 20, 0.12), 0 6px 16px rgba(45, 35, 20, 0.05);
+      max-width: 1560px;
+    }
+    .subtitle-text {
+      font-size: 36px;
+      font-weight: 850;
+      color: #1A1C20;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C58B35;
+      font-weight: 900;
+      background: rgba(254, 243, 199, 0.6);
+      padding: 1px 8px;
+      border-radius: 6px;
+    }
+
+    .avatar-hud {
+      position: absolute;
+      bottom: 50px;
+      left: 64px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 3px;
+      box-shadow: 0 8px 24px rgba(45, 35, 20, 0.15);
+      border: 2px solid #C58B35;
+      z-index: 100;
+    }
+    .avatar-hud img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="deal_s5_web">
+    <!-- Top Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">05</span>
+      <span class="nav-title">步骤三·刷新上车</span>
+    </div>
+
+    <!-- Top Right Brand Arch -->
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-title">胖猫</div>
+    </div>
+
+    <!-- Web Mock -->
+    <div class="browser-box" id="browser-box">
+      <div class="browser-header">
+        <div class="mac-dots">
+          <div class="mac-dot" style="background: #FF5F56;"></div>
+          <div class="mac-dot" style="background: #FFBD2E;"></div>
+          <div class="mac-dot" style="background: #27C93F;"></div>
+        </div>
+        <div class="url-bar">
+          <span>🔒 https://one.google.com/settings</span>
+          <span class="refresh-btn" id="refresh-icon">🔄</span>
+        </div>
+      </div>
+      <div class="browser-viewport">
+        <img class="screenshot-img" id="web-img" src="assets/deal_googleone_upgrade.png" alt="Google One Upgrade Switch" />
+        
+        <div class="aim-target" id="aim-target">
+          <span class="target-tag">点击 Switch 上车 ➜</span>
+        </div>
+
+        <div class="stamp" id="stamp">
+          <div>黑五 5 折神车</div>
+          <div style="font-size: 16px; margin-top: 4px;">锁定成功 ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatar HUD -->
+    <div class="avatar-hud" id="s5-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle Capsule -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s5-sub">
+          第三步：等扣款生效后，切回电脑端订阅页面<span class="sub-hl">刷新一下</span>！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 0.0s: Entrance
+    tl.fromTo("#browser-box", { y: 20, opacity: 0.8 }, { y: 0, opacity: 1, duration: 0.5 }, 0.0);
+
+    // 1.5s: Refresh button spinning
+    tl.to("#refresh-icon", { rotation: 720, duration: 0.8, ease: "power2.inOut" }, 1.5);
+
+    // 5.8s: Subtitle 2 transition + Zoom & Highlight
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "页面就会乖乖冒出 <span class='sub-hl'>黑五 5 折（$99.99/年）</span> 升级入口，直接上车！";
+    }, null, 5.8);
+
+    // Camera zoom in on the switch section
+    tl.to("#web-img", {
+      scale: 1.25,
+      x: -120,
+      y: -40,
+      duration: 1.0,
+      ease: "power2.out"
+    }, 5.8);
+
+    // Target box pops in
+    tl.to("#aim-target", {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out"
+    }, 6.6);
+
+    // 8.5s: Success Stamp
+    tl.to("#stamp", {
+      scale: 1,
+      duration: 0.5,
+      ease: "back.out(2.0)"
+    }, 8.5);
+
+    // Avatar breathing
+    tl.fromTo("#s5-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 8, ease: "sine.inOut" }, 0.2);
+
+    // Scene transition exit fadeout at 12.8s
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 12.8);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["deal_s5_web"] = tl;
+  </script>
+</template>
+
