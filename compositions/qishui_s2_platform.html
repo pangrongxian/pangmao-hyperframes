@@ -1,0 +1,385 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Top Navigation Header */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0284C7;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #0284C7;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #1A1C20;
+    }
+
+    /* Stage */
+    .stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 80px 130px;
+      gap: 28px;
+    }
+
+    /* Browser Mockup Window */
+    .browser-window {
+      width: 1420px;
+      height: 700px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 
+        0 24px 60px -15px rgba(0, 0, 0, 0.12),
+        0 8px 24px -6px rgba(2, 132, 199, 0.15);
+      border: 1.5px solid #E2E8F0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .browser-bar {
+      height: 54px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .traffic-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+
+    .browser-url-pill {
+      flex: 1;
+      max-width: 680px;
+      height: 36px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0F172A;
+    }
+    .url-highlight {
+      color: #0284C7;
+      font-weight: 800;
+    }
+
+    .browser-view {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .browser-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+    }
+
+    /* Floating Spotlight Badge */
+    .settlement-callout {
+      position: absolute;
+      top: 175px;
+      left: 280px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 2px solid #0284C7;
+      border-radius: 16px;
+      padding: 16px 26px;
+      box-shadow: 0 16px 36px rgba(2, 132, 199, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      z-index: 20;
+    }
+    .callout-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #E0F2FE;
+      color: #0284C7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .callout-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+    }
+    .callout-amount {
+      font-size: 28px;
+      font-weight: 900;
+      color: #0284C7;
+    }
+
+    /* Flow Badges Pipeline */
+    .flow-pipeline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: absolute;
+      bottom: 120px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      padding: 12px 28px;
+      border-radius: 100px;
+      border: 1.5px solid #E2E8F0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      z-index: 30;
+    }
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+    .flow-arrow {
+      color: #94A3B8;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .flow-tag-hl {
+      color: #0284C7;
+    }
+
+    /* Subtitle HUD */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      width: 1920px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      max-width: 1400px;
+      padding: 14px 44px;
+      background: rgba(25, 28, 34, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 100px;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    }
+    .subtitle-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #38BDF8;
+      font-weight: 800;
+    }
+
+    .hud-avatar {
+      position: absolute;
+      bottom: 42px;
+      left: 68px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      z-index: 101;
+    }
+    .hud-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="qishui_s2_platform">
+    <!-- Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">02</span>
+      <span class="nav-title">平台入驻 · 官方版权金矿</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <!-- Main Stage -->
+    <div class="stage">
+      <div class="browser-window" id="browser-card">
+        <div class="browser-bar">
+          <div class="traffic-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="browser-url-pill">
+            <span>🔒 https://</span>
+            <span class="url-highlight">music.douyin.com</span>
+            <span>/console/settlement</span>
+          </div>
+        </div>
+        <div class="browser-view">
+          <img src="assets/qishui/proof_settlement_console.png" class="browser-img" alt="Settlement Console" />
+          
+          <!-- Highlight Callout over monthly billing -->
+          <div class="settlement-callout" id="callout-box">
+            <div class="callout-icon">📈</div>
+            <div>
+              <div class="callout-title">2026年10月 已完成结算</div>
+              <div class="callout-amount">¥ 372.35 结算成功</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow Pipeline Badges -->
+      <div class="flow-pipeline" id="flow-bar">
+        <div class="flow-step">
+          <span>📱</span> 抖音百亿短视频流量
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">
+          <span>🎧</span> 汽水音乐用户收听
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step flow-tag-hl">
+          <span>💰</span> 每日细水长流自动结算
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Avatar -->
+    <div class="hud-avatar" id="s2-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle HUD -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s2-sub">
+          打开官方平台 <span class="sub-hl">music.douyin.com</span>，抖音扫码认证入驻。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#browser-card", 
+      { y: 20, opacity: 0.9, scale: 0.98 }, 
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 
+      0.0
+    );
+
+    // Callout popup
+    tl.fromTo("#callout-box",
+      { scale: 0.8, opacity: 0, y: 15 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" },
+      1.2
+    );
+
+    // Flow bar reveal
+    tl.fromTo("#flow-bar",
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" },
+      2.0
+    );
+
+    // 6.8s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "背靠整个抖音<span class='sub-hl'>百亿级短视频流量池</span>，每天自动结算版权收益！";
+    }, null, 6.8);
+
+    // Avatar breathing
+    tl.fromTo("#s2-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 12, ease: "sine.inOut" }, 0.2);
+
+    // Exit fadeout at 20.47s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 20.47);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["qishui_s2_platform"] = tl;
+  </script>
+</template>

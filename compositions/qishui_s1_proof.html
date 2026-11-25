@@ -1,0 +1,405 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    /* Top Navigation Header */
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #10B981;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #10B981;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #1A1C20;
+    }
+
+    /* Main Stage */
+    .stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 90px 140px;
+    }
+
+    .hero-split {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      width: 100%;
+      max-width: 1680px;
+    }
+
+    /* Phone Mockup Housing Real Cashout Screenshot */
+    .phone-mockup {
+      width: 440px;
+      height: 720px;
+      background: #FFFFFF;
+      border-radius: 46px;
+      box-shadow: 
+        0 24px 60px -12px rgba(16, 185, 129, 0.18),
+        0 12px 28px -6px rgba(0, 0, 0, 0.08),
+        0 0 0 10px #1E232B,
+        0 0 0 13px #374151;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      width: 130px;
+      height: 24px;
+      background: #1E232B;
+      border-radius: 0 0 16px 16px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+    }
+
+    .phone-screen-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Green Verified Stamp */
+    .verified-stamp {
+      position: absolute;
+      top: 155px;
+      right: -25px;
+      background: #059669;
+      color: #FFFFFF;
+      padding: 12px 28px;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 12px;
+      transform: rotate(12deg);
+      box-shadow: 0 12px 24px rgba(5, 150, 105, 0.35);
+      border: 3px dashed #A7F3D0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 25;
+    }
+
+    /* Right Showcase Content */
+    .hero-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .main-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1.5px solid rgba(16, 185, 129, 0.35);
+      border-radius: 100px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #047857;
+      width: fit-content;
+    }
+
+    .headline {
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 1.18;
+      color: #111827;
+      letter-spacing: -0.01em;
+    }
+    .headline-highlight {
+      color: #059669;
+      background: linear-gradient(180deg, transparent 65%, rgba(16, 185, 129, 0.22) 65%);
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .f-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(229, 231, 235, 0.8);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .f-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #ECFDF5;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .f-text-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .f-text-desc {
+      font-size: 16px;
+      color: #6B7280;
+      font-weight: 500;
+    }
+
+    /* Subtitle HUD */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      width: 1920px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      max-width: 1400px;
+      padding: 14px 44px;
+      background: rgba(25, 28, 34, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 100px;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    }
+    .subtitle-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #34D399;
+      font-weight: 800;
+    }
+
+    /* Floating Avatar */
+    .hud-avatar {
+      position: absolute;
+      bottom: 42px;
+      left: 68px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      z-index: 101;
+    }
+    .hud-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="qishui_s1_proof">
+    <!-- Navigation Header -->
+    <div class="header-nav">
+      <span class="nav-num">01</span>
+      <span class="nav-title">实测战绩 · 零花钱到账</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <!-- Main Stage: 0.0s instant visual -->
+    <div class="stage">
+      <div class="hero-split">
+        <!-- Phone Mockup with Real 380 RMB Cashout -->
+        <div class="phone-mockup" id="phone-card">
+          <div class="phone-notch"></div>
+          <img src="assets/qishui/proof_wallet_380.png" class="phone-screen-img" alt="Cashout Proof" />
+          
+          <!-- Clean Safe Account Mask (Removes bank sensitive name) -->
+          <div style="position: absolute; bottom: 56px; right: 28px; width: 230px; height: 26px; background: #FFFFFF; font-size: 15px; font-weight: 500; color: #1F2937; display: flex; align-items: center; justify-content: flex-end; z-index: 15;">
+            个人储蓄卡(1696)
+          </div>
+
+          <div class="verified-stamp" id="stamp-badge">
+            <span>✓</span> 实测到账 380.48 元
+          </div>
+        </div>
+
+        <!-- Right Content Info -->
+        <div class="hero-info" id="info-col">
+          <div class="main-badge">
+            <span>🎵</span> 汽水 AI 音乐 · 版税收入实测
+          </div>
+          <h1 class="headline">
+            零乐理门槛，纯靠 AI 写歌<br />
+            音乐版权费 <span class="headline-highlight">380 块零花钱</span>已到账！
+          </h1>
+
+          <div class="feature-cards">
+            <div class="f-card">
+              <div class="f-icon">⚡️</div>
+              <div>
+                <div class="f-text-title">零门槛极简创作</div>
+                <div class="f-text-desc">无需乐理基础，AI 一键生成完整单曲</div>
+              </div>
+            </div>
+            <div class="f-card">
+              <div class="f-icon">💰</div>
+              <div>
+                <div class="f-text-title">全自动睡后收益</div>
+                <div class="f-text-desc">抖音 BGM 引用播放，每天自动结算</div>
+              </div>
+            </div>
+            <div class="f-card">
+              <div class="f-icon">🚀</div>
+              <div>
+                <div class="f-text-title">官方流量扶持</div>
+                <div class="f-text-desc">虚拟歌手加持，自带自然推荐算法</div>
+              </div>
+            </div>
+            <div class="f-card">
+              <div class="f-icon">🎧</div>
+              <div>
+                <div class="f-text-title">三大创收玩法</div>
+                <div class="f-text-desc">从小白到高手，全套步骤直接抄作业</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Avatar -->
+    <div class="hud-avatar" id="s1-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <!-- Subtitle HUD -->
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s1-sub">
+          汽水音乐又发工资了！音乐版权费提现 <span class="sub-hl">380 块零花钱</span>直接到账！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 0.0s: Phone and content are already visible by CSS
+    tl.fromTo("#phone-card", 
+      { scale: 0.95, opacity: 0.9 }, 
+      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)" }, 
+      0.0
+    );
+
+    // Stamp slam down with punchy scale at 0.4s
+    tl.fromTo("#stamp-badge",
+      { scale: 2.2, opacity: 0, rotation: 25 },
+      { scale: 1, opacity: 1, rotation: 12, duration: 0.45, ease: "back.out(2.0)" },
+      0.4
+    );
+
+    // Floating breathing effect on phone
+    tl.to("#phone-card", {
+      y: -8,
+      duration: 2.2,
+      yoyo: true,
+      repeat: 8,
+      ease: "sine.inOut"
+    }, 0.6);
+
+    // 6.2s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "零乐理门槛，教你用 <span class='sub-hl'>汽水 AI 音乐</span> 打造全自动睡后收益！";
+    }, null, 6.2);
+
+    // Avatar breathing
+    tl.fromTo("#s1-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 11, ease: "sine.inOut" }, 0.2);
+
+    // Scene transition exit fadeout at 18.6s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 18.6);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["qishui_s1_proof"] = tl;
+  </script>
+</template>

@@ -1,0 +1,312 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #EC4899;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #EC4899;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #1A1C20;
+    }
+
+    .stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 80px 130px;
+      gap: 24px;
+    }
+
+    /* Suno Showcase Window */
+    .suno-window {
+      width: 1440px;
+      height: 690px;
+      background: #0B0E14;
+      border-radius: 24px;
+      box-shadow: 
+        0 24px 60px -15px rgba(236, 72, 153, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .suno-bar {
+      height: 48px;
+      background: #141822;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+    }
+    .suno-logo-badge {
+      font-size: 16px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.08em;
+    }
+    .suno-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #9CA3AF;
+    }
+
+    .suno-body {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .suno-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Floating Data Pipeline Ribbon */
+    .pipeline-overlay-card {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(236, 72, 153, 0.5);
+      border-radius: 18px;
+      padding: 16px 36px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      z-index: 25;
+    }
+    .pipe-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #F3F4F6;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .pipe-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(236, 72, 153, 0.2);
+      color: #EC4899;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .pipe-arrow {
+      color: #EC4899;
+      font-size: 22px;
+      font-weight: 900;
+    }
+    .pipe-tag-gold {
+      color: #FBBF24;
+      font-weight: 800;
+    }
+
+    /* Subtitle HUD */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      width: 1920px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      max-width: 1400px;
+      padding: 14px 44px;
+      background: rgba(25, 28, 34, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 100px;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    }
+    .subtitle-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #F472B6;
+      font-weight: 800;
+    }
+
+    .hud-avatar {
+      position: absolute;
+      bottom: 42px;
+      left: 68px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      z-index: 101;
+    }
+    .hud-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="qishui_s5_suno">
+    <div class="header-nav">
+      <span class="nav-num">05</span>
+      <span class="nav-title">玩法三 · Suno 顶级音质降维打击</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="suno-window" id="suno-card">
+        <div class="suno-bar">
+          <span class="suno-logo-badge">SUNO AI</span>
+          <span class="suno-title">全球顶尖高保真音乐生成引擎 · 电影级音质实测</span>
+        </div>
+        <div class="suno-body">
+          <img src="assets/qishui/ui_suno_generator.png" class="suno-img" alt="Suno UI" />
+
+          <!-- Pipeline Overlay -->
+          <div class="pipeline-overlay-card" id="pipe-card">
+            <div class="pipe-step">
+              <div class="pipe-badge">🎹</div>
+              <span>Suno AI 导出高品质音频</span>
+            </div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-step">
+              <div class="pipe-badge">📤</div>
+              <span>上传到汽水音乐版权库</span>
+            </div>
+            <div class="pipe-arrow">➔</div>
+            <div class="pipe-step pipe-tag-gold">
+              <div class="pipe-badge" style="color: #FBBF24; background: rgba(251, 191, 36, 0.2);">🔥</div>
+              <span>大博主首选爆款 BGM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s5-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s5-sub">
+          玩法三【降维音质法】：用第三方顶级工具 <span class="sub-hl">Suno AI</span> 生成高保真音乐。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#suno-card", 
+      { y: 20, opacity: 0.9, scale: 0.98 }, 
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 
+      0.0
+    );
+
+    // Pipeline card pop in
+    tl.fromTo("#pipe-card",
+      { y: 30, opacity: 0, scale: 0.95 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" },
+      1.2
+    );
+
+    // 8.2s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "原档导出上传汽水平台，<span class='sub-hl'>极高音质</span>最容易被万粉博主选为爆款 BGM！";
+    }, null, 8.2);
+
+    // Avatar breathing
+    tl.fromTo("#s5-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 13, ease: "sine.inOut" }, 0.2);
+
+    // Exit fadeout at 21.22s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 21.22);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["qishui_s5_suno"] = tl;
+  </script>
+</template>

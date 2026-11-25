@@ -1,0 +1,240 @@
+[
+  {
+    "id": "qishui_s1_proof",
+    "title": "01 战绩亮牌",
+    "start": 0.0,
+    "voice_dur": 18.55,
+    "duration": 18.9,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "html": "汽水音乐又发工资了！音乐版权费提现 <span class='sub-hl'>380 块零花钱</span>直接到账！"
+      },
+      {
+        "start": 6.2,
+        "html": "零乐理门槛，教你用 <span class='sub-hl'>汽水 AI 音乐</span> 打造全自动睡后收益！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "ding",
+        "time": 0.1,
+        "volume": 0.45
+      },
+      {
+        "type": "whoosh",
+        "time": 1.5,
+        "volume": 0.35
+      },
+      {
+        "type": "check",
+        "time": 5.5,
+        "volume": 0.35
+      }
+    ]
+  },
+  {
+    "id": "qishui_s2_platform",
+    "title": "02 平台入驻",
+    "start": 18.9,
+    "voice_dur": 20.42,
+    "duration": 20.77,
+    "subtitles": [
+      {
+        "start": 18.9,
+        "html": "打开官方平台 <span class='sub-hl'>music.douyin.com</span>，抖音扫码认证入驻。"
+      },
+      {
+        "start": 25.7,
+        "html": "背靠整个抖音<span class='sub-hl'>百亿级短视频流量池</span>，每天自动结算版权收益！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 19.0,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 21.4,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 25.9,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "qishui_s3_simple",
+    "title": "03 玩法一·一句话",
+    "start": 39.68,
+    "voice_dur": 20.23,
+    "duration": 20.58,
+    "subtitles": [
+      {
+        "start": 39.68,
+        "html": "玩法一【小白一键流】：输入框直接<span class='sub-hl'>输入一句话</span>灵感描述。"
+      },
+      {
+        "start": 47.18,
+        "html": "AI 30 秒自动搞定<span class='sub-hl'>作词、编曲与演唱</span>，一键即可发布！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "tap",
+        "time": 40.88,
+        "volume": 0.4
+      },
+      {
+        "type": "whoosh",
+        "time": 45.18,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 47.68,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "qishui_s4_virtual",
+    "title": "04 玩法二·虚拟歌手",
+    "start": 60.26,
+    "voice_dur": 21.34,
+    "duration": 21.69,
+    "subtitles": [
+      {
+        "start": 60.26,
+        "html": "玩法二【进阶爆款法】：用 <span class='sub-hl'>ChatGPT 写深情歌词</span>，填入专业模式。"
+      },
+      {
+        "start": 68.06,
+        "html": "重点选择官方<span class='sub-hl'>“虚拟歌手”</span>（陈安可、林初一），自带自然推荐流！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "pop_click",
+        "time": 62.26,
+        "volume": 0.4
+      },
+      {
+        "type": "whoosh",
+        "time": 67.06,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 69.76,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "qishui_s5_suno",
+    "title": "05 玩法三·Suno降维",
+    "start": 81.94,
+    "voice_dur": 21.17,
+    "duration": 21.52,
+    "subtitles": [
+      {
+        "start": 81.94,
+        "html": "玩法三【降维音质法】：用第三方顶级工具 <span class='sub-hl'>Suno AI</span> 生成高保真音乐。"
+      },
+      {
+        "start": 90.14,
+        "html": "原档导出上传汽水平台，<span class='sub-hl'>极高音质</span>最容易被万粉博主选为爆款 BGM！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 82.04,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 86.44,
+        "volume": 0.4
+      },
+      {
+        "type": "check",
+        "time": 90.94,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "qishui_s6_passive",
+    "title": "06 睡后收入",
+    "start": 103.46,
+    "voice_dur": 17.9,
+    "duration": 18.25,
+    "subtitles": [
+      {
+        "start": 103.46,
+        "html": "发布后无需打理：只要短视频引用或有人听歌，<span class='sub-hl'>每天自动产生版税</span>！"
+      },
+      {
+        "start": 110.66,
+        "html": "每一首歌都是你的<span class='sub-hl'>数字打工人</span>，多发多得，积少成多！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 103.56,
+        "volume": 0.3
+      },
+      {
+        "type": "ding",
+        "time": 107.26,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 111.26,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "qishui_s7_summary",
+    "title": "07 抄作业清单",
+    "start": 121.72,
+    "voice_dur": 16.56,
+    "duration": 20.56,
+    "subtitles": [
+      {
+        "start": 121.72,
+        "html": "全套实操与三大玩法清单帮你整理好了，直接<span class='sub-hl'>截图保存</span>！"
+      },
+      {
+        "start": 128.52,
+        "html": "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 121.82,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 124.22,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 128.72,
+        "volume": 0.4
+      }
+    ]
+  }
+]

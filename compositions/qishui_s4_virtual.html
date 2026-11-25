@@ -1,0 +1,423 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "PingFang SC";
+      src: local("PingFang SC");
+      font-display: swap;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      z-index: 50;
+    }
+    .nav-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #8B5CF6;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E2024;
+      letter-spacing: 0.04em;
+    }
+
+    .header-brand {
+      position: absolute;
+      top: 42px;
+      right: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 50;
+    }
+    .brand-arch {
+      width: 32px;
+      height: 6px;
+      border-top: 3.5px solid #8B5CF6;
+      border-radius: 50%;
+      margin-bottom: 2px;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #1A1C20;
+    }
+
+    .stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 70px 130px;
+      gap: 40px;
+    }
+
+    /* Left Card: ChatGPT Lyric Generation */
+    .chatgpt-card {
+      width: 480px;
+      height: 680px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #E5E7EB;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .gpt-header {
+      padding: 18px 24px;
+      background: #F9FAFB;
+      border-bottom: 1px solid #E5E7EB;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .gpt-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #10A37F;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+    .gpt-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .gpt-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+      background: #FFFFFF;
+    }
+    .prompt-bubble {
+      background: #F3F4F6;
+      padding: 14px 18px;
+      border-radius: 16px 16px 4px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .response-box {
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .song-title-tag {
+      font-size: 16px;
+      font-weight: 800;
+      color: #8B5CF6;
+    }
+    .song-lyrics-preview {
+      font-size: 14px;
+      color: #4B5563;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .copy-pill {
+      align-self: flex-end;
+      padding: 6px 14px;
+      background: #8B5CF6;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Right Main Screen: Pro Studio with Virtual Singers */
+    .pro-studio-window {
+      flex: 1;
+      height: 680px;
+      background: #111317;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(139, 92, 246, 0.18);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .pro-bar {
+      height: 48px;
+      background: #181B21;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 14px;
+    }
+    .pro-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #D1D5DB;
+    }
+
+    .pro-view {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .pro-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Spotlight Highlighting on Virtual Singers column */
+    .singers-spotlight {
+      position: absolute;
+      top: 150px;
+      right: 25px;
+      width: 420px;
+      height: 460px;
+      border: 3px solid #8B5CF6;
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(139, 92, 246, 0.5);
+      background: rgba(139, 92, 246, 0.08);
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    /* Golden Floating Traffic Badge */
+    .traffic-callout-badge {
+      position: absolute;
+      top: 160px;
+      right: 460px;
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      color: #FFFFFF;
+      padding: 16px 24px;
+      border-radius: 18px;
+      box-shadow: 0 16px 36px rgba(109, 40, 217, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 30;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+    .callout-head {
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .callout-sub {
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    /* Subtitle HUD */
+    .subtitle-hud {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      width: 1920px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .subtitle-capsule {
+      max-width: 1400px;
+      padding: 14px 44px;
+      background: rgba(25, 28, 34, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 100px;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    }
+    .subtitle-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .sub-hl {
+      color: #C084FC;
+      font-weight: 800;
+    }
+
+    .hud-avatar {
+      position: absolute;
+      bottom: 42px;
+      left: 68px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      z-index: 101;
+    }
+    .hud-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div id="root" data-composition-id="qishui_s4_virtual">
+    <div class="header-nav">
+      <span class="nav-num">04</span>
+      <span class="nav-title">玩法二 · 走心歌词 + 虚拟歌手</span>
+    </div>
+
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <!-- Left: ChatGPT Generated Lyrics -->
+      <div class="chatgpt-card" id="chatgpt-box">
+        <div class="gpt-header">
+          <div class="gpt-logo">✦</div>
+          <div class="gpt-title">ChatGPT 歌词定制</div>
+        </div>
+        <div class="gpt-content">
+          <div class="prompt-bubble">
+            “写一首抓耳扎心的城市民谣，主题是《站台的最后一班车》，带主副歌结构”
+          </div>
+          <div class="response-box">
+            <div class="song-title-tag">🎵 《站台的最后一班车》</div>
+            <div class="song-lyrics-preview">
+              [主歌] 站台长椅还留着谁的烟灰<br />
+              末班列车带走晚秋的余晖<br />
+              [副歌] 挥不散的影子在风里追<br />
+              你没说出口的那句别后悔...
+            </div>
+            <div class="copy-pill">✓ 一键复制到专业模式</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Pro Studio with Virtual Singers Highlight -->
+      <div class="pro-studio-window" id="pro-window">
+        <div class="pro-bar">
+          <span class="pro-title">经典创作模式 · 专业模式 ➔ 选择虚拟歌手 (陈安可 / 林初一 / 老岩)</span>
+        </div>
+        <div class="pro-view">
+          <img src="assets/qishui/ui_pro_virtual_singers.png" class="pro-img" alt="Virtual Singers UI" />
+
+          <!-- Spotlight Box -->
+          <div class="singers-spotlight" id="singers-box"></div>
+
+          <!-- Traffic Callout -->
+          <div class="traffic-callout-badge" id="traffic-pill">
+            <div class="callout-head">
+              <span>⚡️</span> 官方推荐“虚拟歌手”
+            </div>
+            <div class="callout-sub">
+              陈安可 · 林初一 · 老岩<br />
+              自带抖音算法自然推荐流！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s4-avatar">
+      <img src="assets/avatar.jpg" alt="Avatar" />
+    </div>
+
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule">
+        <div class="subtitle-text" id="s4-sub">
+          玩法二【进阶爆款法】：用 <span class="sub-hl">ChatGPT 写深情歌词</span>，填入专业模式。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#chatgpt-box", 
+      { x: -30, opacity: 0.9 }, 
+      { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 
+      0.0
+    );
+
+    tl.fromTo("#pro-window", 
+      { x: 30, opacity: 0.9 }, 
+      { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 
+      0.0
+    );
+
+    // Spotlight on virtual singers
+    tl.fromTo("#singers-box",
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" },
+      1.2
+    );
+
+    // Traffic callout pop
+    tl.fromTo("#traffic-pill",
+      { scale: 0.8, opacity: 0, x: 20 },
+      { scale: 1, opacity: 1, x: 0, duration: 0.5, ease: "back.out(1.8)" },
+      1.8
+    );
+
+    // 7.8s: Subtitle 2 transition
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "重点选择官方<span class='sub-hl'>“虚拟歌手”</span>（陈安可、林初一），自带自然推荐流！";
+    }, null, 7.8);
+
+    // Avatar breathing
+    tl.fromTo("#s4-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 13, ease: "sine.inOut" }, 0.2);
+
+    // Exit fadeout at 21.39s
+    tl.to("#root", { opacity: 0, duration: 0.3 }, 21.39);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["qishui_s4_virtual"] = tl;
+  </script>
+</template>
