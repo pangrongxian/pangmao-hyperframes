@@ -65,6 +65,16 @@
       color: #1A1C20;
     }
 
+    /* Ambient Floating Particles */
+    .particle {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.28;
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     .stage {
       position: absolute;
       inset: 0;
@@ -72,23 +82,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 95px 120px 135px;
+      padding: 95px 70px 135px;
     }
 
-    /* Structured Cheat Sheet Summary Card */
+    /* Structured Cheat Sheet Summary Card (Expanded 1720px) */
     .cheat-card {
-      width: 1540px;
-      height: 720px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(20px);
+      width: 1720px;
+      height: 750px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 32px;
-      border: 2px solid #E5E7EB;
+      border: 2px solid rgba(16, 185, 129, 0.3);
       box-shadow: 
-        0 24px 60px -15px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(16, 185, 129, 0.2);
+        0 30px 70px -15px rgba(0, 0, 0, 0.12),
+        0 0 30px rgba(16, 185, 129, 0.12);
       display: flex;
       flex-direction: column;
-      padding: 36px 48px;
+      padding: 36px 54px;
       position: relative;
     }
 
@@ -97,7 +108,7 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1.5px solid #F3F4F6;
-      padding-bottom: 22px;
+      padding-bottom: 20px;
       margin-bottom: 24px;
     }
     .card-headline {
@@ -106,18 +117,18 @@
       gap: 16px;
     }
     .card-headline-icon {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       border-radius: 14px;
       background: #ECFDF5;
       color: #059669;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 28px;
     }
     .card-headline-title {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 900;
       color: #111827;
       letter-spacing: 0.02em;
@@ -126,74 +137,80 @@
     .screenshot-badge {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: #FEF3C7;
-      border: 1.5px solid #F59E0B;
+      gap: 10px;
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 2px solid #F59E0B;
       color: #B45309;
-      padding: 10px 22px;
+      padding: 12px 28px;
       border-radius: 100px;
-      font-size: 16px;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
     }
 
     /* 4-Column / Multi-Row Action Items Grid */
     .checklist-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 22px;
       flex: 1;
     }
 
     .check-item {
       background: #F9FAFB;
-      border: 1px solid #E5E7EB;
-      border-radius: 18px;
-      padding: 18px 24px;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 22px 28px;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
     }
     .check-idx {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       background: #10B981;
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 900;
       flex-shrink: 0;
       margin-top: 2px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
     }
     .check-content {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
     .check-title {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 800;
       color: #111827;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .check-badge {
       font-size: 13px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 6px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 8px;
       background: #E0E7FF;
       color: #4338CA;
     }
     .check-desc {
-      font-size: 15px;
+      font-size: 16px;
       color: #4B5563;
-      line-height: 1.45;
+      line-height: 1.5;
       font-weight: 500;
+    }
+    .check-desc strong {
+      color: #111827;
+      font-weight: 700;
     }
 
     /* Card Footer: Pangmao Signature */
@@ -208,14 +225,15 @@
     .brand-statement {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
     .brand-logo-circle {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid #10B981;
+      border: 2.5px solid #10B981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
     }
     .brand-logo-circle img {
       width: 100%;
@@ -223,7 +241,7 @@
       object-fit: cover;
     }
     .brand-quote {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       color: #1F2937;
     }
@@ -231,20 +249,21 @@
     .call-to-action-pill {
       background: #111827;
       color: #FFFFFF;
-      padding: 10px 24px;
+      padding: 12px 28px;
       border-radius: 100px;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: 0.04em;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD (V2 Upgraded High-Impact Capsule) */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -254,37 +273,53 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1500px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 24px rgba(16, 185, 129, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .eq-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 24px;
+    }
+    .eq-bar {
+      width: 5px;
+      background: linear-gradient(180deg, #34D399, #10B981);
+      border-radius: 4px;
     }
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 38px;
+      font-weight: 900;
       color: #FFFFFF;
       letter-spacing: 0.03em;
       text-align: center;
-      line-height: 1.35;
+      line-height: 1.3;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     }
     .sub-hl {
       color: #34D399;
-      font-weight: 800;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.5);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 38px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       z-index: 101;
     }
@@ -296,6 +331,12 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s7_summary">
+    <!-- Ambient Floating Particles -->
+    <div class="particle" id="s7-p1" style="top: 120px; left: 140px; color: #10B981;">✨</div>
+    <div class="particle" id="s7-p2" style="top: 180px; right: 160px; color: #F59E0B;">♪</div>
+    <div class="particle" id="s7-p3" style="bottom: 160px; left: 240px; color: #10B981;">♫</div>
+    <div class="particle" id="s7-p4" style="bottom: 220px; right: 280px; color: #10B981;">⚡️</div>
+
     <div class="header-nav">
       <span class="nav-num">07</span>
       <span class="nav-title">实操避坑 · 完整抄作业清单</span>
@@ -320,7 +361,7 @@
 
         <div class="checklist-grid">
           <!-- Item 1 -->
-          <div class="check-item">
+          <div class="check-item" id="c-item-1">
             <div class="check-idx">1</div>
             <div class="check-content">
               <div class="check-title">
@@ -332,7 +373,7 @@
           </div>
 
           <!-- Item 2 -->
-          <div class="check-item">
+          <div class="check-item" id="c-item-2">
             <div class="check-idx">2</div>
             <div class="check-content">
               <div class="check-title">
@@ -344,7 +385,7 @@
           </div>
 
           <!-- Item 3 -->
-          <div class="check-item">
+          <div class="check-item" id="c-item-3">
             <div class="check-idx">3</div>
             <div class="check-content">
               <div class="check-title">
@@ -356,7 +397,7 @@
           </div>
 
           <!-- Item 4 -->
-          <div class="check-item">
+          <div class="check-item" id="c-item-4">
             <div class="check-idx">4</div>
             <div class="check-content">
               <div class="check-title">
@@ -377,7 +418,7 @@
               胖猫 AI · 探索超级个体之路，用 AI 跑通副业现金流
             </div>
           </div>
-          <div class="call-to-action-pill">
+          <div class="call-to-action-pill" id="cta-pill">
             ✦ 点赞 · 收藏 · 关注 · 咱们下期见！✦
           </div>
         </div>
@@ -389,7 +430,12 @@
     </div>
 
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 16px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
         <div class="subtitle-text" id="s7-sub">
           全套实操与三大玩法清单帮你整理好了，直接<span class="sub-hl">截图保存</span>！
         </div>
@@ -399,6 +445,15 @@
 
   <script>
     const tl = gsap.timeline({ paused: true });
+
+    // Floating particles
+    tl.fromTo("#s7-p1", { y: 0, rotation: 0 }, { y: -20, rotation: 15, duration: 3.0, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s7-p2", { y: 0, rotation: 0 }, { y: 25, rotation: -12, duration: 3.5, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0);
+
+    // EQ bars bounce
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 35, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 35, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 12 }, { height: 26, repeat: 35, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
 
     // 0.0s instant reveal with no blank delay
     tl.fromTo("#summary-card", 
@@ -410,14 +465,29 @@
     // Screenshot badge pulse
     tl.fromTo("#snap-pill",
       { scale: 1 },
-      { scale: 1.15, repeat: 7, yoyo: true, duration: 0.6, ease: "sine.inOut" },
+      { scale: 1.15, repeat: 10, yoyo: true, duration: 0.6, ease: "sine.inOut" },
       0.8
     );
 
-    // 6.8s: Subtitle 2 transition
+    // Subtitle entrance punch
+    tl.fromTo("#sub-capsule",
+      { scale: 0.92, y: 15, opacity: 0 },
+      { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.8)" },
+      0.1
+    );
+
+    // CTA pill subtle glow
+    tl.fromTo("#cta-pill",
+      { boxShadow: "0 6px 18px rgba(0, 0, 0, 0.15)" },
+      { boxShadow: "0 6px 24px rgba(16, 185, 129, 0.4)", repeat: 8, yoyo: true, duration: 0.8, ease: "sine.inOut" },
+      1.5
+    );
+
+    // 6.8s: Subtitle 2 transition with kinetic pop
     tl.call(() => {
       const sub = document.getElementById("s7-sub");
       if (sub) sub.innerHTML = "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！";
+      gsap.fromTo("#sub-capsule", { scale: 0.92, y: 10 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" });
     }, null, 6.8);
 
     // Avatar breathing

@@ -20,31 +20,50 @@
       color: #1A1C20;
     }
 
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.35;
+      font-size: 26px;
+      color: #EC4899;
+      animation: floatUp 8s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-350px) rotate(35deg); opacity: 0; }
+    }
+
     .header-nav {
       position: absolute;
-      top: 48px;
+      top: 42px;
       left: 64px;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
       z-index: 50;
     }
-    .nav-num {
-      font-size: 26px;
-      font-weight: 800;
-      color: #EC4899;
-      letter-spacing: 0.02em;
+    .nav-badge {
+      background: #EC4899;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
     }
     .nav-title {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 26px;
+      font-weight: 900;
       color: #1E2024;
       letter-spacing: 0.04em;
     }
 
     .header-brand {
       position: absolute;
-      top: 42px;
+      top: 40px;
       right: 68px;
       display: flex;
       flex-direction: column;
@@ -52,7 +71,7 @@
       z-index: 50;
     }
     .brand-arch {
-      width: 32px;
+      width: 34px;
       height: 6px;
       border-top: 3.5px solid #EC4899;
       border-radius: 50%;
@@ -72,19 +91,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 90px 80px 130px;
-      gap: 24px;
+      padding: 85px 60px 130px;
+      gap: 18px;
     }
 
-    /* Suno Showcase Window */
+    /* Ultra-Wide Suno Showcase Window (1720px) */
     .suno-window {
-      width: 1440px;
-      height: 690px;
+      width: 1720px;
+      height: 750px;
       background: #0B0E14;
-      border-radius: 24px;
+      border-radius: 26px;
       box-shadow: 
-        0 24px 60px -15px rgba(236, 72, 153, 0.2),
-        0 0 0 1px rgba(255, 255, 255, 0.12);
+        0 30px 80px -15px rgba(236, 72, 153, 0.25),
+        0 0 0 1.5px rgba(255, 255, 255, 0.14);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -97,18 +116,22 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      padding: 0 20px;
-      gap: 16px;
+      padding: 0 24px;
+      gap: 20px;
+      z-index: 10;
     }
     .suno-logo-badge {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 900;
       color: #FFFFFF;
       letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #EC4899, #8B5CF6);
+      padding: 2px 10px;
+      border-radius: 6px;
     }
     .suno-title {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       color: #9CA3AF;
     }
 
@@ -116,64 +139,68 @@
       flex: 1;
       position: relative;
       overflow: hidden;
+      background: #0B0E14;
     }
     .suno-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
+      display: block;
     }
 
     /* Floating Data Pipeline Ribbon */
     .pipeline-overlay-card {
       position: absolute;
-      bottom: 28px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(17, 24, 39, 0.94);
-      backdrop-filter: blur(16px);
-      border: 1.5px solid rgba(236, 72, 153, 0.5);
-      border-radius: 18px;
-      padding: 16px 36px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(236, 72, 153, 0.6);
+      border-radius: 22px;
+      padding: 18px 42px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 35px rgba(236, 72, 153, 0.25);
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 32px;
       z-index: 25;
     }
     .pipe-step {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       color: #F3F4F6;
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 19px;
+      font-weight: 800;
     }
     .pipe-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(236, 72, 153, 0.2);
-      color: #EC4899;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(236, 72, 153, 0.25);
+      color: #F472B6;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 24px;
     }
     .pipe-arrow {
       color: #EC4899;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
     }
     .pipe-tag-gold {
       color: #FBBF24;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD - Kinetic Frosted Glass Capsule */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -183,37 +210,64 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1480px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(244, 114, 182, 0.45);
+      box-shadow: 
+        0 16px 45px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(236, 72, 153, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
+    .sub-wave-icon {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+    .sub-wave-bar {
+      width: 4px;
+      border-radius: 2px;
+      background: #F472B6;
+      animation: subEq 0.7s ease-in-out infinite alternate;
+    }
+    .sub-wave-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+    .sub-wave-bar:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+    .sub-wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+    @keyframes subEq {
+      0% { height: 6px; }
+      100% { height: 22px; }
+    }
+
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 900;
       color: #FFFFFF;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-align: center;
       line-height: 1.35;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sub-hl {
-      color: #F472B6;
-      font-weight: 800;
+      color: #FACC15;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(250, 204, 21, 0.6), 0 0 30px rgba(244, 114, 182, 0.4);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 40px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #EC4899;
+      box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
       overflow: hidden;
       z-index: 101;
     }
@@ -225,8 +279,11 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s5_suno">
+    <div class="particle" style="top: 80%; left: 18%; animation-delay: 0.4s;">♪</div>
+    <div class="particle" style="top: 75%; left: 82%; animation-delay: 3.0s;">✨</div>
+
     <div class="header-nav">
-      <span class="nav-num">05</span>
+      <span class="nav-badge">05</span>
       <span class="nav-title">玩法三 · Suno 顶级音质降维打击</span>
     </div>
 
@@ -239,10 +296,10 @@
       <div class="suno-window" id="suno-card">
         <div class="suno-bar">
           <span class="suno-logo-badge">SUNO AI</span>
-          <span class="suno-title">全球顶尖高保真音乐生成引擎 · 电影级音质实测</span>
+          <span class="suno-title">全球顶尖高保真音乐生成引擎 · 院线级音质实测</span>
         </div>
         <div class="suno-body">
-          <img src="assets/qishui/ui_suno_generator.png" class="suno-img" alt="Suno UI" />
+          <img src="assets/qishui/clean/suno_clean.png" class="suno-img" id="suno-img" alt="Suno UI" />
 
           <!-- Pipeline Overlay -->
           <div class="pipeline-overlay-card" id="pipe-card">
@@ -257,7 +314,7 @@
             </div>
             <div class="pipe-arrow">➔</div>
             <div class="pipe-step pipe-tag-gold">
-              <div class="pipe-badge" style="color: #FBBF24; background: rgba(251, 191, 36, 0.2);">🔥</div>
+              <div class="pipe-badge" style="color: #FBBF24; background: rgba(251, 191, 36, 0.25);">🔥</div>
               <span>大博主首选爆款 BGM</span>
             </div>
           </div>
@@ -270,7 +327,12 @@
     </div>
 
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="sub-wave-icon">
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+        </div>
         <div class="subtitle-text" id="s5-sub">
           玩法三【降维音质法】：用第三方顶级工具 <span class="sub-hl">Suno AI</span> 生成高保真音乐。
         </div>
@@ -282,22 +344,36 @@
     const tl = gsap.timeline({ paused: true });
 
     tl.fromTo("#suno-card", 
-      { y: 20, opacity: 0.9, scale: 0.98 }, 
+      { y: 30, opacity: 0.9, scale: 0.96 }, 
       { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 
       0.0
     );
 
-    // Pipeline card pop in
+    // Pipeline card pop in with bounce
     tl.fromTo("#pipe-card",
-      { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" },
-      1.2
+      { y: 35, opacity: 0, scale: 0.9 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.0)" },
+      1.0
     );
 
-    // 8.2s: Subtitle 2 transition
+    // Camera zoom drift on Suno
+    tl.to("#suno-img", {
+      scale: 1.06,
+      y: -15,
+      duration: 5.0,
+      ease: "power1.out"
+    }, 8.0);
+
+    // 8.2s: Subtitle 2 transition with kinetic bounce
     tl.call(() => {
       const sub = document.getElementById("s5-sub");
-      if (sub) sub.innerHTML = "原档导出上传汽水平台，<span class='sub-hl'>极高音质</span>最容易被万粉博主选为爆款 BGM！";
+      if (sub) {
+        sub.innerHTML = "原档导出上传汽水平台，<span class='sub-hl'>极高音质</span>最容易被万粉博主选为爆款 BGM！";
+        gsap.fromTo("#sub-capsule", 
+          { scale: 0.9, y: 12 }, 
+          { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" }
+        );
+      }
     }, null, 8.2);
 
     // Avatar breathing

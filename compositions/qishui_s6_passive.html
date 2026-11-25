@@ -65,41 +65,60 @@
       color: #1A1C20;
     }
 
+    /* Ambient Music Particles */
+    .particle {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.25;
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     .stage {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 90px 140px;
+      padding: 95px 70px 135px;
     }
 
     .flywheel-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 70px;
+      gap: 80px;
       width: 100%;
-      max-width: 1600px;
+      max-width: 1720px;
     }
 
     /* Left: Kinetic Flywheel Mechanism */
     .flywheel-graphic {
-      width: 600px;
-      height: 600px;
+      width: 620px;
+      height: 620px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .orbit-ring {
       position: absolute;
-      width: 520px;
-      height: 520px;
+      width: 540px;
+      height: 540px;
       border-radius: 50%;
-      border: 3px dashed rgba(245, 158, 11, 0.4);
+      border: 3.5px dashed rgba(245, 158, 11, 0.45);
       animation: spinRing 30s linear infinite;
+    }
+    .orbit-ring-glow {
+      position: absolute;
+      width: 540px;
+      height: 540px;
+      border-radius: 50%;
+      box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
+      pointer-events: none;
     }
     @keyframes spinRing {
       0% { transform: rotate(0deg); }
@@ -107,10 +126,10 @@
     }
 
     .center-core {
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      background: linear-gradient(135deg, #FFFBEB, #FDE68A);
       border: 4px solid #F59E0B;
       box-shadow: 0 0 50px rgba(245, 158, 11, 0.35);
       display: flex;
@@ -120,11 +139,11 @@
       z-index: 10;
     }
     .core-icon {
-      font-size: 48px;
+      font-size: 52px;
       margin-bottom: 6px;
     }
     .core-title {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
       color: #B45309;
     }
@@ -132,6 +151,7 @@
       font-size: 15px;
       font-weight: 700;
       color: #D97706;
+      margin-top: 2px;
     }
 
     /* 4 Orbital Nodes */
@@ -139,19 +159,19 @@
       position: absolute;
       background: #FFFFFF;
       border: 2px solid #E5E7EB;
-      border-radius: 18px;
-      padding: 14px 22px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border-radius: 20px;
+      padding: 15px 24px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       z-index: 15;
     }
     .node-icon {
-      font-size: 26px;
+      font-size: 28px;
     }
     .node-text {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 800;
       color: #1F2937;
     }
@@ -172,9 +192,9 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 20px;
+      padding: 10px 24px;
       background: rgba(245, 158, 11, 0.12);
-      border: 1.5px solid rgba(245, 158, 11, 0.35);
+      border: 2px solid rgba(245, 158, 11, 0.4);
       border-radius: 100px;
       font-size: 18px;
       font-weight: 800;
@@ -183,13 +203,17 @@
     }
 
     .growth-title {
-      font-size: 52px;
+      font-size: 54px;
       font-weight: 900;
       line-height: 1.22;
       color: #111827;
+      letter-spacing: -0.01em;
     }
     .growth-hl {
       color: #D97706;
+      background: linear-gradient(120deg, #D97706, #B45309);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .pipeline-points {
@@ -199,45 +223,45 @@
       margin-top: 10px;
     }
     .p-item {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(10px);
-      border: 1.5px solid #F3F4F6;
-      border-radius: 16px;
-      padding: 18px 24px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      gap: 20px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
     }
     .p-num {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: #FEF3C7;
       color: #D97706;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 900;
       flex-shrink: 0;
     }
     .p-body-title {
-      font-size: 19px;
+      font-size: 21px;
       font-weight: 800;
       color: #1F2937;
     }
     .p-body-desc {
-      font-size: 15px;
+      font-size: 16px;
       color: #6B7280;
       font-weight: 500;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD (V2 Upgraded High-Impact Capsule) */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -247,37 +271,53 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1500px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 24px rgba(245, 158, 11, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .eq-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 24px;
+    }
+    .eq-bar {
+      width: 5px;
+      background: linear-gradient(180deg, #FBBF24, #F59E0B);
+      border-radius: 4px;
     }
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 38px;
+      font-weight: 900;
       color: #FFFFFF;
       letter-spacing: 0.03em;
       text-align: center;
-      line-height: 1.35;
+      line-height: 1.3;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     }
     .sub-hl {
       color: #FCD34D;
-      font-weight: 800;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(252, 211, 77, 0.4);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 38px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       z-index: 101;
     }
@@ -289,6 +329,12 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s6_passive">
+    <!-- Ambient Music Particles -->
+    <div class="particle" id="s6-p1" style="top: 140px; left: 160px; color: #F59E0B;">♫</div>
+    <div class="particle" id="s6-p2" style="top: 220px; right: 180px; color: #10B981;">♪</div>
+    <div class="particle" id="s6-p3" style="bottom: 180px; left: 450px; color: #F59E0B;">✨</div>
+    <div class="particle" id="s6-p4" style="bottom: 240px; right: 380px; color: #F59E0B;">⚡️</div>
+
     <div class="header-nav">
       <span class="nav-num">06</span>
       <span class="nav-title">睡后收入 · 版税收益复利管道</span>
@@ -304,6 +350,7 @@
         <!-- Left: Flywheel Mechanism -->
         <div class="flywheel-graphic" id="flywheel-box">
           <div class="orbit-ring"></div>
+          <div class="orbit-ring-glow"></div>
           
           <div class="center-core" id="core-badge">
             <div class="core-icon">💰</div>
@@ -340,21 +387,21 @@
           </h2>
 
           <div class="pipeline-points">
-            <div class="p-item">
+            <div class="p-item" id="p-item-1">
               <div class="p-num">1</div>
               <div>
                 <div class="p-body-title">零边际维护成本</div>
                 <div class="p-body-desc">制作上传后无需后期维护，永久享受版权分润</div>
               </div>
             </div>
-            <div class="p-item">
+            <div class="p-item" id="p-item-2">
               <div class="p-num">2</div>
               <div>
                 <div class="p-body-title">短视频裂变红利</div>
                 <div class="p-body-desc">一旦被大博主用做视频 BGM，播放量与版税将呈指数级爆发</div>
               </div>
             </div>
-            <div class="p-item">
+            <div class="p-item" id="p-item-3">
               <div class="p-num">3</div>
               <div>
                 <div class="p-body-title">矩阵规模化效应</div>
@@ -371,7 +418,12 @@
     </div>
 
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 16px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
         <div class="subtitle-text" id="s6-sub">
           发布后无需打理：只要短视频引用或有人听歌，<span class="sub-hl">每天自动产生版税</span>！
         </div>
@@ -382,6 +434,17 @@
   <script>
     const tl = gsap.timeline({ paused: true });
 
+    // Floating particles
+    tl.fromTo("#s6-p1", { y: 0, rotation: 0 }, { y: -20, rotation: 15, duration: 3.0, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s6-p2", { y: 0, rotation: 0 }, { y: 25, rotation: -12, duration: 3.5, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s6-p3", { scale: 0.8 }, { scale: 1.25, duration: 2.2, yoyo: true, repeat: 7, ease: "sine.inOut" }, 0.2);
+
+    // EQ bars bounce
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 35, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 35, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 12 }, { height: 26, repeat: 35, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Flywheel entrance
     tl.fromTo("#flywheel-box", 
       { scale: 0.9, opacity: 0.9 }, 
       { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)" }, 
@@ -402,10 +465,25 @@
       0.4
     );
 
-    // 7.2s: Subtitle 2 transition
+    // Orbital nodes staggered highlight
+    tl.fromTo(["#node-1", "#node-2", "#node-3", "#node-4"],
+      { scale: 0.95 },
+      { scale: 1.06, stagger: 0.4, repeat: 3, yoyo: true, duration: 0.8, ease: "sine.inOut" },
+      1.0
+    );
+
+    // Subtitle entrance punch
+    tl.fromTo("#sub-capsule",
+      { scale: 0.92, y: 15, opacity: 0 },
+      { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.8)" },
+      0.1
+    );
+
+    // 7.2s: Subtitle 2 transition with kinetic pop
     tl.call(() => {
       const sub = document.getElementById("s6-sub");
       if (sub) sub.innerHTML = "每一首歌都是你的<span class='sub-hl'>数字打工人</span>，多发多得，积少成多！";
+      gsap.fromTo("#sub-capsule", { scale: 0.92, y: 10 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" });
     }, null, 7.2);
 
     // Avatar breathing

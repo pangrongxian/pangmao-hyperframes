@@ -20,31 +20,50 @@
       color: #1A1C20;
     }
 
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.35;
+      font-size: 26px;
+      color: #8B5CF6;
+      animation: floatUp 8s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-350px) rotate(35deg); opacity: 0; }
+    }
+
     .header-nav {
       position: absolute;
-      top: 48px;
+      top: 42px;
       left: 64px;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
       z-index: 50;
     }
-    .nav-num {
-      font-size: 26px;
-      font-weight: 800;
-      color: #8B5CF6;
-      letter-spacing: 0.02em;
+    .nav-badge {
+      background: #8B5CF6;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
     }
     .nav-title {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 26px;
+      font-weight: 900;
       color: #1E2024;
       letter-spacing: 0.04em;
     }
 
     .header-brand {
       position: absolute;
-      top: 42px;
+      top: 40px;
       right: 68px;
       display: flex;
       flex-direction: column;
@@ -52,7 +71,7 @@
       z-index: 50;
     }
     .brand-arch {
-      width: 32px;
+      width: 34px;
       height: 6px;
       border-top: 3.5px solid #8B5CF6;
       border-radius: 50%;
@@ -71,18 +90,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 90px 70px 130px;
-      gap: 40px;
+      padding: 85px 60px 130px;
+      gap: 36px;
     }
 
     /* Left Card: ChatGPT Lyric Generation */
     .chatgpt-card {
       width: 480px;
-      height: 680px;
+      height: 750px;
       background: #FFFFFF;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-      border: 1.5px solid #E5E7EB;
+      border-radius: 26px;
+      box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.1),
+        0 8px 20px rgba(139, 92, 246, 0.15);
+      border: 2px solid #E5E7EB;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -91,25 +112,25 @@
     .gpt-header {
       padding: 18px 24px;
       background: #F9FAFB;
-      border-bottom: 1px solid #E5E7EB;
+      border-bottom: 1.5px solid #E5E7EB;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
     .gpt-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       background: #10A37F;
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 20px;
+      font-size: 22px;
     }
     .gpt-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       color: #111827;
     }
@@ -118,61 +139,66 @@
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
       flex: 1;
       background: #FFFFFF;
     }
     .prompt-bubble {
       background: #F3F4F6;
-      padding: 14px 18px;
-      border-radius: 16px 16px 4px 16px;
-      font-size: 15px;
-      font-weight: 600;
+      padding: 16px 20px;
+      border-radius: 18px 18px 4px 18px;
+      font-size: 16px;
+      font-weight: 700;
       color: #374151;
       line-height: 1.5;
     }
     .response-box {
       background: #F9FAFB;
-      border: 1px solid #E5E7EB;
-      border-radius: 16px;
-      padding: 16px;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
       flex: 1;
     }
     .song-title-tag {
-      font-size: 16px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 900;
       color: #8B5CF6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .song-lyrics-preview {
-      font-size: 14px;
+      font-size: 15px;
       color: #4B5563;
-      line-height: 1.7;
+      line-height: 1.75;
       font-style: italic;
+      font-weight: 600;
     }
     .copy-pill {
       align-self: flex-end;
-      padding: 6px 14px;
+      padding: 8px 18px;
       background: #8B5CF6;
       color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       border-radius: 100px;
       display: flex;
       align-items: center;
       gap: 6px;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
     }
 
-    /* Right Main Screen: Pro Studio with Virtual Singers */
+    /* Right Main Screen: Pro Studio with Virtual Singers (1200px) */
     .pro-studio-window {
       flex: 1;
-      height: 680px;
-      background: #111317;
-      border-radius: 24px;
-      box-shadow: 0 24px 60px rgba(139, 92, 246, 0.18);
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      height: 750px;
+      background: #0D1117;
+      border-radius: 26px;
+      box-shadow: 0 30px 80px rgba(139, 92, 246, 0.22);
+      border: 2px solid rgba(139, 92, 246, 0.3);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -180,16 +206,16 @@
     }
     .pro-bar {
       height: 48px;
-      background: #181B21;
+      background: #161B22;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 24px;
       gap: 14px;
     }
     .pro-title {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       color: #D1D5DB;
     }
 
@@ -197,62 +223,84 @@
       flex: 1;
       position: relative;
       overflow: hidden;
+      background: #16181D;
     }
     .pro-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
+      display: block;
     }
 
     /* Spotlight Highlighting on Virtual Singers column */
     .singers-spotlight {
       position: absolute;
-      top: 150px;
-      right: 25px;
-      width: 420px;
-      height: 460px;
-      border: 3px solid #8B5CF6;
-      border-radius: 20px;
-      box-shadow: 0 0 35px rgba(139, 92, 246, 0.5);
+      top: 100px;
+      right: 30px;
+      width: 480px;
+      height: 540px;
+      border: 3.5px solid #8B5CF6;
+      border-radius: 22px;
+      box-shadow: 
+        0 0 45px rgba(139, 92, 246, 0.6),
+        inset 0 0 25px rgba(139, 92, 246, 0.2);
       background: rgba(139, 92, 246, 0.08);
       pointer-events: none;
       z-index: 25;
+      overflow: hidden;
+    }
+
+    .scan-beam-vert {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: skewX(-20deg);
+      animation: scanSweep2 3s ease-in-out infinite;
+    }
+    @keyframes scanSweep2 {
+      0% { left: -100%; }
+      50% { left: 160%; }
+      100% { left: 160%; }
     }
 
     /* Golden Floating Traffic Badge */
     .traffic-callout-badge {
       position: absolute;
-      top: 160px;
-      right: 460px;
+      top: 130px;
+      right: 530px;
       background: linear-gradient(135deg, #8B5CF6, #6D28D9);
       color: #FFFFFF;
-      padding: 16px 24px;
-      border-radius: 18px;
-      box-shadow: 0 16px 36px rgba(109, 40, 217, 0.4);
+      padding: 18px 28px;
+      border-radius: 20px;
+      box-shadow: 0 20px 45px rgba(109, 40, 217, 0.45);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       z-index: 30;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.35);
     }
     .callout-head {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 900;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .callout-sub {
-      font-size: 14px;
-      opacity: 0.9;
-      font-weight: 500;
+      font-size: 15px;
+      opacity: 0.95;
+      font-weight: 600;
+      line-height: 1.45;
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD - Kinetic Frosted Glass Capsule */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -262,37 +310,64 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1480px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(192, 132, 252, 0.45);
+      box-shadow: 
+        0 16px 45px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(139, 92, 246, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
+    .sub-wave-icon {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+    .sub-wave-bar {
+      width: 4px;
+      border-radius: 2px;
+      background: #C084FC;
+      animation: subEq 0.7s ease-in-out infinite alternate;
+    }
+    .sub-wave-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+    .sub-wave-bar:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+    .sub-wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+    @keyframes subEq {
+      0% { height: 6px; }
+      100% { height: 22px; }
+    }
+
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 900;
       color: #FFFFFF;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-align: center;
       line-height: 1.35;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sub-hl {
-      color: #C084FC;
-      font-weight: 800;
+      color: #FACC15;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(250, 204, 21, 0.6), 0 0 30px rgba(192, 132, 252, 0.4);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 40px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #8B5CF6;
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
       overflow: hidden;
       z-index: 101;
     }
@@ -304,8 +379,11 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s4_virtual">
+    <div class="particle" style="top: 80%; left: 15%; animation-delay: 0.6s;">♪</div>
+    <div class="particle" style="top: 72%; left: 85%; animation-delay: 3.5s;">⚡️</div>
+
     <div class="header-nav">
-      <span class="nav-num">04</span>
+      <span class="nav-badge">04</span>
       <span class="nav-title">玩法二 · 走心歌词 + 虚拟歌手</span>
     </div>
 
@@ -333,7 +411,7 @@
               [副歌] 挥不散的影子在风里追<br />
               你没说出口的那句别后悔...
             </div>
-            <div class="copy-pill">✓ 一键复制到专业模式</div>
+            <div class="copy-pill" id="copy-btn">✓ 一键复制到专业模式</div>
           </div>
         </div>
       </div>
@@ -344,10 +422,12 @@
           <span class="pro-title">经典创作模式 · 专业模式 ➔ 选择虚拟歌手 (陈安可 / 林初一 / 老岩)</span>
         </div>
         <div class="pro-view">
-          <img src="assets/qishui/ui_pro_virtual_singers.png" class="pro-img" alt="Virtual Singers UI" />
+          <img src="assets/qishui/clean/virtual_clean.png" class="pro-img" id="virtual-img" alt="Virtual Singers UI" />
 
           <!-- Spotlight Box -->
-          <div class="singers-spotlight" id="singers-box"></div>
+          <div class="singers-spotlight" id="singers-box">
+            <div class="scan-beam-vert"></div>
+          </div>
 
           <!-- Traffic Callout -->
           <div class="traffic-callout-badge" id="traffic-pill">
@@ -368,7 +448,12 @@
     </div>
 
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="sub-wave-icon">
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+        </div>
         <div class="subtitle-text" id="s4-sub">
           玩法二【进阶爆款法】：用 <span class="sub-hl">ChatGPT 写深情歌词</span>，填入专业模式。
         </div>
@@ -380,35 +465,48 @@
     const tl = gsap.timeline({ paused: true });
 
     tl.fromTo("#chatgpt-box", 
-      { x: -30, opacity: 0.9 }, 
+      { x: -40, opacity: 0.9 }, 
       { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 
       0.0
     );
 
     tl.fromTo("#pro-window", 
-      { x: 30, opacity: 0.9 }, 
+      { x: 40, opacity: 0.9 }, 
       { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 
       0.0
+    );
+
+    // Copy button pulse
+    tl.fromTo("#copy-btn",
+      { scale: 1 },
+      { scale: 1.15, repeat: 4, yoyo: true, duration: 0.4, ease: "sine.inOut" },
+      0.8
     );
 
     // Spotlight on virtual singers
     tl.fromTo("#singers-box",
       { scale: 0.9, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" },
       1.2
     );
 
     // Traffic callout pop
     tl.fromTo("#traffic-pill",
       { scale: 0.8, opacity: 0, x: 20 },
-      { scale: 1, opacity: 1, x: 0, duration: 0.5, ease: "back.out(1.8)" },
+      { scale: 1, opacity: 1, x: 0, duration: 0.5, ease: "back.out(2.0)" },
       1.8
     );
 
-    // 7.8s: Subtitle 2 transition
+    // 7.8s: Subtitle 2 transition with kinetic bounce
     tl.call(() => {
       const sub = document.getElementById("s4-sub");
-      if (sub) sub.innerHTML = "重点选择官方<span class='sub-hl'>“虚拟歌手”</span>（陈安可、林初一），自带自然推荐流！";
+      if (sub) {
+        sub.innerHTML = "重点选择官方<span class='sub-hl'>“虚拟歌手”</span>（陈安可、林初一），自带自然推荐流！";
+        gsap.fromTo("#sub-capsule", 
+          { scale: 0.9, y: 12 }, 
+          { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" }
+        );
+      }
     }, null, 7.8);
 
     // Avatar breathing

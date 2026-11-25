@@ -20,32 +20,50 @@
       color: #1A1C20;
     }
 
-    /* Top Navigation Header */
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.35;
+      font-size: 26px;
+      color: #0284C7;
+      animation: floatUp 8s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-350px) rotate(35deg); opacity: 0; }
+    }
+
     .header-nav {
       position: absolute;
-      top: 48px;
+      top: 42px;
       left: 64px;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
       z-index: 50;
     }
-    .nav-num {
-      font-size: 26px;
-      font-weight: 800;
-      color: #0284C7;
-      letter-spacing: 0.02em;
+    .nav-badge {
+      background: #0284C7;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
     }
     .nav-title {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 26px;
+      font-weight: 900;
       color: #1E2024;
       letter-spacing: 0.04em;
     }
 
     .header-brand {
       position: absolute;
-      top: 42px;
+      top: 40px;
       right: 68px;
       display: flex;
       flex-direction: column;
@@ -53,7 +71,7 @@
       z-index: 50;
     }
     .brand-arch {
-      width: 32px;
+      width: 34px;
       height: 6px;
       border-top: 3.5px solid #0284C7;
       border-radius: 50%;
@@ -66,7 +84,7 @@
       color: #1A1C20;
     }
 
-    /* Stage */
+    /* Stage - Maximized Canvas Filling (1720px width) */
     .stage {
       position: absolute;
       inset: 0;
@@ -74,20 +92,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 80px 130px;
-      gap: 28px;
+      padding: 85px 60px 130px;
+      gap: 18px;
     }
 
-    /* Browser Mockup Window */
+    /* Ultra-Wide Sleek Modern Window Frame */
     .browser-window {
-      width: 1420px;
-      height: 700px;
+      width: 1720px;
+      height: 750px;
       background: #FFFFFF;
-      border-radius: 24px;
+      border-radius: 26px;
       box-shadow: 
-        0 24px 60px -15px rgba(0, 0, 0, 0.12),
-        0 8px 24px -6px rgba(2, 132, 199, 0.15);
-      border: 1.5px solid #E2E8F0;
+        0 30px 80px -15px rgba(0, 0, 0, 0.16),
+        0 10px 30px -8px rgba(2, 132, 199, 0.2);
+      border: 2px solid #E2E8F0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -95,21 +113,22 @@
     }
 
     .browser-bar {
-      height: 54px;
+      height: 48px;
       background: #F8FAFC;
-      border-bottom: 1px solid #E2E8F0;
+      border-bottom: 1.5px solid #E2E8F0;
       display: flex;
       align-items: center;
-      padding: 0 20px;
-      gap: 20px;
+      padding: 0 24px;
+      gap: 24px;
+      z-index: 10;
     }
     .traffic-dots {
       display: flex;
-      gap: 8px;
+      gap: 9px;
     }
     .dot {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
     }
     .dot-red { background: #EF4444; }
@@ -118,110 +137,139 @@
 
     .browser-url-pill {
       flex: 1;
-      max-width: 680px;
-      height: 36px;
+      max-width: 650px;
+      height: 34px;
       background: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-radius: 8px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       padding: 0 16px;
-      gap: 10px;
+      gap: 8px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       color: #0F172A;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
     }
     .url-highlight {
       color: #0284C7;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .browser-view {
       flex: 1;
       position: relative;
       overflow: hidden;
+      background: #FAFAFA;
     }
     .browser-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top left;
+      object-position: top center;
+      display: block;
     }
 
-    /* Floating Spotlight Badge */
+    /* Floating Spotlight Badge with Scanner Beam */
     .settlement-callout {
       position: absolute;
-      top: 175px;
-      left: 280px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border: 2px solid #0284C7;
-      border-radius: 16px;
-      padding: 16px 26px;
-      box-shadow: 0 16px 36px rgba(2, 132, 199, 0.25);
+      top: 130px;
+      left: 360px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      border: 2.5px solid #0284C7;
+      border-radius: 20px;
+      padding: 18px 32px;
+      box-shadow: 
+        0 20px 45px rgba(2, 132, 199, 0.3),
+        0 0 30px rgba(2, 132, 199, 0.15);
       display: flex;
       align-items: center;
-      gap: 18px;
-      z-index: 20;
+      gap: 20px;
+      z-index: 25;
+      overflow: hidden;
     }
+
+    /* Light Beam Scanner Sweeping Effect */
+    .scan-beam {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      transform: skewX(-25deg);
+      animation: scanSweep 3.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes scanSweep {
+      0% { left: -100%; }
+      40% { left: 160%; }
+      100% { left: 160%; }
+    }
+
     .callout-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       background: #E0F2FE;
       color: #0284C7;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 28px;
     }
     .callout-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       color: #0F172A;
     }
     .callout-amount {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 900;
       color: #0284C7;
+      letter-spacing: -0.01em;
     }
 
     /* Flow Badges Pipeline */
     .flow-pipeline {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       position: absolute;
-      bottom: 120px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      padding: 12px 28px;
+      bottom: 115px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      padding: 14px 34px;
       border-radius: 100px;
-      border: 1.5px solid #E2E8F0;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #CBD5E1;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
       z-index: 30;
     }
     .flow-step {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 18px;
-      font-weight: 700;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 800;
       color: #1E293B;
     }
     .flow-arrow {
-      color: #94A3B8;
-      font-size: 18px;
+      color: #0284C7;
+      font-size: 20px;
       font-weight: 900;
     }
     .flow-tag-hl {
       color: #0284C7;
+      background: rgba(2, 132, 199, 0.1);
+      padding: 4px 14px;
+      border-radius: 50px;
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD - Kinetic Frosted Glass Capsule */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -231,37 +279,64 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1480px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(56, 189, 248, 0.45);
+      box-shadow: 
+        0 16px 45px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(2, 132, 199, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
+    .sub-wave-icon {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+    .sub-wave-bar {
+      width: 4px;
+      border-radius: 2px;
+      background: #38BDF8;
+      animation: subEq 0.7s ease-in-out infinite alternate;
+    }
+    .sub-wave-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+    .sub-wave-bar:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+    .sub-wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+    @keyframes subEq {
+      0% { height: 6px; }
+      100% { height: 22px; }
+    }
+
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 900;
       color: #FFFFFF;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-align: center;
       line-height: 1.35;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sub-hl {
-      color: #38BDF8;
-      font-weight: 800;
+      color: #FACC15;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(250, 204, 21, 0.6), 0 0 30px rgba(56, 189, 248, 0.4);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 40px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #0284C7;
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
       overflow: hidden;
       z-index: 101;
     }
@@ -273,9 +348,11 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s2_platform">
-    <!-- Navigation Header -->
+    <div class="particle" style="top: 80%; left: 18%; animation-delay: 0.5s;">♪</div>
+    <div class="particle" style="top: 70%; left: 80%; animation-delay: 3.2s;">⚡️</div>
+
     <div class="header-nav">
-      <span class="nav-num">02</span>
+      <span class="nav-badge">02</span>
       <span class="nav-title">平台入驻 · 官方版权金矿</span>
     </div>
 
@@ -284,7 +361,6 @@
       <div class="brand-name">胖猫</div>
     </div>
 
-    <!-- Main Stage -->
     <div class="stage">
       <div class="browser-window" id="browser-card">
         <div class="browser-bar">
@@ -299,11 +375,12 @@
             <span>/console/settlement</span>
           </div>
         </div>
-        <div class="browser-view">
-          <img src="assets/qishui/proof_settlement_console.png" class="browser-img" alt="Settlement Console" />
+        <div class="browser-view" id="browser-viewport">
+          <img src="assets/qishui/clean/console_clean.png" class="browser-img" id="console-img" alt="Settlement Console" />
           
           <!-- Highlight Callout over monthly billing -->
           <div class="settlement-callout" id="callout-box">
+            <div class="scan-beam"></div>
             <div class="callout-icon">📈</div>
             <div>
               <div class="callout-title">2026年10月 已完成结算</div>
@@ -329,14 +406,17 @@
       </div>
     </div>
 
-    <!-- Floating Avatar -->
     <div class="hud-avatar" id="s2-avatar">
       <img src="assets/avatar.jpg" alt="Avatar" />
     </div>
 
-    <!-- Subtitle HUD -->
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="sub-wave-icon">
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+        </div>
         <div class="subtitle-text" id="s2-sub">
           打开官方平台 <span class="sub-hl">music.douyin.com</span>，抖音扫码认证入驻。
         </div>
@@ -348,29 +428,43 @@
     const tl = gsap.timeline({ paused: true });
 
     tl.fromTo("#browser-card", 
-      { y: 20, opacity: 0.9, scale: 0.98 }, 
+      { y: 30, opacity: 0.9, scale: 0.96 }, 
       { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 
       0.0
     );
 
-    // Callout popup
+    // Callout popup with bounce
     tl.fromTo("#callout-box",
       { scale: 0.8, opacity: 0, y: 15 },
-      { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" },
-      1.2
+      { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(2.0)" },
+      1.0
     );
 
     // Flow bar reveal
     tl.fromTo("#flow-bar",
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" },
-      2.0
+      1.8
     );
 
-    // 6.8s: Subtitle 2 transition
+    // Camera zoom-in towards the data at 8.0s
+    tl.to("#console-img", {
+      scale: 1.08,
+      y: -20,
+      duration: 5.0,
+      ease: "power1.out"
+    }, 8.0);
+
+    // 6.8s: Subtitle 2 transition with kinetic bounce
     tl.call(() => {
       const sub = document.getElementById("s2-sub");
-      if (sub) sub.innerHTML = "背靠整个抖音<span class='sub-hl'>百亿级短视频流量池</span>，每天自动结算版权收益！";
+      if (sub) {
+        sub.innerHTML = "背靠整个抖音<span class='sub-hl'>百亿级短视频流量池</span>，每天自动结算版权收益！";
+        gsap.fromTo("#sub-capsule", 
+          { scale: 0.9, y: 12 }, 
+          { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" }
+        );
+      }
     }, null, 6.8);
 
     // Avatar breathing

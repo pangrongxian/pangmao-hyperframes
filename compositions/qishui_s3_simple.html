@@ -20,31 +20,50 @@
       color: #1A1C20;
     }
 
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.35;
+      font-size: 26px;
+      color: #10B981;
+      animation: floatUp 8s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-350px) rotate(35deg); opacity: 0; }
+    }
+
     .header-nav {
       position: absolute;
-      top: 48px;
+      top: 42px;
       left: 64px;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
       z-index: 50;
     }
-    .nav-num {
-      font-size: 26px;
-      font-weight: 800;
-      color: #10B981;
-      letter-spacing: 0.02em;
+    .nav-badge {
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
     }
     .nav-title {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 26px;
+      font-weight: 900;
       color: #1E2024;
       letter-spacing: 0.04em;
     }
 
     .header-brand {
       position: absolute;
-      top: 42px;
+      top: 40px;
       right: 68px;
       display: flex;
       flex-direction: column;
@@ -52,7 +71,7 @@
       z-index: 50;
     }
     .brand-arch {
-      width: 32px;
+      width: 34px;
       height: 6px;
       border-top: 3.5px solid #10B981;
       border-radius: 50%;
@@ -72,19 +91,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 90px 80px 130px;
-      gap: 24px;
+      padding: 85px 60px 130px;
+      gap: 18px;
     }
 
-    /* Dark Studio Mockup */
+    /* Ultra-Wide Dark Studio Mockup (1720px) */
     .studio-window {
-      width: 1440px;
-      height: 690px;
-      background: #111317;
-      border-radius: 24px;
+      width: 1720px;
+      height: 750px;
+      background: #0D1117;
+      border-radius: 26px;
       box-shadow: 
-        0 24px 60px -15px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
+        0 30px 80px -15px rgba(0, 0, 0, 0.4),
+        0 0 0 1.5px rgba(255, 255, 255, 0.12);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -93,16 +112,17 @@
 
     .studio-bar {
       height: 48px;
-      background: #181B21;
+      background: #161B22;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      padding: 0 20px;
-      gap: 16px;
+      padding: 0 24px;
+      gap: 20px;
+      z-index: 10;
     }
     .traffic-dots {
       display: flex;
-      gap: 8px;
+      gap: 9px;
     }
     .dot {
       width: 13px;
@@ -114,9 +134,10 @@
     .dot-green { background: #10B981; }
 
     .studio-title {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       color: #9CA3AF;
+      letter-spacing: 0.02em;
     }
 
     .studio-body {
@@ -129,38 +150,43 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
+      display: block;
     }
 
-    /* Interactive Overlay Typing Box */
+    /* Dynamic High-Impact Typing Overlay */
     .interactive-typing-bar {
       position: absolute;
-      top: 310px;
-      left: 450px;
-      width: 780px;
-      height: 90px;
-      background: rgba(22, 27, 34, 0.96);
-      border: 2px solid #10B981;
-      border-radius: 18px;
-      box-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
+      top: 240px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 96px;
+      background: rgba(18, 24, 38, 0.98);
+      border: 2.5px solid #10B981;
+      border-radius: 22px;
+      box-shadow: 
+        0 0 45px rgba(16, 185, 129, 0.45),
+        0 20px 50px rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 28px;
       z-index: 25;
     }
     .typing-text {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
       color: #FFFFFF;
       display: flex;
       align-items: center;
+      letter-spacing: 0.02em;
     }
     .cursor-blink {
       display: inline-block;
-      width: 3px;
-      height: 28px;
+      width: 3.5px;
+      height: 32px;
       background: #10B981;
-      margin-left: 6px;
+      margin-left: 8px;
       animation: blink 0.9s infinite;
     }
     @keyframes blink {
@@ -169,48 +195,51 @@
     }
 
     .send-btn-mock {
-      width: 48px;
-      height: 48px;
-      background: #10B981;
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #10B981, #059669);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #FFFFFF;
-      font-size: 22px;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.5);
+      font-size: 24px;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.6);
+      cursor: pointer;
     }
 
     /* Floating Feature Tag */
     .feature-floating-pill {
       position: absolute;
-      bottom: 120px;
+      bottom: 115px;
       display: flex;
-      gap: 16px;
+      gap: 20px;
       z-index: 30;
     }
     .tag-badge {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      padding: 14px 28px;
       border-radius: 100px;
       border: 1.5px solid #E5E7EB;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      font-size: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      font-size: 19px;
       font-weight: 800;
       color: #1F2937;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .tag-green {
       color: #059669;
+      border-color: rgba(16, 185, 129, 0.4);
+      background: #ECFDF5;
     }
 
-    /* Subtitle HUD */
+    /* Subtitle HUD - Kinetic Frosted Glass Capsule */
     .subtitle-hud {
       position: absolute;
-      bottom: 44px;
+      bottom: 40px;
       left: 0;
       width: 1920px;
       display: flex;
@@ -220,37 +249,64 @@
       pointer-events: none;
     }
     .subtitle-capsule {
-      max-width: 1400px;
-      padding: 14px 44px;
-      background: rgba(25, 28, 34, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      max-width: 1480px;
+      padding: 16px 48px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-radius: 100px;
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(52, 211, 153, 0.45);
+      box-shadow: 
+        0 16px 45px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(16, 185, 129, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
+    .sub-wave-icon {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+    .sub-wave-bar {
+      width: 4px;
+      border-radius: 2px;
+      background: #34D399;
+      animation: subEq 0.7s ease-in-out infinite alternate;
+    }
+    .sub-wave-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+    .sub-wave-bar:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+    .sub-wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+    @keyframes subEq {
+      0% { height: 6px; }
+      100% { height: 22px; }
+    }
+
     .subtitle-text {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 900;
       color: #FFFFFF;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-align: center;
       line-height: 1.35;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sub-hl {
-      color: #34D399;
-      font-weight: 800;
+      color: #FACC15;
+      font-weight: 900;
+      text-shadow: 0 0 16px rgba(250, 204, 21, 0.6), 0 0 30px rgba(52, 211, 153, 0.4);
     }
 
     .hud-avatar {
       position: absolute;
-      bottom: 42px;
+      bottom: 40px;
       left: 68px;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 2.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 3px solid #10B981;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
       overflow: hidden;
       z-index: 101;
     }
@@ -262,8 +318,11 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s3_simple">
+    <div class="particle" style="top: 80%; left: 16%; animation-delay: 0.2s;">♪</div>
+    <div class="particle" style="top: 75%; left: 82%; animation-delay: 2.8s;">✨</div>
+
     <div class="header-nav">
-      <span class="nav-num">03</span>
+      <span class="nav-badge">03</span>
       <span class="nav-title">玩法一 · 一句话极简出歌</span>
     </div>
 
@@ -280,10 +339,10 @@
             <span class="dot dot-yellow"></span>
             <span class="dot dot-green"></span>
           </div>
-          <span class="studio-title">汽水音乐 AI 写歌 · 极简对话模式</span>
+          <span class="studio-title">汽水音乐 AI 写歌 · 极简对话出歌模式</span>
         </div>
         <div class="studio-body">
-          <img src="assets/qishui/ui_simple_prompt.png" class="studio-img" alt="Simple Prompt UI" />
+          <img src="assets/qishui/clean/prompt_clean.png" class="studio-img" id="studio-img" alt="Simple Prompt UI" />
 
           <!-- Dynamic Typing Highlighting Overlay -->
           <div class="interactive-typing-bar" id="typing-box">
@@ -315,7 +374,12 @@
     </div>
 
     <div class="subtitle-hud">
-      <div class="subtitle-capsule">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="sub-wave-icon">
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+          <span class="sub-wave-bar"></span>
+        </div>
         <div class="subtitle-text" id="s3-sub">
           玩法一【小白一键流】：输入框直接<span class="sub-hl">输入一句话</span>灵感描述。
         </div>
@@ -327,15 +391,15 @@
     const tl = gsap.timeline({ paused: true });
 
     tl.fromTo("#studio-card", 
-      { y: 20, opacity: 0.9, scale: 0.98 }, 
+      { y: 30, opacity: 0.9, scale: 0.96 }, 
       { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 
       0.0
     );
 
     // Typing box zoom & pulse
     tl.fromTo("#typing-box",
-      { scale: 0.85, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" },
+      { scale: 0.85, opacity: 0, y: 15 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" },
       0.8
     );
 
@@ -343,20 +407,34 @@
     tl.fromTo("#send-btn",
       { scale: 1 },
       { scale: 1.25, repeat: 5, yoyo: true, duration: 0.4, ease: "sine.inOut" },
-      2.0
+      1.8
     );
 
     // Floating tags reveal
     tl.fromTo("#tags-bar",
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" },
-      1.8
+      1.6
     );
 
-    // 7.5s: Subtitle 2 transition
+    // Subtle camera drift on studio image
+    tl.to("#studio-img", {
+      scale: 1.05,
+      y: -10,
+      duration: 5.0,
+      ease: "power1.out"
+    }, 7.5);
+
+    // 7.5s: Subtitle 2 transition with kinetic bounce
     tl.call(() => {
       const sub = document.getElementById("s3-sub");
-      if (sub) sub.innerHTML = "AI 30 秒自动搞定<span class='sub-hl'>作词、编曲与演唱</span>，一键即可发布！";
+      if (sub) {
+        sub.innerHTML = "AI 30 秒自动搞定<span class='sub-hl'>作词、编曲与演唱</span>，一键即可发布！";
+        gsap.fromTo("#sub-capsule", 
+          { scale: 0.9, y: 12 }, 
+          { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" }
+        );
+      }
     }, null, 7.5);
 
     // Avatar breathing
