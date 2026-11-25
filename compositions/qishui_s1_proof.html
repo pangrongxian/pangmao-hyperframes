@@ -20,52 +20,56 @@
       color: #1A1C20;
     }
 
-    /* Ambient Floating Musical Particles */
-    .particle {
+    /* Ambient Background Glow */
+    .bg-glow-green {
       position: absolute;
+      top: 15%;
+      left: 10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 70%);
       pointer-events: none;
-      opacity: 0.35;
-      font-size: 28px;
-      color: #10B981;
-      animation: floatUp 8s ease-in-out infinite;
       z-index: 2;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.5; }
-      80% { opacity: 0.5; }
-      100% { transform: translateY(-350px) rotate(35deg); opacity: 0; }
+
+    /* Floating Particles */
+    .particle {
+      position: absolute;
+      font-size: 26px;
+      opacity: 0.35;
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+      color: #10B981;
     }
 
     /* Header Nav */
     .header-nav {
       position: absolute;
-      top: 42px;
+      top: 48px;
       left: 64px;
       display: flex;
-      align-items: center;
-      gap: 16px;
+      align-items: baseline;
+      gap: 12px;
       z-index: 50;
     }
     .nav-badge {
-      background: #10B981;
-      color: #FFFFFF;
-      font-size: 16px;
-      font-weight: 900;
-      padding: 4px 12px;
-      border-radius: 8px;
-      letter-spacing: 0.05em;
-    }
-    .nav-title {
       font-size: 26px;
       font-weight: 900;
+      color: #10B981;
+      letter-spacing: 0.02em;
+    }
+    .nav-title {
+      font-size: 24px;
+      font-weight: 800;
       color: #1E2024;
       letter-spacing: 0.04em;
     }
 
     .header-brand {
       position: absolute;
-      top: 40px;
+      top: 42px;
       right: 68px;
       display: flex;
       flex-direction: column;
@@ -102,57 +106,75 @@
       justify-content: space-between;
       width: 100%;
       max-width: 1720px;
-      gap: 70px;
+      gap: 80px;
     }
 
-    /* Ultra-Refined iPhone 16 Pro Titanium Mockup */
-    .phone-perspective-box {
-      perspective: 1200px;
-      width: 440px;
-      height: 740px;
+    /* ========================================================
+       APPLE KEYNOTE SPEC: iPhone 16 Pro Industrial Mockup
+       ======================================================== */
+    .phone-showcase-wrap {
+      width: 400px;
+      height: 760px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
     }
 
-    .iphone-pro {
-      width: 430px;
-      height: 730px;
-      background: #000000;
-      border-radius: 54px;
+    .apple-iphone {
+      width: 375px;
+      height: 750px;
+      background: #111317;
+      border-radius: 52px;
+      /* Apple Aerospace Grade Titanium Frame */
       box-shadow: 
-        0 30px 80px -15px rgba(0, 0, 0, 0.35),
-        0 0 50px rgba(16, 185, 129, 0.25),
-        inset 0 0 0 2px #475569;
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 0 4.5px #1E2229,
+        0 0 0 5.5px rgba(255, 255, 255, 0.08),
+        0 35px 80px -15px rgba(0, 0, 0, 0.3),
+        0 15px 30px -10px rgba(0, 0, 0, 0.15);
       position: relative;
       overflow: hidden;
-      border: 5px solid #94A3B8;
-      transform: rotateY(-6deg) rotateX(2deg);
-      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    .iphone-pro::before {
-      content: "";
+    /* Top Speaker Slit */
+    .speaker-slit {
       position: absolute;
-      inset: -2px;
-      border-radius: 54px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.2) 100%);
-      pointer-events: none;
-      z-index: 30;
-    }
-
-    /* Dynamic Island Pill */
-    .dynamic-island {
-      position: absolute;
-      top: 10px;
+      top: 6px;
       left: 50%;
       transform: translateX(-50%);
-      width: 110px;
+      width: 48px;
+      height: 3px;
+      background: #2D3139;
+      border-radius: 4px;
+      z-index: 40;
+    }
+
+    /* Screen Inner Bezels */
+    .phone-screen-container {
+      position: absolute;
+      inset: 4px;
+      border-radius: 48px;
+      overflow: hidden;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Apple Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 108px;
       height: 26px;
       background: #000000;
       border-radius: 20px;
-      z-index: 25;
+      z-index: 35;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -163,8 +185,7 @@
       height: 11px;
       border-radius: 50%;
       background: #111827;
-      border: 1.5px solid #1E293B;
-      box-shadow: inset 0 0 2px #000;
+      border: 1px solid #1E293B;
     }
     .di-sensor {
       width: 8px;
@@ -173,6 +194,7 @@
       background: #0F172A;
     }
 
+    /* Receipt Image */
     .phone-screen-img {
       width: 100%;
       height: 100%;
@@ -181,67 +203,13 @@
       display: block;
     }
 
+    /* Subtle Glass Glare */
     .screen-glare {
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 45%);
       pointer-events: none;
       z-index: 20;
-    }
-
-    /* Safe Account Mask (100% covers bank name) */
-    .safe-account-mask {
-      position: absolute;
-      bottom: 56px;
-      right: 28px;
-      width: 230px;
-      height: 26px;
-      background: #FFFFFF;
-      font-size: 15px;
-      font-weight: 500;
-      color: #1F2937;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      z-index: 15;
-    }
-
-    /* Floating Green Hologram Stamp */
-    .verified-stamp {
-      position: absolute;
-      top: 160px;
-      right: -25px;
-      background: linear-gradient(135deg, #059669, #047857);
-      color: #FFFFFF;
-      padding: 14px 28px;
-      font-size: 22px;
-      font-weight: 900;
-      border-radius: 16px;
-      transform: rotate(10deg);
-      box-shadow: 0 16px 36px rgba(5, 150, 105, 0.45);
-      border: 3px dashed #A7F3D0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 35;
-    }
-
-    /* 3D Floating Coin Animation */
-    .coin-3d {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #FDE047, #EAB308, #CA8A04);
-      box-shadow: 0 10px 25px rgba(234, 179, 8, 0.5), inset 0 2px 4px #FEF08A;
-      border: 3px solid #FEF08A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      font-weight: 900;
-      color: #78350F;
-      z-index: 40;
     }
 
     /* Right Showcase Content */
@@ -309,9 +277,9 @@
     }
 
     .f-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(229, 231, 235, 0.8);
+      border: 1.5px solid rgba(229, 231, 235, 0.85);
       border-radius: 22px;
       padding: 24px;
       box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.05);
@@ -428,10 +396,7 @@
   </style>
 
   <div id="root" data-composition-id="qishui_s1_proof">
-    <!-- Ambient Floating Particles -->
-    <div class="particle" style="top: 80%; left: 15%; animation-delay: 0s;">♪</div>
-    <div class="particle" style="top: 75%; left: 82%; animation-delay: 2.5s;">♫</div>
-    <div class="particle" style="top: 85%; left: 45%; animation-delay: 4.8s;">✨</div>
+    <div class="bg-glow-green"></div>
 
     <!-- Navigation Header -->
     <div class="header-nav">
@@ -447,32 +412,22 @@
     <!-- Main Stage: 0.0s instant visual -->
     <div class="stage">
       <div class="hero-split">
-        <!-- Titanium iPhone 16 Pro Mockup -->
-        <div class="phone-perspective-box">
-          <div class="iphone-pro" id="phone-card">
-            <!-- Dynamic Island -->
-            <div class="dynamic-island">
-              <div class="di-lens"></div>
-              <div class="di-sensor"></div>
-            </div>
+        <!-- Apple iPhone 16 Pro Keynote Mockup -->
+        <div class="phone-showcase-wrap">
+          <div class="apple-iphone" id="phone-card">
+            <div class="speaker-slit"></div>
+            <div class="phone-screen-container">
+              <!-- Dynamic Island -->
+              <div class="dynamic-island">
+                <div class="di-lens"></div>
+                <div class="di-sensor"></div>
+              </div>
 
-            <img src="assets/qishui/proof_wallet_380.png" class="phone-screen-img" alt="Cashout Proof" />
-            <div class="screen-glare"></div>
-            
-            <!-- Safe Account Mask (Removes bank sensitive name) -->
-            <div class="safe-account-mask">
-              个人储蓄卡(1696)
-            </div>
-
-            <!-- Verified Stamp -->
-            <div class="verified-stamp" id="stamp-badge">
-              <span>✓</span> 实测到账 380.48 元
+              <!-- Pixel-Clean Receipt Image (100% compliant, no double text) -->
+              <img src="assets/qishui/proof_wallet_clean.png" class="phone-screen-img" alt="Cashout Proof" />
+              <div class="screen-glare"></div>
             </div>
           </div>
-
-          <!-- Dynamic 3D Coins dropping into phone -->
-          <div class="coin-3d" id="coin-1" style="top: 40px; left: -25px;">¥</div>
-          <div class="coin-3d" id="coin-2" style="bottom: 110px; right: -30px; font-size: 26px; width: 52px; height: 52px;">¥</div>
         </div>
 
         <!-- Right Content Info -->
@@ -549,68 +504,48 @@
   <script>
     const tl = gsap.timeline({ paused: true });
 
-    // 0.0s: Phone and content visible immediately
+    // Apple Keynote Phone Glide In (Smooth, graceful, no frantic shaking)
     tl.fromTo("#phone-card", 
-      { scale: 0.94, opacity: 0.9, rotateY: -12 }, 
-      { scale: 1, opacity: 1, rotateY: -6, duration: 0.6, ease: "back.out(1.5)" }, 
+      { y: 30, opacity: 0.92, scale: 0.98 }, 
+      { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 
       0.0
     );
 
-    // Coins dropping with dynamic bounce
-    tl.fromTo("#coin-1",
-      { y: -80, opacity: 0, rotation: -45, scale: 0.5 },
-      { y: 0, opacity: 1, rotation: 15, scale: 1, duration: 0.7, ease: "bounce.out" },
-      0.2
-    );
-    tl.fromTo("#coin-2",
-      { y: -60, opacity: 0, rotation: 45, scale: 0.5 },
-      { y: 0, opacity: 1, rotation: -12, scale: 1, duration: 0.7, ease: "bounce.out" },
-      0.4
+    // Subtle gentle breathing (Apple Keynote floating stage feel)
+    tl.to("#phone-card", { y: -6, duration: 3.2, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0.8);
+
+    // Headline entrance
+    tl.fromTo("#headline-text",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+      0.15
     );
 
-    // Continuous coin floating
-    tl.to("#coin-1", { y: -12, rotation: 25, duration: 2.0, yoyo: true, repeat: 8, ease: "sine.inOut" }, 0.9);
-    tl.to("#coin-2", { y: -10, rotation: -20, duration: 2.2, yoyo: true, repeat: 8, ease: "sine.inOut" }, 1.1);
-
-    // Stamp slam down with punchy scale at 0.4s
-    tl.fromTo("#stamp-badge",
-      { scale: 2.4, opacity: 0, rotation: 28 },
-      { scale: 1, opacity: 1, rotation: 10, duration: 0.45, ease: "back.out(2.2)" },
-      0.4
-    );
-
-    // Floating breathing effect on phone
-    tl.to("#phone-card", {
-      y: -10,
-      duration: 2.2,
-      yoyo: true,
-      repeat: 8,
-      ease: "sine.inOut"
-    }, 0.6);
-
-    // Feature cards stagger reveal
+    // Feature Cards stagger
     tl.fromTo(["#card-1", "#card-2", "#card-3", "#card-4"],
-      { y: 25, opacity: 0.7 },
-      { y: 0, opacity: 1, stagger: 0.12, duration: 0.5, ease: "power2.out" },
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" },
       0.3
     );
 
-    // 6.2s: Subtitle 2 transition with kinetic bounce
+    // Subtitle 1 entrance punch
+    tl.fromTo("#sub-capsule",
+      { scale: 0.92, y: 15, opacity: 0 },
+      { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" },
+      0.1
+    );
+
+    // 6.2s: Subtitle 2 transition with kinetic pop
     tl.call(() => {
       const sub = document.getElementById("s1-sub");
-      if (sub) {
-        sub.innerHTML = "零乐理门槛，教你用 <span class='sub-hl'>汽水 AI 音乐</span> 打造全自动睡后收益！";
-        gsap.fromTo("#sub-capsule", 
-          { scale: 0.9, y: 12 }, 
-          { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" }
-        );
-      }
+      if (sub) sub.innerHTML = "零乐理门槛，教你用 <span class='sub-hl'>汽水 AI 音乐</span> 打造全自动睡后收益！";
+      gsap.fromTo("#sub-capsule", { scale: 0.92, y: 10 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" });
     }, null, 6.2);
 
     // Avatar breathing
     tl.fromTo("#s1-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 11, ease: "sine.inOut" }, 0.2);
 
-    // Scene transition exit fadeout at 18.6s
+    // Exit transition at 18.6s
     tl.to("#root", { opacity: 0, duration: 0.3 }, 18.6);
 
     window.__timelines = window.__timelines || {};
