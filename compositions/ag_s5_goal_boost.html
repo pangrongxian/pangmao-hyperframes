@@ -1,0 +1,188 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #DC2626; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #DC2626; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; width: 100%; max-width: 1740px; height: 690px; }
+
+    .engine-card {
+      background: #0B1120; border-radius: 28px; border: 2px solid #334155;
+      box-shadow: 0 28px 65px -15px rgba(15, 23, 42, 0.3); padding: 42px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cmd-pill { padding: 8px 24px; border-radius: 100px; font-size: 28px; font-weight: 900; font-family: monospace; width: fit-content; }
+    .pill-orange { background: rgba(249, 115, 22, 0.2); color: #FDBA74; border: 2px solid rgba(251, 146, 60, 0.55); }
+    .pill-red { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 2px solid rgba(248, 113, 113, 0.55); }
+
+    .card-title { font-size: 36px; font-weight: 900; color: #F8FAFC; margin-top: 16px; }
+    .card-desc { font-size: 19px; color: #94A3B8; line-height: 1.55; font-weight: 600; margin-top: 12px; }
+
+    .goal-track-box {
+      background: #1E293B; border: 1.5px solid #334155; border-radius: 20px; padding: 26px; color: #FFFFFF;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .goal-status { display: flex; justify-content: space-between; font-size: 16px; font-weight: 800; color: #FDBA74; }
+    .progress-bg { width: 100%; height: 18px; background: #0F172A; border-radius: 100px; overflow: hidden; }
+    .progress-fill { width: 12%; height: 100%; background: linear-gradient(90deg, #F97316, #FACC15); border-radius: 100px; }
+    .goal-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .g-tag { font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 8px; background: #0F172A; color: #CBD5E1; border: 1px solid #334155; }
+
+    .boost-flow { display: flex; flex-direction: column; gap: 16px; }
+    .boost-step {
+      background: #1E293B; border: 1.5px solid #334155; border-radius: 18px; padding: 18px 24px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .step-badge {
+      width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900; color: #FFFFFF; flex-shrink: 0;
+    }
+    .sb-1 { background: #3B82F6; } .sb-2 { background: #DC2626; } .sb-3 { background: #10B981; }
+    .step-title { font-size: 20px; font-weight: 900; color: #F8FAFC; }
+    .step-sub { font-size: 15px; color: #94A3B8; font-weight: 600; margin-top: 2px; }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(248, 113, 113, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(220, 38, 38, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #F87171, #DC2626); border-radius: 4px; }
+    .subtitle-text { font-size: 40px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7); }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-warn { background: linear-gradient(135deg, #FCA5A5, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-cmd-amber { font-family: monospace; color: #FBBF24; background: rgba(245, 158, 11, 0.22); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(251, 191, 36, 0.6); }
+    .art-cmd-red { font-family: monospace; color: #FDA4AF; background: rgba(225, 29, 72, 0.25); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(251, 113, 133, 0.6); }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s5_goal_boost">
+    <div class="header-nav">
+      <span class="nav-badge">05</span>
+      <span class="nav-title">攻坚与续航 · /goal & /boost</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="dual-grid">
+        <div class="engine-card" id="card-goal">
+          <div>
+            <div class="cmd-pill pill-orange">/goal</div>
+            <div class="card-title">死磕模式 · 不达目标不罢休</div>
+            <div class="card-desc">特别适合长任务！开启后中途绝不停下来礼貌请示打断，一路自主推进直到彻底交付。</div>
+          </div>
+          <div class="goal-track-box">
+            <div class="goal-status"><span>⚡ 自主连续推进中</span><span>100% 完成交付</span></div>
+            <div class="progress-bg"><div class="progress-fill" id="goal-bar"></div></div>
+            <div class="goal-tags">
+              <span class="g-tag">✓ 屏蔽中途无意义打断</span>
+              <span class="g-tag">✓ 自动拆解并闭环验证</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="engine-card" id="card-boost">
+          <div>
+            <div class="cmd-pill pill-red">/boost</div>
+            <div class="card-title">多轮对抗 · 专治疑难杂症</div>
+            <div class="card-desc">死活复现不了的诡异 Bug、复杂算法或全局重构，后台自动拉起“红蓝对抗”反复挑刺复核。</div>
+          </div>
+          <div class="boost-flow">
+            <div class="boost-step" id="bs-1">
+              <div class="step-badge sb-1">1</div>
+              <div><div class="step-title">子智能体首轮出方案</div><div class="step-sub">深度诊断定位根因，给出修复与重构初稿</div></div>
+            </div>
+            <div class="boost-step" id="bs-2">
+              <div class="step-badge sb-2">2</div>
+              <div><div class="step-title">独立挑刺官找边界漏洞</div><div class="step-sub">专项攻击极端 Case、回归风险与隐藏隐患并补修</div></div>
+            </div>
+            <div class="boost-step" id="bs-3">
+              <div class="step-badge sb-3">3</div>
+              <div><div class="step-title">主控独立复核过关才交差</div><div class="step-sub">验证通过后输出最终无懈可击的解决方案</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s5-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s5-sub">第四组硬核攻坚：最恨长任务干一半，AI <span class='art-warn'>停下来礼貌问你</span>？</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 62, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 62, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 62, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Beat 1 (0.0s): Explosive entry + Focus on /goal
+    tl.fromTo(".dual-grid", { scale: 0.94, y: 24, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#card-goal", { scale: 0.96, opacity: 0.85 }, { scale: 1.03, opacity: 1, borderColor: "#F97316", duration: 0.45 }, 0.1);
+    tl.fromTo("#card-boost", { scale: 0.96, opacity: 0.35 }, { scale: 0.96, opacity: 0.38, duration: 0.45 }, 0.1);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 14, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (7.428s): /goal bar rockets to 100%
+    tl.to("#goal-bar", { width: "100%", duration: 3.8, ease: "power2.out" }, 7.428);
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "开启 <span class='art-cmd-amber'>/goal</span> 死磕模式！一路狂飙推进，不达目标绝不罢休！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 7.428);
+
+    // Beat 3 (12.736s): Snap spotlight to /boost
+    tl.to("#card-goal", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 12.736);
+    tl.to("#card-boost", { scale: 1.04, opacity: 1, borderColor: "#EF4444", duration: 0.38, ease: "back.out(1.5)" }, 12.736);
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "碰到灵异 Bug 或硬骨头？直接祭出 <span class='art-cmd-red'>/boost</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 12.736);
+
+    // Beat 4 (19.255s): /boost 3-step adversarial loop cascade
+    tl.to("#bs-1", { borderColor: "#3B82F6", scale: 1.04, duration: 0.35 }, 19.255);
+    tl.to("#bs-2", { borderColor: "#EF4444", scale: 1.04, duration: 0.35 }, 21.8);
+    tl.to("#bs-3", { borderColor: "#10B981", scale: 1.04, duration: 0.35 }, 24.3);
+    tl.call(() => {
+      const sub = document.getElementById("s5-sub");
+      if (sub) sub.innerHTML = "后台红蓝对抗：<span class='art-hl'>出方案 ➔ 挑刺狠找漏洞 ➔ 主控终审交差</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 19.255);
+
+    tl.fromTo("#s5-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 16, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 27.39);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s5_goal_boost"] = tl;
+  </script>
+</template>

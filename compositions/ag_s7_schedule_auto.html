@@ -1,0 +1,155 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #D97706; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #D97706; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; width: 100%; max-width: 1740px; height: 670px; }
+
+    .time-card {
+      background: #0B1120; border-radius: 28px; border: 2px solid #334155;
+      box-shadow: 0 28px 65px -15px rgba(15, 23, 42, 0.3); padding: 46px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cmd-pill { padding: 8px 26px; border-radius: 100px; font-size: 28px; font-weight: 900; font-family: monospace; width: fit-content; }
+    .p-amber { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 2px solid rgba(251, 191, 36, 0.55); }
+    .p-emerald { background: rgba(16, 185, 129, 0.2); color: #34D399; border: 2px solid rgba(52, 211, 153, 0.55); }
+
+    .card-title { font-size: 38px; font-weight: 900; color: #F8FAFC; margin-top: 20px; }
+    .card-desc { font-size: 20px; color: #94A3B8; line-height: 1.55; font-weight: 600; margin-top: 14px; }
+
+    .feature-list { display: flex; flex-direction: column; gap: 16px; }
+    .f-row {
+      background: #1E293B; border: 1.5px solid #334155; border-radius: 18px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px; font-size: 19px; font-weight: 800; color: #F1F5F9;
+    }
+    .f-ico { font-size: 26px; }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(251, 191, 36, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(217, 119, 6, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #FBBF24, #D97706); border-radius: 4px; }
+    .subtitle-text { font-size: 40px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7); }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-warn { background: linear-gradient(135deg, #FCA5A5, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-cmd { font-family: monospace; color: #34D399; background: rgba(16, 185, 129, 0.22); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(52, 211, 153, 0.6); }
+    .art-cmd-amber { font-family: monospace; color: #FBBF24; background: rgba(245, 158, 11, 0.22); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(251, 191, 36, 0.6); }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s7_schedule_auto">
+    <div class="header-nav">
+      <span class="nav-badge">07</span>
+      <span class="nav-title">定时与自动化 · 一句话分清区别</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="dual-grid">
+        <div class="time-card" id="c-sched">
+          <div>
+            <div class="cmd-pill p-amber">/schedule</div>
+            <div class="card-title">当前对话 · 专属小闹钟</div>
+            <div class="card-desc">只在当前这一个对话里响！适合过几十分钟提醒自己、或者轮询唤醒检查部署结果。</div>
+          </div>
+          <div class="feature-list">
+            <div class="f-row"><span class="f-ico">⏰</span> 依赖当前对话上下文环境</div>
+            <div class="f-row"><span class="f-ico">🔔</span> 到点自动唤醒当前会话继续查进度</div>
+          </div>
+        </div>
+
+        <div class="time-card" id="c-auto">
+          <div>
+            <div class="cmd-pill p-emerald">/automation</div>
+            <div class="card-title">跨会话 · 长期定时巡检</div>
+            <div class="card-desc">完全不依赖当前对话！比如每天早 9 点抓行业热点、跑日报巡检，到点拉起独立新会话执行。</div>
+          </div>
+          <div class="feature-list">
+            <div class="f-row" id="auto-f1"><span class="f-ico">🤖</span> 默认使用轻量便宜模型，极大省额度</div>
+            <div class="f-row" id="auto-f2"><span class="f-ico">📊</span> 跑完结果直接汇总在左侧 Automations 面板</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s7-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s7-sub">第六组全自动外挂：<span class='art-warn'>千万别把这俩搞混了</span>！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 54, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 54, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 54, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Beat 1 (0.0s): Explosive entry
+    tl.fromTo(".dual-grid", { scale: 0.94, y: 24, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 14, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (3.671s): /schedule spotlight
+    tl.to("#c-sched", { scale: 1.04, borderColor: "#FBBF24", opacity: 1, duration: 0.38, ease: "back.out(1.5)" }, 3.671);
+    tl.to("#c-auto", { scale: 0.95, opacity: 0.38, duration: 0.38 }, 3.671);
+    tl.call(() => {
+      const sub = document.getElementById("s7-sub");
+      if (sub) sub.innerHTML = "只在当前对话喊你一声？用 <span class='art-cmd-amber'>/schedule</span> 定个小闹钟！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 3.671);
+
+    // Beat 3 (10.102s): Snap spotlight to /automation
+    tl.to("#c-sched", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 10.102);
+    tl.to("#c-auto", { scale: 1.04, opacity: 1, borderColor: "#34D399", duration: 0.38, ease: "back.out(1.5)" }, 10.102);
+    tl.call(() => {
+      const sub = document.getElementById("s7-sub");
+      if (sub) sub.innerHTML = "每天早 9 点全自动跑日报巡检？直接上 <span class='art-cmd'>/automation</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 10.102);
+
+    // Beat 4 (16.587s): /automation detail features pulse
+    tl.to(["#auto-f1", "#auto-f2"], { borderColor: "#34D399", scale: 1.04, stagger: 0.35, duration: 0.35 }, 16.587);
+    tl.call(() => {
+      const sub = document.getElementById("s7-sub");
+      if (sub) sub.innerHTML = "<span class='art-hl'>独立新会话 + 便宜模型狂省钱</span>，到点跑完直接交卷！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 16.587);
+
+    tl.fromTo("#s7-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 14, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 23.344);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s7_schedule_auto"] = tl;
+  </script>
+</template>

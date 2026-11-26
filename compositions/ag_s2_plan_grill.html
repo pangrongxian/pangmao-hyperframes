@@ -1,0 +1,185 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #2563EB; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #2563EB; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; width: 100%; max-width: 1740px; height: 730px; }
+
+    .cmd-panel {
+      background: #0B1120; border-radius: 28px; border: 2.5px solid #334155;
+      box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.3); overflow: hidden; display: flex; flex-direction: column; position: relative;
+    }
+    .panel-header {
+      padding: 18px 26px; background: #1E293B; border-bottom: 1px solid #334155;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cmd-pill {
+      padding: 6px 20px; border-radius: 100px; font-size: 22px; font-weight: 900; font-family: monospace;
+      background: rgba(59, 130, 246, 0.2); color: #60A5FA; border: 1.5px solid rgba(96, 165, 250, 0.55);
+    }
+    .cmd-pill-amber { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border-color: rgba(251, 191, 36, 0.55); }
+    .panel-tag { font-size: 16px; font-weight: 800; color: #E2E8F0; }
+    .panel-img-wrap { flex: 1; padding: 14px; display: flex; align-items: center; justify-content: center; background: #070B14; overflow: hidden; position: relative; }
+    .panel-img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; }
+
+    /* Precision Callout Spotlights ("指哪打哪") */
+    .callout-pill {
+      position: absolute; bottom: 52px; left: 42px; background: #2563EB; color: #FFFFFF;
+      padding: 10px 22px; border-radius: 100px; font-size: 18px; font-weight: 900;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6); border: 2px solid #93C5FD;
+      opacity: 0; z-index: 20;
+    }
+    .callout-box-amber {
+      position: absolute; bottom: 85px; left: 40px; right: 40px; height: 220px;
+      border: 3px solid #FBBF24; border-radius: 16px; box-shadow: 0 0 30px rgba(251, 191, 36, 0.45);
+      opacity: 0; pointer-events: none; z-index: 20;
+    }
+
+    .combo-banner {
+      position: absolute; top: 108px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #1E3A8A, #2563EB); color: #FFFFFF;
+      padding: 14px 40px; border-radius: 100px; font-size: 22px; font-weight: 900;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45); border: 2px solid #93C5FD; z-index: 60;
+      opacity: 0; white-space: nowrap;
+    }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(96, 165, 250, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(37, 99, 235, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #60A5FA, #3B82F6); border-radius: 4px; }
+    .subtitle-text { font-size: 42px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7); }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-warn { background: linear-gradient(135deg, #FCA5A5, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-cmd { font-family: monospace; color: #60A5FA; background: rgba(37, 99, 235, 0.25); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(96, 165, 250, 0.6); }
+    .art-cmd-amber { font-family: monospace; color: #FBBF24; background: rgba(245, 158, 11, 0.22); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(251, 191, 36, 0.6); }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s2_plan_grill">
+    <div class="header-nav">
+      <span class="nav-badge">02</span>
+      <span class="nav-title">动手前先对齐 · /plan + /grill-me</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="combo-banner" id="combo-banner">🔥 王炸组合：/plan + /grill-me — 先吵清楚再干活，彻底告别返工！</div>
+      <div class="dual-grid">
+        <div class="cmd-panel" id="panel-plan">
+          <div class="panel-header">
+            <span class="cmd-pill">/plan</span>
+            <span class="panel-tag">先出执行方案，审批通过再动代码</span>
+          </div>
+          <div class="panel-img-wrap">
+            <img src="assets/antigravity/cmd_plan.png" class="panel-img" alt="/plan UI" />
+            <div class="callout-pill" id="plan-callout">👆 点击 Proceed 确认后再开工！</div>
+          </div>
+        </div>
+
+        <div class="cmd-panel" id="panel-grill">
+          <div class="panel-header">
+            <span class="cmd-pill cmd-pill-amber">/grill-me</span>
+            <span class="panel-tag">选择题追问，把模糊想法逼出清晰边界</span>
+          </div>
+          <div class="panel-img-wrap">
+            <img src="assets/antigravity/cmd_grill.png" class="panel-img" alt="/grill-me UI" />
+            <div class="callout-box-amber" id="grill-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s2-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s2-sub">第一组防翻车王炸：怕 AI 脑子一热<span class='art-warn'>把代码改得稀巴烂</span>？</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 64, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 64, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 64, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Explosive scene entry + Beat 1 (0.0s): Focus on /plan
+    tl.fromTo(".dual-grid", { scale: 0.94, y: 24, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#panel-plan", { scale: 0.96, opacity: 0.85 }, { scale: 1.03, opacity: 1, borderColor: "#60A5FA", duration: 0.45 }, 0.1);
+    tl.fromTo("#panel-grill", { opacity: 0.35, scale: 0.96 }, { opacity: 0.38, scale: 0.96, duration: 0.45 }, 0.1);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 14, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (5.899s): /plan Proceed callout
+    tl.fromTo("#plan-callout", { y: 18, scale: 0.85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 5.899);
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "闭眼先敲 <span class='art-cmd'>/plan</span>！必须先交完整方案，你点头它才能动！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 5.899);
+
+    // Beat 3 (11.904s): Snap spotlight to /grill-me
+    tl.to("#panel-plan", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.35 }, 11.904);
+    tl.to("#plan-callout", { opacity: 0, duration: 0.2 }, 11.904);
+    tl.to("#panel-grill", { scale: 1.04, opacity: 1, borderColor: "#FBBF24", duration: 0.4, ease: "back.out(1.4)" }, 11.904);
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "需求也稀里糊涂？直接开 <span class='art-cmd-amber'>/grill-me</span> 拷问模式！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 11.904);
+
+    // Beat 4 (16.201s): Highlight 1-4 options inside /grill-me
+    tl.fromTo("#grill-box", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 16.201);
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "像顶级总监一样，<span class='art-hl'>一题题逼问你</span>把岔路口问到水落石出！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 16.201);
+
+    // Beat 5 (21.397s): Combo both
+    tl.to("#grill-box", { opacity: 0, duration: 0.25 }, 21.397);
+    tl.to(["#panel-plan", "#panel-grill"], { scale: 1, opacity: 1, borderColor: "#60A5FA", duration: 0.4 }, 21.397);
+    tl.fromTo("#combo-banner", { y: -24, scale: 0.9, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, 21.397);
+    tl.call(() => {
+      const sub = document.getElementById("s2-sub");
+      if (sub) sub.innerHTML = "王炸公式：<span class='art-cmd'>/plan</span> + <span class='art-cmd-amber'>/grill-me</span>，先吵清楚再干活，彻底零返工！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 21.397);
+
+    tl.fromTo("#s2-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 16, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 28.141);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s2_plan_grill"] = tl;
+  </script>
+</template>

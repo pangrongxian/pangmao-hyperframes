@@ -1,0 +1,188 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #059669; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #059669; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .tri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; width: 100%; max-width: 1740px; height: 700px; }
+
+    .agent-card {
+      background: #0B1120; border-radius: 28px; border: 2px solid #334155;
+      box-shadow: 0 28px 65px -15px rgba(15, 23, 42, 0.3); padding: 38px 34px;
+      display: flex; flex-direction: column; justify-content: space-between; position: relative;
+    }
+    .card-top { display: flex; flex-direction: column; gap: 16px; }
+    .cmd-tag { padding: 8px 22px; border-radius: 100px; font-size: 26px; font-weight: 900; font-family: monospace; width: fit-content; }
+    .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; border: 2px solid rgba(96, 165, 250, 0.55); }
+    .tag-amber { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 2px solid rgba(251, 191, 36, 0.55); }
+    .tag-purple { background: rgba(139, 92, 246, 0.22); color: #C4B5FD; border: 2px solid rgba(167, 139, 250, 0.55); }
+
+    .card-role { font-size: 32px; font-weight: 900; color: #F8FAFC; }
+    .card-desc { font-size: 18px; color: #94A3B8; line-height: 1.55; font-weight: 600; }
+
+    .bullets { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .bullet-box {
+      background: #1E293B; border: 1.5px solid #334155; border-radius: 16px; padding: 16px 20px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .b-icon { font-size: 22px; flex-shrink: 0; }
+    .b-title { font-size: 18px; font-weight: 800; color: #F1F5F9; }
+    .b-sub { font-size: 14px; color: #94A3B8; font-weight: 600; margin-top: 2px; }
+
+    .card-footer-badge { padding: 13px 20px; border-radius: 14px; font-size: 16px; font-weight: 800; text-align: center; }
+    .fb-blue { background: rgba(37, 99, 235, 0.25); color: #93C5FD; border: 1px solid rgba(96, 165, 250, 0.4); }
+    .fb-amber { background: rgba(217, 119, 6, 0.25); color: #FDE68A; border: 1px solid rgba(251, 191, 36, 0.4); }
+    .fb-purple { background: rgba(124, 58, 237, 0.25); color: #DDD6FE; border: 1px solid rgba(167, 139, 250, 0.4); }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(52, 211, 153, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(16, 185, 129, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #34D399, #10B981); border-radius: 4px; }
+    .subtitle-text { font-size: 40px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7); }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-cmd { font-family: monospace; color: #60A5FA; background: rgba(37, 99, 235, 0.25); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(96, 165, 250, 0.6); }
+    .art-cmd-amber { font-family: monospace; color: #FBBF24; background: rgba(245, 158, 11, 0.22); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(251, 191, 36, 0.6); }
+    .art-cmd-purple { font-family: monospace; color: #C4B5FD; background: rgba(124, 58, 237, 0.28); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(167, 139, 250, 0.6); }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s4_multi_agent">
+    <div class="header-nav">
+      <span class="nav-badge">04</span>
+      <span class="nav-title">多兵种协同 · 三大并行武器边界</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="tri-grid">
+        <div class="agent-card" id="card-swarm">
+          <div class="card-top">
+            <div class="cmd-tag tag-blue">/swarm</div>
+            <div class="card-role">包工头拉群模式</div>
+            <div class="card-desc">当前会话化身包工头，只负责派活、看板验收与决策，缓解上下文膨胀。</div>
+            <div class="bullets">
+              <div class="bullet-box"><div class="b-icon">📋</div><div><div class="b-title">实时协作看板</div><div class="b-sub">成员间互相沟通，进度一目了然</div></div></div>
+              <div class="bullet-box"><div class="b-icon">🔄</div><div><div class="b-title">适合灵活迭代</div><div class="b-sub">边界未定死、需边做边商量的任务</div></div></div>
+            </div>
+          </div>
+          <div class="card-footer-badge fb-blue">场景：文案+配图+排版并行协同</div>
+        </div>
+
+        <div class="agent-card" id="card-workflow">
+          <div class="card-top">
+            <div class="cmd-tag tag-amber">/run-workflow</div>
+            <div class="card-role">Python 流水线脚本</div>
+            <div class="card-desc">用代码把谁先跑、谁并行、输出数据结构全部钉死，后台独立批量运行。</div>
+            <div class="bullets">
+              <div class="bullet-box" id="wf-stop"><div class="b-icon">🛑</div><div><div class="b-title">严控格式 + 翻车秒止损</div><div class="b-sub">任一分支报错或漏交，其余分支立刻取消</div></div></div>
+              <div class="bullet-box" id="wf-save"><div class="b-icon">💰</div><div><div class="b-title">省额度可复用</div><div class="b-sub">简单扫描派 Flash 轻量模型，脚本可存</div></div></div>
+            </div>
+          </div>
+          <div class="card-footer-badge fb-amber">场景：几十个同类文件固定格式批量跑</div>
+        </div>
+
+        <div class="agent-card" id="card-teamwork">
+          <div class="card-top">
+            <div class="cmd-tag tag-purple">/teamwork</div>
+            <div class="card-role">专业工程团队</div>
+            <div class="card-desc">比包工头更重装，专为耗时数小时甚至跨天的大型仓库迁移、系统重做打造。</div>
+            <div class="bullets">
+              <div class="bullet-box"><div class="b-icon">🎙️</div><div><div class="b-title">访谈划定范围</div><div class="b-sub">先对齐里程碑，再拆解总控与探索员</div></div></div>
+              <div class="bullet-box"><div class="b-icon">🔒</div><div><div class="b-title">多层审计门禁</div><div class="b-sub">实现员开发 + 严格审计把关推进</div></div></div>
+            </div>
+          </div>
+          <div class="card-footer-badge fb-purple">场景：跨天大型仓库重构与架构迁移</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s4-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s4-sub">第三组召唤 <span class='art-hl'>AI 特种兵团</span>！活儿太多三招精准分流！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 74, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 74, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 74, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Beat 1 (0.0s): Explosive 3-card stagger
+    tl.fromTo(["#card-swarm", "#card-workflow", "#card-teamwork"], { y: 28, scale: 0.92, opacity: 0 }, { y: 0, scale: 1, opacity: 1, stagger: 0.14, duration: 0.45, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 14, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (7.042s): /swarm spotlight
+    tl.to("#card-swarm", { scale: 1.04, borderColor: "#60A5FA", opacity: 1, duration: 0.38, ease: "back.out(1.5)" }, 7.042);
+    tl.to(["#card-workflow", "#card-teamwork"], { scale: 0.95, opacity: 0.38, duration: 0.38 }, 7.042);
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "边商量边干用 <span class='art-cmd'>/swarm</span>：你当包工头拉群派活，看板实时盯！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 7.042);
+
+    // Beat 3 (13.707s): /run-workflow spotlight
+    tl.to("#card-swarm", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 13.707);
+    tl.to("#card-workflow", { scale: 1.04, opacity: 1, borderColor: "#FBBF24", duration: 0.38, ease: "back.out(1.5)" }, 13.707);
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "几十个文件死格式批量狂跑？交给 <span class='art-cmd-amber'>/run-workflow</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 13.707);
+
+    // Beat 4 (21.241s): /run-workflow detail highlight
+    tl.to(["#wf-stop", "#wf-save"], { borderColor: "#FBBF24", scale: 1.04, stagger: 0.3, duration: 0.35 }, 21.241);
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "<span class='art-hl'>Python 钉死流程</span>：轻量模型狂省钱，翻车秒止损！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 21.241);
+
+    // Beat 5 (27.132s): /teamwork spotlight
+    tl.to("#card-workflow", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 27.132);
+    tl.to("#card-teamwork", { scale: 1.04, opacity: 1, borderColor: "#A78BFA", duration: 0.38, ease: "back.out(1.5)" }, 27.132);
+    tl.call(() => {
+      const sub = document.getElementById("s4-sub");
+      if (sub) sub.innerHTML = "跨天超级大重构？直接上 <span class='art-cmd-purple'>/teamwork</span> 拉起专业天团！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 27.132);
+
+    tl.fromTo("#s4-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 19, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 32.738);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s4_multi_agent"] = tl;
+  </script>
+</template>

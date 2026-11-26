@@ -1,0 +1,305 @@
+[
+  {
+    "id": "ag_s1_hook",
+    "title": "01 黄金钩子",
+    "start": 0.0,
+    "voice_dur": 18.6,
+    "duration": 18.95,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "local_start": 0.0,
+        "html": "别再把 Antigravity 当普通聊天框！难怪你写代码老返工、Token 烧得飞快！"
+      },
+      {
+        "start": 5.8,
+        "local_start": 5.8,
+        "html": "官方内置 <span class='sub-hl'>14 个原生神级命令</span>，今天一张懒人速查表带你直接起飞！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "ding",
+        "time": 0.1,
+        "volume": 0.45
+      },
+      {
+        "type": "whoosh",
+        "time": 1.8,
+        "volume": 0.35
+      },
+      {
+        "type": "check",
+        "time": 6.0,
+        "volume": 0.35
+      }
+    ]
+  },
+  {
+    "id": "ag_s2_plan_grill",
+    "title": "02 动手前对齐",
+    "start": 18.95,
+    "voice_dur": 26.568,
+    "duration": 26.918,
+    "subtitles": [
+      {
+        "start": 18.95,
+        "local_start": 0.0,
+        "html": "怕 AI 脑子一热乱改文件？先敲 <span class='sub-hl'>/plan</span> 对齐完整执行计划！"
+      },
+      {
+        "start": 25.15,
+        "local_start": 6.2,
+        "html": "需求还模糊？直接开 <span class='sub-hl'>/grill-me</span> 追问模式，一题题把岔路口问透！"
+      },
+      {
+        "start": 31.95,
+        "local_start": 13.0,
+        "html": "王炸组合：<span class='sub-hl'>/plan + /grill-me</span>，先吵清楚再干活，彻底告别返工！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 19.05,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 25.35,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 32.15,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s3_ui_browser",
+    "title": "03 所见即所得",
+    "start": 45.868,
+    "voice_dur": 29.112,
+    "duration": 29.462,
+    "subtitles": [
+      {
+        "start": 45.868,
+        "local_start": 0.0,
+        "html": "文字看花了眼？敲 <span class='sub-hl'>/generative_ui</span> 本地沙箱生成 HTML 互动组件！"
+      },
+      {
+        "start": 52.668,
+        "local_start": 6.8,
+        "html": "开关滑块随便点，<span class='sub-hl'>0 额外 Token 消耗</span>，还能直接导出复用！"
+      },
+      {
+        "start": 58.868,
+        "local_start": 13.0,
+        "html": "想查网页或测本地页面？喊一声 <span class='sub-hl'>/browser</span>，内置浏览器右侧秒开！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "tap",
+        "time": 47.068,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 52.868,
+        "volume": 0.4
+      },
+      {
+        "type": "whoosh",
+        "time": 59.068,
+        "volume": 0.35
+      }
+    ]
+  },
+  {
+    "id": "ag_s4_multi_agent",
+    "title": "04 多兵种协同",
+    "start": 75.33,
+    "voice_dur": 34.848,
+    "duration": 35.198,
+    "subtitles": [
+      {
+        "start": 75.33,
+        "local_start": 0.0,
+        "html": "边做边商量的活儿，用 <span class='sub-hl'>/swarm</span> 化身包工头拉群并行派活！"
+      },
+      {
+        "start": 82.53,
+        "local_start": 7.2,
+        "html": "固定格式批量跑几十个文件？交给 <span class='sub-hl'>/run-workflow</span> Python 流水线！"
+      },
+      {
+        "start": 90.53,
+        "local_start": 15.2,
+        "html": "至于跨小时甚至跨天的大工程，直接上 <span class='sub-hl'>/teamwork</span> 组建专业团队！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 75.43,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 82.73,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 90.73,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s5_goal_boost",
+    "title": "05 攻坚与续航",
+    "start": 110.528,
+    "voice_dur": 29.112,
+    "duration": 29.462,
+    "subtitles": [
+      {
+        "start": 110.528,
+        "local_start": 0.0,
+        "html": "长任务怕它干一半停下来？开启 <span class='sub-hl'>/goal</span> 死磕模式，不达目标不罢休！"
+      },
+      {
+        "start": 118.028,
+        "local_start": 7.5,
+        "html": "遇到死活解决不了的诡异 Bug？祭出 <span class='sub-hl'>/boost</span> 后台多轮对抗复核！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 110.628,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 118.228,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 125.528,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "ag_s6_context_learn",
+    "title": "06 护住上下文",
+    "start": 139.99,
+    "voice_dur": 28.44,
+    "duration": 28.79,
+    "subtitles": [
+      {
+        "start": 139.99,
+        "local_start": 0.0,
+        "html": "主线正忙想插嘴？敲 <span class='sub-hl'>/btw</span> 开只读从会话，绝不污染主线！"
+      },
+      {
+        "start": 146.79,
+        "local_start": 6.8,
+        "html": "聊太长变慢了？用 <span class='sub-hl'>/compact</span> 附带保留指令精准瘦身！"
+      },
+      {
+        "start": 153.49,
+        "local_start": 13.5,
+        "html": "调教顺手或踩完大坑，记得敲 <span class='sub-hl'>/learn</span> 永久记住规矩！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "pop_click",
+        "time": 140.19,
+        "volume": 0.4
+      },
+      {
+        "type": "whoosh",
+        "time": 146.99,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 153.69,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s7_schedule_auto",
+    "title": "07 定时与自动化",
+    "start": 168.78,
+    "voice_dur": 25.512,
+    "duration": 25.862,
+    "subtitles": [
+      {
+        "start": 168.78,
+        "local_start": 0.0,
+        "html": "只想在当前对话定个闹钟？敲 <span class='sub-hl'>/schedule</span> 过几十分钟喊你！"
+      },
+      {
+        "start": 175.58,
+        "local_start": 6.8,
+        "html": "每天早 9 点独立跑日报巡检？用 <span class='sub-hl'>/automation</span> 跨会话省钱自动执行！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 168.88,
+        "volume": 0.3
+      },
+      {
+        "type": "ding",
+        "time": 175.78,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s8_summary_outro",
+    "title": "08 懒人速查总表",
+    "start": 194.642,
+    "voice_dur": 31.896,
+    "duration": 33.396,
+    "subtitles": [
+      {
+        "start": 194.642,
+        "local_start": 0.0,
+        "html": "14 个原生神级命令懒人速查表帮你整理好了，直接<span class='sub-hl'>截图保存</span>！"
+      },
+      {
+        "start": 205.842,
+        "local_start": 11.2,
+        "html": "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 194.742,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 202.142,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 206.142,
+        "volume": 0.4
+      }
+    ]
+  }
+]

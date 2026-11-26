@@ -1,0 +1,179 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #0284C7; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #0284C7; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .tri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; width: 100%; max-width: 1740px; height: 690px; }
+
+    .shield-card {
+      background: #0B1120; border-radius: 28px; border: 2px solid #334155;
+      box-shadow: 0 28px 65px -15px rgba(15, 23, 42, 0.3); padding: 38px 34px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cmd-pill { padding: 8px 24px; border-radius: 100px; font-size: 26px; font-weight: 900; font-family: monospace; width: fit-content; }
+    .p-sky { background: rgba(56, 189, 248, 0.2); color: #7DD3FC; border: 2px solid rgba(56, 189, 248, 0.55); }
+    .p-teal { background: rgba(45, 212, 191, 0.2); color: #5EEAD4; border: 2px solid rgba(45, 212, 191, 0.55); }
+    .p-indigo { background: rgba(129, 140, 248, 0.22); color: #C7D2FE; border: 2px solid rgba(129, 140, 248, 0.55); }
+
+    .card-title { font-size: 32px; font-weight: 900; color: #F8FAFC; margin-top: 18px; }
+    .card-desc { font-size: 19px; color: #94A3B8; line-height: 1.55; font-weight: 600; margin-top: 12px; }
+
+    .example-box {
+      background: #1E293B; border-radius: 18px; padding: 20px 22px; color: #F1F5F9;
+      font-family: monospace; font-size: 16px; line-height: 1.6; border: 1.5px solid #334155;
+    }
+    .ex-hl { color: #38BDF8; font-weight: 900; }
+    .ex-note { font-family: "PingFang SC", sans-serif; font-size: 15px; color: #94A3B8; margin-top: 8px; display: block; }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(56, 189, 248, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(2, 132, 199, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #38BDF8, #0284C7); border-radius: 4px; }
+    .subtitle-text { font-size: 40px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7); }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .art-cmd { font-family: monospace; color: #5EEAD4; background: rgba(13, 148, 136, 0.25); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(45, 212, 191, 0.6); }
+    .art-cmd-cyan { font-family: monospace; color: #67E8F9; background: rgba(6, 182, 212, 0.25); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(34, 211, 238, 0.6); }
+    .art-cmd-purple { font-family: monospace; color: #C4B5FD; background: rgba(124, 58, 237, 0.28); padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(167, 139, 250, 0.6); }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s6_context_learn">
+    <div class="header-nav">
+      <span class="nav-badge">06</span>
+      <span class="nav-title">护住上下文 · /btw, /compact & /learn</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="tri-grid">
+        <div class="shield-card" id="c-btw">
+          <div>
+            <div class="cmd-pill p-sky">/btw</div>
+            <div class="card-title">只读旁路小窗</div>
+            <div class="card-desc">主线正在忙，想插嘴查配置、核实细节？右侧秒开从会话，自带主线快照。</div>
+          </div>
+          <div class="example-box" id="btw-box">
+            <span class="ex-hl">/btw</span> 检查一下现在的端口号配对了吗？
+            <span class="ex-note">🔒 仅限只读权限，默认绝不改动任何工作区文件</span>
+          </div>
+        </div>
+
+        <div class="shield-card" id="c-compact">
+          <div>
+            <div class="cmd-pill p-teal">/compact</div>
+            <div class="card-title">带指令精准瘦身</div>
+            <div class="card-desc">对话聊太长变慢要撞上限？手动压缩前文为检查点，并可指定必须保留的规矩！</div>
+          </div>
+          <div class="example-box" id="compact-box">
+            <span class="ex-hl">/compact</span> 保留刚才确认的核心结构，接下来写正文
+            <span class="ex-note">✂️ 腾出上下文空间，不丢关键约束</span>
+          </div>
+        </div>
+
+        <div class="shield-card" id="c-learn">
+          <div>
+            <div class="cmd-pill p-indigo">/learn</div>
+            <div class="card-title">把规矩永久存下来</div>
+            <div class="card-desc">调教顺手或踩完大坑后敲一下，自动复盘纠偏经验，弹出提案让你审批沉淀。</div>
+          </div>
+          <div class="example-box" id="learn-box">
+            <span class="ex-hl">/learn</span> 自动提炼 Rule 或 Skill
+            <span class="ex-note">🧠 下次开新对话自动照办，不用每次从头嘱咐</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s6-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s6-sub">第五组护住大脑：主线跑得正欢，想<span class='art-hl'>临时插嘴查配置</span>？</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 66, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 66, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 66, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Beat 1 (0.0s): Explosive entry + Focus on /btw
+    tl.fromTo(".tri-grid", { scale: 0.94, y: 24, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#c-btw", { scale: 0.96, opacity: 0.85 }, { scale: 1.04, opacity: 1, borderColor: "#38BDF8", duration: 0.45 }, 0.1);
+    tl.fromTo(["#c-compact", "#c-learn"], { scale: 0.96, opacity: 0.35 }, { scale: 0.96, opacity: 0.38, duration: 0.45 }, 0.1);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 14, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (5.923s): /btw detail box glows
+    tl.to("#btw-box", { borderColor: "#38BDF8", scale: 1.04, duration: 0.4 }, 5.923);
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "敲 <span class='art-cmd-cyan'>/btw</span> 秒开只读小窗，绝不打断节奏、绝不改文件！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 5.923);
+
+    // Beat 3 (11.77s): Snap spotlight to /compact
+    tl.to("#c-btw", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 11.77);
+    tl.to("#c-compact", { scale: 1.04, opacity: 1, borderColor: "#2DD4BF", duration: 0.38, ease: "back.out(1.5)" }, 11.77);
+    tl.to("#compact-box", { borderColor: "#2DD4BF", scale: 1.04, duration: 0.4 }, 12.2);
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "聊太长变卡变蠢？用 <span class='art-cmd'>/compact</span> 带保留指令瞬间瘦身！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 11.77);
+
+    // Beat 4 (18.983s): Snap spotlight to /learn
+    tl.to("#c-compact", { scale: 0.95, opacity: 0.38, borderColor: "#334155", duration: 0.38 }, 18.983);
+    tl.to("#c-learn", { scale: 1.04, opacity: 1, borderColor: "#818CF8", duration: 0.38, ease: "back.out(1.5)" }, 18.983);
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "调教顺手或踩完大坑，最后一定要敲 <span class='art-cmd-purple'>/learn</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 18.983);
+
+    // Beat 5 (23.884s): /learn detail box glows
+    tl.to("#learn-box", { borderColor: "#818CF8", scale: 1.04, duration: 0.4 }, 23.884);
+    tl.call(() => {
+      const sub = document.getElementById("s6-sub");
+      if (sub) sub.innerHTML = "规矩焊死成 <span class='art-hl'>永久 Rule / Skill</span>，下次开新窗直接照办！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 23.884);
+
+    tl.fromTo("#s6-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 17, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 28.791);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s6_context_learn"] = tl;
+  </script>
+</template>

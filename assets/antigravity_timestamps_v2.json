@@ -1,0 +1,458 @@
+[
+  {
+    "id": "ag_s1_hook",
+    "title": "01 黄金钩子",
+    "start": 0.0,
+    "duration": 16.876,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 7.231,
+        "target": "hook_pain",
+        "sub_html": "还在把 Antigravity 当普通聊天框？难怪写代码老返工、<span class='art-warn'>Token 烧得飞快</span>！"
+      },
+      {
+        "local_start": 7.231,
+        "local_end": 10.981,
+        "target": "table_zoom",
+        "sub_html": "其实官方早就内置了 <span class='art-hl'>14 个原生神级命令</span>！"
+      },
+      {
+        "local_start": 10.981,
+        "local_end": 16.876,
+        "target": "cards_all",
+        "sub_html": "今天一张<span class='art-cmd'>懒人速查表</span>，由浅入深带你打通生产力外挂！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "ding",
+        "time": 0.05,
+        "volume": 0.45
+      },
+      {
+        "type": "whoosh",
+        "time": 7.281,
+        "volume": 0.35
+      },
+      {
+        "type": "check",
+        "time": 11.031,
+        "volume": 0.35
+      }
+    ]
+  },
+  {
+    "id": "ag_s2_plan_grill",
+    "title": "02 动手前对齐",
+    "start": 16.876,
+    "duration": 24.833,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 5.511,
+        "target": "plan_focus",
+        "sub_html": "第一组动手前先对齐：怕 AI 脑子一热<span class='art-warn'>直接乱改文件</span>？"
+      },
+      {
+        "local_start": 5.511,
+        "local_end": 10.206,
+        "target": "plan_proceed",
+        "sub_html": "先敲 <span class='art-cmd'>/plan</span>，它会先写出完整执行计划等你点确认！"
+      },
+      {
+        "local_start": 10.206,
+        "local_end": 14.334,
+        "target": "grill_focus",
+        "sub_html": "需求还模糊？直接开 <span class='art-cmd-amber'>/grill-me</span> 追问模式！"
+      },
+      {
+        "local_start": 14.334,
+        "local_end": 18.973,
+        "target": "grill_options",
+        "sub_html": "像产品总监一样，<span class='art-hl'>一题题逼问你</span>把岔路口全想透！"
+      },
+      {
+        "local_start": 18.973,
+        "local_end": 24.833,
+        "target": "combo_both",
+        "sub_html": "王炸组合：<span class='art-cmd'>/plan</span> + <span class='art-cmd-amber'>/grill-me</span>，先吵清楚再干活，告别返工！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 16.926,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 22.437,
+        "volume": 0.4
+      },
+      {
+        "type": "pop_click",
+        "time": 27.132,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 35.899,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s3_ui_browser",
+    "title": "03 所见即所得",
+    "start": 41.709,
+    "duration": 25.594,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 4.239,
+        "target": "genui_focus",
+        "sub_html": "第二组所见即所得：光看大段文字<span class='art-warn'>眼睛看花</span>？"
+      },
+      {
+        "local_start": 4.239,
+        "local_end": 10.427,
+        "target": "genui_panel",
+        "sub_html": "敲 <span class='art-cmd-purple'>/generative_ui</span>，本地沙箱生成 HTML 互动组件！"
+      },
+      {
+        "local_start": 10.427,
+        "local_end": 15.908,
+        "target": "genui_zero_token",
+        "sub_html": "开关滑块随便点，<span class='art-hl'>0 额外 Token 消耗</span>，还能导出复用！"
+      },
+      {
+        "local_start": 15.908,
+        "local_end": 20.347,
+        "target": "browser_focus",
+        "sub_html": "想查最新网页，或让 AI 自己<span class='art-hl'>点按钮测本地页面</span>？"
+      },
+      {
+        "local_start": 20.347,
+        "local_end": 25.594,
+        "target": "browser_preview",
+        "sub_html": "喊一声 <span class='art-cmd-cyan'>/browser</span>，右侧内置浏览器秒开，边逛边测！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "tap",
+        "time": 41.759,
+        "volume": 0.4
+      },
+      {
+        "type": "pop_click",
+        "time": 45.998,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 52.186,
+        "volume": 0.45
+      },
+      {
+        "type": "whoosh",
+        "time": 57.667,
+        "volume": 0.35
+      },
+      {
+        "type": "check",
+        "time": 62.107,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "ag_s4_multi_agent",
+    "title": "04 多兵种协同",
+    "start": 67.303,
+    "duration": 31.916,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 4.272,
+        "target": "all_intro",
+        "sub_html": "第三组活儿太多怎么拆？<span class='art-hl'>三招精准分流</span>！"
+      },
+      {
+        "local_start": 4.272,
+        "local_end": 12.913,
+        "target": "swarm_focus",
+        "sub_html": "边商量边干用 <span class='art-cmd'>/swarm</span>：化身包工头拉群派活，看板实时看进度！"
+      },
+      {
+        "local_start": 12.913,
+        "local_end": 21.083,
+        "target": "workflow_focus",
+        "sub_html": "几十个文件固定格式批量跑？交给 <span class='art-cmd-amber'>/run-workflow</span>！"
+      },
+      {
+        "local_start": 21.083,
+        "local_end": 26.165,
+        "target": "workflow_detail",
+        "sub_html": "<span class='art-hl'>Python 脚本钉死流程</span>：轻量模型省额度，翻车秒止损！"
+      },
+      {
+        "local_start": 26.165,
+        "local_end": 31.916,
+        "target": "teamwork_focus",
+        "sub_html": "跨天大型仓库重构？直接上 <span class='art-cmd-purple'>/teamwork</span> 组建专业工程团队！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 67.353,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 71.625,
+        "volume": 0.4
+      },
+      {
+        "type": "pop_click",
+        "time": 80.266,
+        "volume": 0.4
+      },
+      {
+        "type": "check",
+        "time": 88.437,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 93.518,
+        "volume": 0.45
+      }
+    ]
+  },
+  {
+    "id": "ag_s5_goal_boost",
+    "title": "05 攻坚与续航",
+    "start": 99.219,
+    "duration": 27.356,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 7.725,
+        "target": "goal_focus",
+        "sub_html": "第四组续航与攻坚：长任务最怕 AI <span class='art-warn'>干一半停下来问你</span>？"
+      },
+      {
+        "local_start": 7.725,
+        "local_end": 12.214,
+        "target": "goal_bar",
+        "sub_html": "开启 <span class='art-cmd-amber'>/goal</span> 死磕模式，一路推进不达目标绝不罢休！"
+      },
+      {
+        "local_start": 12.214,
+        "local_end": 18.515,
+        "target": "boost_focus",
+        "sub_html": "遇到诡异 Bug 或复杂重构？直接祭出 <span class='art-cmd-red'>/boost</span>！"
+      },
+      {
+        "local_start": 18.515,
+        "local_end": 27.356,
+        "target": "boost_steps",
+        "sub_html": "后台多轮对抗：<span class='art-hl'>出方案 ➔ 挑刺找漏洞 ➔ 主控复核交差</span>！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 99.269,
+        "volume": 0.35
+      },
+      {
+        "type": "check",
+        "time": 106.994,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 111.483,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 117.785,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "ag_s6_context_learn",
+    "title": "06 护住上下文",
+    "start": 126.575,
+    "duration": 26.734,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 4.812,
+        "target": "btw_focus",
+        "sub_html": "第五组护住上下文：主线正忙想<span class='art-hl'>插嘴查配置</span>？"
+      },
+      {
+        "local_start": 4.812,
+        "local_end": 10.7,
+        "target": "btw_detail",
+        "sub_html": "敲 <span class='art-cmd-cyan'>/btw</span> 右侧开只读小窗，绝不打断节奏、绝不改文件！"
+      },
+      {
+        "local_start": 10.7,
+        "local_end": 17.028,
+        "target": "compact_focus",
+        "sub_html": "聊太长变慢了？用 <span class='art-cmd'>/compact</span> 附带保留指令精准瘦身！"
+      },
+      {
+        "local_start": 17.028,
+        "local_end": 21.526,
+        "target": "learn_focus",
+        "sub_html": "每次调教顺手或踩完坑，最后一定要敲 <span class='art-cmd-purple'>/learn</span>！"
+      },
+      {
+        "local_start": 21.526,
+        "local_end": 26.734,
+        "target": "learn_detail",
+        "sub_html": "永久存成 <span class='art-hl'>Rule 或 Skill</span>，下次开新窗直接照办！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "pop_click",
+        "time": 126.625,
+        "volume": 0.4
+      },
+      {
+        "type": "whoosh",
+        "time": 137.325,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 143.654,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 148.152,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "ag_s7_schedule_auto",
+    "title": "07 定时与自动化",
+    "start": 153.31,
+    "duration": 23.754,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 3.513,
+        "target": "both_intro",
+        "sub_html": "第六组定时与自动化：<span class='art-warn'>千万别把这俩搞混了</span>！"
+      },
+      {
+        "local_start": 3.513,
+        "local_end": 9.442,
+        "target": "schedule_focus",
+        "sub_html": "只在当前对话喊你一声？用 <span class='art-cmd-amber'>/schedule</span> 定个闹钟就行！"
+      },
+      {
+        "local_start": 9.442,
+        "local_end": 15.865,
+        "target": "auto_focus",
+        "sub_html": "每天早 9 点跑日报巡检？用 <span class='art-cmd'>/automation</span>！"
+      },
+      {
+        "local_start": 15.865,
+        "local_end": 23.754,
+        "target": "auto_detail",
+        "sub_html": "<span class='art-hl'>独立新会话 + 便宜模型省额度</span>，跑完直接汇总给你！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 153.36,
+        "volume": 0.3
+      },
+      {
+        "type": "pop_click",
+        "time": 156.872,
+        "volume": 0.4
+      },
+      {
+        "type": "ding",
+        "time": 162.802,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 169.224,
+        "volume": 0.4
+      }
+    ]
+  },
+  {
+    "id": "ag_s8_summary_outro",
+    "title": "08 速查总表与片尾",
+    "start": 177.063,
+    "duration": 31.781,
+    "beats": [
+      {
+        "local_start": 0.0,
+        "local_end": 5.116,
+        "target": "recap_1",
+        "sub_html": "动手前 <span class='art-cmd'>/plan + /grill-me</span> 问透，确定长任务上 <span class='art-cmd-amber'>/goal</span>！"
+      },
+      {
+        "local_start": 5.116,
+        "local_end": 11.81,
+        "target": "recap_2",
+        "sub_html": "协同找 <span class='art-cmd'>/swarm · /run-workflow · /teamwork</span>，护上下文 <span class='art-cmd-cyan'>/btw + /compact</span>！"
+      },
+      {
+        "local_start": 11.81,
+        "local_end": 19.6,
+        "target": "recap_3",
+        "sub_html": "定时 <span class='art-cmd-amber'>/schedule · /automation</span>，画图 <span class='art-cmd-purple'>/generative_ui</span>，攻坚 <span class='art-cmd-red'>/boost</span>，复盘 <span class='art-cmd'>/learn</span>！"
+      },
+      {
+        "local_start": 19.6,
+        "local_end": 24.064,
+        "target": "snap_hold",
+        "sub_html": "完整 14 个命令速查表放屏幕上了，直接<span class='art-hl'>截图保存</span>！"
+      },
+      {
+        "local_start": 24.064,
+        "local_end": 31.781,
+        "target": "grand_outro",
+        "sub_html": "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！"
+      }
+    ],
+    "sfx": [
+      {
+        "type": "whoosh",
+        "time": 177.113,
+        "volume": 0.35
+      },
+      {
+        "type": "ding",
+        "time": 196.713,
+        "volume": 0.45
+      },
+      {
+        "type": "check",
+        "time": 201.177,
+        "volume": 0.4
+      }
+    ]
+  }
+]

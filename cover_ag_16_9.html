@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Antigravity 14 个神级原生命令视频封面</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #060A13;
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #FFFFFF; -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden;
+        background: radial-gradient(circle at 22% 45%, #172554 0%, #090E1A 52%, #050811 100%);
+        display: flex; align-items: center; justify-content: space-between; padding: 72px 90px;
+      }
+      .grid-overlay {
+        position: absolute; inset: 0;
+        background-image: linear-gradient(rgba(96, 165, 250, 0.08) 1.5px, transparent 1.5px),
+                          linear-gradient(90deg, rgba(96, 165, 250, 0.08) 1.5px, transparent 1.5px);
+        background-size: 64px 64px; pointer-events: none; z-index: 1;
+      }
+      .glow-orb-1 {
+        position: absolute; top: -150px; left: -100px; width: 700px; height: 700px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.32) 0%, transparent 70%); pointer-events: none; z-index: 2;
+      }
+      .glow-orb-2 {
+        position: absolute; bottom: -180px; right: 120px; width: 760px; height: 760px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%); pointer-events: none; z-index: 2;
+      }
+
+      /* Left Hero Typography */
+      .left-col {
+        position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; gap: 28px; max-width: 1060px;
+      }
+      .brand-row {
+        display: flex; align-items: center; gap: 18px;
+      }
+      .avatar-ring {
+        width: 68px; height: 68px; border-radius: 50%; border: 3px solid #FBBF24;
+        box-shadow: 0 0 24px rgba(251, 191, 36, 0.45); overflow: hidden;
+      }
+      .avatar-ring img { width: 100%; height: 100%; object-fit: cover; }
+      .brand-pill {
+        padding: 10px 26px; border-radius: 100px; background: rgba(239, 68, 68, 0.2);
+        border: 2px solid rgba(248, 113, 113, 0.7); color: #FCA5A5; font-size: 26px; font-weight: 900;
+        letter-spacing: 0.04em; box-shadow: 0 0 24px rgba(239, 68, 68, 0.3);
+      }
+
+      .hero-title-wrap {
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .title-brand {
+        font-size: 84px; font-weight: 900; letter-spacing: -0.02em; color: #FFFFFF;
+        text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      }
+      .title-brand span {
+        background: linear-gradient(135deg, #60A5FA, #A78BFA);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      }
+      .title-main {
+        font-size: 108px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #FEF08A 0%, #FACC15 45%, #F97316 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 10px 28px rgba(245, 158, 11, 0.45));
+      }
+      .title-sub {
+        font-size: 78px; font-weight: 900; color: #FFFFFF; line-height: 1.15;
+        text-shadow: 0 6px 24px rgba(37, 99, 235, 0.5);
+      }
+
+      .tags-row {
+        display: flex; align-items: center; gap: 18px; margin-top: 12px;
+      }
+      .tag-box {
+        padding: 14px 28px; border-radius: 16px; background: rgba(30, 41, 59, 0.85);
+        border: 2px solid rgba(96, 165, 250, 0.45); font-size: 26px; font-weight: 900; color: #E2E8F0;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+      .tag-box-gold {
+        border-color: rgba(251, 191, 36, 0.65); color: #FDE047; background: rgba(120, 53, 15, 0.45);
+      }
+
+      /* Right Showcase Preview */
+      .right-col {
+        position: relative; z-index: 10; width: 640px; height: 860px; display: flex; align-items: center; justify-content: center;
+      }
+      .preview-card {
+        width: 600px; height: 820px; background: #0B1120; border-radius: 28px;
+        border: 3px solid rgba(96, 165, 250, 0.65);
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65), 0 0 50px rgba(37, 99, 235, 0.35);
+        overflow: hidden; display: flex; flex-direction: column; transform: rotate(2deg);
+      }
+      .win-bar {
+        height: 44px; background: #1E293B; border-bottom: 1px solid #334155;
+        display: flex; align-items: center; padding: 0 20px; gap: 10px;
+      }
+      .dot { width: 13px; height: 13px; border-radius: 50%; }
+      .img-wrap { flex: 1; background: #FFFFFF; padding: 12px; display: flex; align-items: center; justify-content: center; }
+      .img-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+      .float-badge {
+        position: absolute; top: 10px; right: -10px;
+        background: linear-gradient(135deg, #EF4444, #F97316); color: #FFFFFF;
+        padding: 14px 32px; border-radius: 100px; font-size: 26px; font-weight: 900;
+        border: 3px solid #FEF08A; box-shadow: 0 14px 36px rgba(239, 68, 68, 0.55);
+        transform: rotate(6deg); z-index: 20;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="cover_main" data-start="0" data-duration="1" data-width="1920" data-height="1080" data-fps="30">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb-1"></div>
+      <div class="glow-orb-2"></div>
+
+      <div class="left-col">
+        <div class="brand-row">
+          <div class="avatar-ring"><img src="assets/avatar.jpg" alt="胖猫AI" /></div>
+          <div class="brand-pill">🔥 别再当傻瓜聊天框使了！！</div>
+        </div>
+
+        <div class="hero-title-wrap">
+          <div class="title-brand"><span>Antigravity</span></div>
+          <div class="title-main">14 个神级原生命令</div>
+          <div class="title-sub">直接让你效率起飞！！</div>
+        </div>
+
+        <div class="tags-row">
+          <div class="tag-box tag-box-gold">⚡ 0 Token 互动图</div>
+          <div class="tag-box">🛡️ 防 AI 乱改文件</div>
+          <div class="tag-box">🤖 召唤特种兵团</div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="float-badge">📌 附懒人速查总表</div>
+        <div class="preview-card">
+          <div class="win-bar">
+            <span class="dot" style="background:#EF4444;"></span>
+            <span class="dot" style="background:#F59E0B;"></span>
+            <span class="dot" style="background:#10B981;"></span>
+            <span style="font-size:15px;font-weight:800;color:#CBD5E1;margin-left:10px;">14 个原生神级命令场景速查</span>
+          </div>
+          <div class="img-wrap">
+            <img src="assets/antigravity/table_14_cmds.jpg" alt="14 Commands Table" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["cover_main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
+

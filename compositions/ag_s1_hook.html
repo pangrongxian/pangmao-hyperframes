@@ -1,0 +1,224 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .bg-mesh {
+      position: absolute; top: -120px; right: -80px; width: 780px; height: 780px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(124, 58, 237, 0.06) 45%, transparent 70%);
+      pointer-events: none; z-index: 2;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-badge { font-size: 26px; font-weight: 900; color: #2563EB; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 34px; height: 6px; border-top: 3.5px solid #2563EB; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 88px 76px 148px; }
+    .hero-split { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1740px; gap: 64px; }
+
+    /* Left: Pro Display XDR Dark Frame */
+    .table-showcase-card {
+      width: 660px; height: 740px; background: #0B1120; border-radius: 26px;
+      border: 2px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 34px 80px -15px rgba(15, 23, 42, 0.35), 0 0 40px rgba(37, 99, 235, 0.12);
+      overflow: hidden; display: flex; flex-direction: column; flex-shrink: 0; position: relative;
+    }
+    .win-topbar {
+      height: 44px; background: #1E293B; border-bottom: 1px solid #334155;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-shrink: 0;
+    }
+    .win-dots { display: flex; gap: 8px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #EF4444; } .dot-y { background: #F59E0B; } .dot-g { background: #10B981; }
+    .win-title { font-size: 14px; font-weight: 800; color: #CBD5E1; letter-spacing: 0.04em; }
+    .table-img-wrap { flex: 1; overflow: hidden; background: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 10px; position: relative; }
+    .table-img { width: 100%; height: 100%; object-fit: contain; }
+    .scan-beam {
+      position: absolute; left: 0; right: 0; height: 6px; top: -10px;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.85), transparent);
+      box-shadow: 0 0 24px rgba(37, 99, 235, 0.9); z-index: 10; opacity: 0;
+    }
+
+    /* Right Showcase Content */
+    .hero-info { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .main-badge {
+      display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px;
+      background: #0F172A; border: 1.5px solid rgba(96, 165, 250, 0.5); border-radius: 100px;
+      font-size: 20px; font-weight: 800; color: #93C5FD; width: fit-content;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+    }
+    .headline { font-size: 62px; font-weight: 900; line-height: 1.2; color: #0F172A; letter-spacing: -0.02em; }
+    .headline-hl {
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .feature-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 6px; }
+    .f-card {
+      background: #0F172A; border: 1.5px solid #334155; border-radius: 22px; padding: 24px;
+      box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.22); display: flex; align-items: center; gap: 18px;
+    }
+    .f-icon {
+      width: 56px; height: 56px; border-radius: 16px; background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(96, 165, 250, 0.35); display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0;
+    }
+    .f-text-title { font-size: 22px; font-weight: 900; color: #F8FAFC; margin-bottom: 4px; }
+    .f-text-desc { font-size: 15px; color: #94A3B8; font-weight: 600; font-family: monospace; }
+
+    /* Kinetic Art-Typography Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(96, 165, 250, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(37, 99, 235, 0.25);
+      display: flex; align-items: center; gap: 20px;
+    }
+    .eq-wave { display: flex; align-items: flex-end; gap: 4px; height: 26px; }
+    .eq-bar { width: 5px; background: linear-gradient(180deg, #60A5FA, #3B82F6); border-radius: 4px; }
+    .subtitle-text {
+      font-size: 42px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3;
+      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    }
+    .art-hl {
+      background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.45));
+    }
+    .art-warn {
+      background: linear-gradient(135deg, #FCA5A5, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.45));
+    }
+    .art-cmd {
+      font-family: monospace; color: #60A5FA; background: rgba(37, 99, 235, 0.25);
+      padding: 2px 14px; border-radius: 12px; border: 1.5px solid rgba(96, 165, 250, 0.6);
+    }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s1_hook">
+    <div class="bg-mesh"></div>
+    <div class="header-nav">
+      <span class="nav-badge">01</span>
+      <span class="nav-title">效率外挂 · 14 个原生神级命令</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage">
+      <div class="hero-split">
+        <div class="table-showcase-card" id="s1-table-card">
+          <div class="win-topbar">
+            <div class="win-dots"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span></div>
+            <div class="win-title">Antigravity 14 个原生命令速查表</div>
+            <div style="width: 44px;"></div>
+          </div>
+          <div class="table-img-wrap">
+            <div class="scan-beam" id="s1-scan"></div>
+            <img src="assets/antigravity/table_14_cmds.jpg" class="table-img" alt="14 Commands Table" />
+          </div>
+        </div>
+
+        <div class="hero-info" id="s1-info">
+          <div class="main-badge" id="s1-badge">
+            <span>⚡</span> Antigravity 生产力全解 · 2026 实战指南
+          </div>
+          <h1 class="headline" id="s1-headline">
+            别再把它当普通聊天框！<br />
+            <span class="headline-hl">14 个原生命令</span> 效率翻 10 倍
+          </h1>
+          <div class="feature-cards">
+            <div class="f-card" id="c1">
+              <div class="f-icon">🛡️</div>
+              <div>
+                <div class="f-text-title">拒绝 AI 乱改文件</div>
+                <div class="f-text-desc">/plan + /grill-me</div>
+              </div>
+            </div>
+            <div class="f-card" id="c2">
+              <div class="f-icon">🎨</div>
+              <div>
+                <div class="f-text-title">0 Token 交互沙箱</div>
+                <div class="f-text-desc">/generative_ui + /browser</div>
+              </div>
+            </div>
+            <div class="f-card" id="c3">
+              <div class="f-icon">🤖</div>
+              <div>
+                <div class="f-text-title">多 Agent 兵团作战</div>
+                <div class="f-text-desc">/swarm + /run-workflow</div>
+              </div>
+            </div>
+            <div class="f-card" id="c4">
+              <div class="f-icon">⏰</div>
+              <div>
+                <div class="f-text-title">全自动记忆与巡检</div>
+                <div class="f-text-desc">/learn + /automation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-avatar" id="s1-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="eq-wave">
+          <div class="eq-bar" id="eq1" style="height: 14px;"></div>
+          <div class="eq-bar" id="eq2" style="height: 24px;"></div>
+          <div class="eq-bar" id="eq3" style="height: 12px;"></div>
+        </div>
+        <div class="subtitle-text" id="s1-sub">别拿 Antigravity 当<span class='art-warn'>傻瓜聊天框</span>！难怪写代码崩溃、Token 烧得飞快！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#eq1", { height: 8 }, { height: 24, repeat: 40, yoyo: true, duration: 0.35, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq2", { height: 24 }, { height: 10, repeat: 40, yoyo: true, duration: 0.28, ease: "sine.inOut" }, 0);
+    tl.fromTo("#eq3", { height: 10 }, { height: 26, repeat: 40, yoyo: true, duration: 0.42, ease: "sine.inOut" }, 0);
+
+    // Beat 1 (0.0s): Explosive 0s entrance
+    tl.fromTo("#s1-table-card", { y: 30, opacity: 0.9, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#s1-headline", { y: 24, scale: 0.96, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" }, 0.08);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 16, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 0.05);
+
+    // Beat 2 (7.542s): 14 commands table zoom + laser scan
+    tl.to("#s1-table-card", { scale: 1.05, borderColor: "#60A5FA", duration: 0.38, ease: "back.out(1.5)" }, 7.542);
+    tl.fromTo("#s1-scan", { top: "-10px", opacity: 1 }, { top: "100%", opacity: 0.5, duration: 2.4, ease: "power1.inOut" }, 7.6);
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "官方早藏了 <span class='art-hl'>14 个神级原生命令</span>，直接让你<span class='art-hl'>效率起飞</span>！！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 7.542);
+
+    // Beat 3 (13.825s): Cards cascade pop
+    tl.to("#s1-table-card", { scale: 1.0, duration: 0.35 }, 13.825);
+    tl.fromTo(["#c1", "#c2", "#c3", "#c4"], { y: 24, opacity: 0.25, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, stagger: 0.22, duration: 0.45, ease: "back.out(1.7)" }, 13.825);
+    tl.call(() => {
+      const sub = document.getElementById("s1-sub");
+      if (sub) sub.innerHTML = "今天一张<span class='art-cmd'>懒人外挂速查表</span>，带你从青铜一键封神！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 14 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 13.825);
+
+    tl.fromTo("#s1-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 10, ease: "sine.inOut" }, 0.2);
+    tl.to("#root", { opacity: 0, duration: 0.28 }, 17.864);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s1_hook"] = tl;
+  </script>
+</template>

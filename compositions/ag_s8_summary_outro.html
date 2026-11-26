@@ -1,0 +1,223 @@
+<template>
+  <style>
+    @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1A1C20;
+    }
+    .header-nav { position: absolute; top: 44px; left: 64px; display: flex; align-items: baseline; gap: 12px; z-index: 50; }
+    .nav-num { font-size: 26px; font-weight: 800; color: #C58B35; letter-spacing: 0.02em; }
+    .nav-title { font-size: 24px; font-weight: 800; color: #1E2024; letter-spacing: 0.04em; }
+    .header-brand { position: absolute; top: 40px; right: 68px; display: flex; flex-direction: column; align-items: center; z-index: 50; }
+    .brand-arch { width: 32px; height: 6px; border-top: 3.5px solid #C58B35; border-radius: 50%; margin-bottom: 2px; }
+    .brand-name { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1C20; }
+
+    /* STAGE 1: Full-Screen 14-Command Cheat Sheet */
+    .stage1-wrap {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 86px 70px 142px; z-index: 20;
+    }
+    .cheat-card {
+      width: 1740px; height: 780px; background: #0B1120; border-radius: 32px; border: 2px solid rgba(96, 165, 250, 0.4);
+      box-shadow: 0 32px 80px -15px rgba(15, 23, 42, 0.35); display: flex; flex-direction: column; padding: 28px 44px;
+    }
+    .card-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1.5px solid #1E293B; padding-bottom: 14px; margin-bottom: 16px;
+    }
+    .card-headline { display: flex; align-items: center; gap: 14px; }
+    .card-headline-title { font-size: 28px; font-weight: 900; color: #F8FAFC; }
+    .screenshot-badge {
+      display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 2px solid #F59E0B; color: #B45309; padding: 10px 26px; border-radius: 100px;
+      font-size: 17px; font-weight: 900; box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .cmd-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 28px; flex: 1; }
+    .cmd-row {
+      background: #1E293B; border: 1.5px solid #334155; border-radius: 14px; padding: 10px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .row-scene { font-size: 16px; font-weight: 700; color: #E2E8F0; }
+    .row-cmd {
+      font-family: monospace; font-size: 17px; font-weight: 900; color: #60A5FA;
+      background: rgba(37, 99, 235, 0.25); padding: 4px 14px; border-radius: 8px; border: 1px solid rgba(96, 165, 250, 0.5); white-space: nowrap;
+    }
+
+    /* STAGE 2: FIXED PANGMAO AI BRAND OUTRO SCREEN */
+    .grand-outro {
+      position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+      gap: 28px; z-index: 70;
+    }
+    .outro-avatar-ring {
+      width: 190px; height: 190px; border-radius: 50%; background: #FAF7F0; border: 6px solid #FFFFFF;
+      box-shadow: 0 20px 50px rgba(50, 38, 25, 0.18), 0 0 0 4px #E5DBC7; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .outro-avatar-ring img { width: 100%; height: 100%; object-fit: cover; }
+    .outro-brand-block { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .outro-brand-arch { width: 52px; height: 9px; border-top: 5px solid #C58B35; border-radius: 50%; margin: 0 auto; }
+    .outro-title { font-size: 56px; font-weight: 900; color: #1E2024; letter-spacing: 0.08em; text-align: center; margin-top: 6px; }
+    .outro-sub { font-size: 26px; font-weight: 700; color: #64748B; letter-spacing: 0.05em; text-align: center; }
+    .outro-pill {
+      background: #FFFFFF; border: 1.5px solid rgba(220, 214, 204, 0.85); box-shadow: 0 10px 28px rgba(45, 35, 20, 0.08);
+      border-radius: 100px; padding: 16px 44px; font-size: 20px; font-weight: 800; color: #C58B35;
+      letter-spacing: 0.06em; margin-top: 10px;
+    }
+
+    /* Subtitle HUD */
+    .subtitle-hud { position: absolute; bottom: 32px; left: 0; width: 1920px; display: flex; justify-content: center; align-items: center; z-index: 100; pointer-events: none; }
+    .subtitle-capsule {
+      max-width: 1560px; padding: 18px 52px; background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(24px);
+      border-radius: 100px; border: 2px solid rgba(96, 165, 250, 0.55); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      display: flex; align-items: center; gap: 18px;
+    }
+    .subtitle-capsule-light {
+      background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(220, 214, 204, 0.9); box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+    }
+    .subtitle-text { font-size: 38px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.03em; text-align: center; line-height: 1.3; }
+    .subtitle-text-dark { color: #1E2024; font-size: 36px; }
+    .art-hl { background: linear-gradient(135deg, #FDE047, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub-hl { color: #C58B35; font-weight: 900; }
+    .art-cmd { font-family: monospace; color: #60A5FA; background: rgba(37, 99, 235, 0.25); padding: 2px 12px; border-radius: 10px; }
+    .art-cmd-amber { font-family: monospace; color: #FBBF24; background: rgba(245, 158, 11, 0.22); padding: 2px 12px; border-radius: 10px; }
+    .art-cmd-cyan { font-family: monospace; color: #67E8F9; background: rgba(6, 182, 212, 0.25); padding: 2px 12px; border-radius: 10px; }
+    .art-cmd-purple { font-family: monospace; color: #C4B5FD; background: rgba(124, 58, 237, 0.28); padding: 2px 12px; border-radius: 10px; }
+    .art-cmd-red { font-family: monospace; color: #FDA4AF; background: rgba(225, 29, 72, 0.25); padding: 2px 12px; border-radius: 10px; }
+
+    .hud-avatar {
+      position: absolute; bottom: 36px; left: 64px; width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid #FFFFFF; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); overflow: hidden; z-index: 101;
+    }
+    .hud-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+
+  <div id="root" data-composition-id="ag_s8_summary_outro">
+    <div class="header-nav">
+      <span class="nav-num" id="nav-num">08</span>
+      <span class="nav-title" id="nav-title">懒人速查总表 · 14 大原生神级命令</span>
+    </div>
+    <div class="header-brand">
+      <div class="brand-arch"></div>
+      <div class="brand-name">胖猫</div>
+    </div>
+
+    <div class="stage1-wrap" id="s8-stage1">
+      <div class="cheat-card" id="summary-card">
+        <div class="card-topbar">
+          <div class="card-headline">
+            <span style="font-size: 28px;">⚡</span>
+            <div class="card-headline-title">Antigravity 14 个原生神级命令 · 懒人场景速查表</div>
+          </div>
+          <div class="screenshot-badge" id="snap-pill"><span>📸</span> 建议截图保存</div>
+        </div>
+
+        <div class="cmd-grid">
+          <div class="cmd-row" id="r1"><span class="row-scene">1. 怕 AI 乱改文件，先看计划</span><span class="row-cmd">/plan</span></div>
+          <div class="cmd-row" id="r8"><span class="row-scene">8. 活儿长思路顺，怕半途停下</span><span class="row-cmd">/goal</span></div>
+          <div class="cmd-row" id="r2"><span class="row-scene">2. 需求模糊，让 AI 逐题问透</span><span class="row-cmd">/grill-me</span></div>
+          <div class="cmd-row" id="r9"><span class="row-scene">9. 解决不了的 Bug，多轮对抗</span><span class="row-cmd">/boost</span></div>
+          <div class="cmd-row" id="r3"><span class="row-scene">3. 文字看花眼，要 0 Token 互动图</span><span class="row-cmd">/generative_ui</span></div>
+          <div class="cmd-row" id="r10"><span class="row-scene">10. 主线正忙，开只读窗插嘴</span><span class="row-cmd">/btw</span></div>
+          <div class="cmd-row" id="r4"><span class="row-scene">4. 查网页、预览测试本地页面</span><span class="row-cmd">/browser</span></div>
+          <div class="cmd-row" id="r11"><span class="row-scene">11. 对话太长变慢，压缩留核心</span><span class="row-cmd">/compact</span></div>
+          <div class="cmd-row" id="r5"><span class="row-scene">5. 活儿多边商量，包工头并行派活</span><span class="row-cmd">/swarm</span></div>
+          <div class="cmd-row" id="r12"><span class="row-scene">12. 调教顺手，永久存成规矩</span><span class="row-cmd">/learn</span></div>
+          <div class="cmd-row" id="r6"><span class="row-scene">6. 几十个同类文件，固定格式批量跑</span><span class="row-cmd">/run-workflow</span></div>
+          <div class="cmd-row" id="r13"><span class="row-scene">13. 当前对话内，过几十分钟提醒</span><span class="row-cmd">/schedule</span></div>
+          <div class="cmd-row" id="r7"><span class="row-scene">7. 跨数小时/跨天的大型仓库重构</span><span class="row-cmd">/teamwork</span></div>
+          <div class="cmd-row" id="r14"><span class="row-scene">14. 每天早 9 点，独立跑日报巡检</span><span class="row-cmd">/automation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grand-outro" id="s8-grand-outro">
+      <div class="outro-avatar-ring" id="outro-avatar"><img src="assets/avatar.jpg" alt="胖猫AI" /></div>
+      <div class="outro-brand-block">
+        <div class="outro-brand-arch"></div>
+        <div class="outro-title">胖猫 AI</div>
+      </div>
+      <div class="outro-sub">带你探索 AI 时代超级个体之路</div>
+      <div class="outro-pill" id="outro-pill">点赞 · 收藏 · 关注 ✦ 咱们下期见！</div>
+    </div>
+
+    <div class="hud-avatar" id="s8-avatar"><img src="assets/avatar.jpg" alt="Avatar" /></div>
+    <div class="subtitle-hud">
+      <div class="subtitle-capsule" id="sub-capsule">
+        <div class="subtitle-text" id="s8-sub">动手前 <span class='art-cmd'>/plan + /grill-me</span>，长任务开 <span class='art-cmd-amber'>/goal</span> 死磕！</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#summary-card", { scale: 0.94, y: 20, opacity: 0.9 }, { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.0);
+    tl.fromTo("#sub-capsule", { scale: 0.88, y: 15, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 0.05);
+    tl.fromTo("#s8-avatar", { y: 0 }, { y: -6, duration: 1.6, yoyo: true, repeat: 15, ease: "sine.inOut" }, 0.2);
+
+    // Beat 1 (0.0s): Highlight /plan, /grill-me, /goal
+    tl.to(["#r1", "#r2", "#r8"], { borderColor: "#FBBF24", backgroundColor: "#172554", duration: 0.35 }, 0.2);
+
+    // Beat 2 (6.801s): Highlight /swarm, /run-workflow, /teamwork, /btw, /compact
+    tl.to(["#r1", "#r2", "#r8"], { borderColor: "#334155", backgroundColor: "#1E293B", duration: 0.3 }, 6.801);
+    tl.to(["#r5", "#r6", "#r7", "#r10", "#r11"], { borderColor: "#38BDF8", backgroundColor: "#0C4A6E", duration: 0.35 }, 6.801);
+    tl.call(() => {
+      const sub = document.getElementById("s8-sub");
+      if (sub) sub.innerHTML = "兵团找 <span class='art-cmd'>/swarm · /run-workflow · /teamwork</span>，护脑 <span class='art-cmd-cyan'>/btw + /compact</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 12 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 6.801);
+
+    // Beat 3 (13.358s): Highlight /schedule, /automation, /generative_ui, /boost, /learn
+    tl.to(["#r5", "#r6", "#r7", "#r10", "#r11"], { borderColor: "#334155", backgroundColor: "#1E293B", duration: 0.3 }, 13.358);
+    tl.to(["#r13", "#r14", "#r3", "#r9", "#r12"], { borderColor: "#A78BFA", backgroundColor: "#2E1065", duration: 0.35 }, 13.358);
+    tl.call(() => {
+      const sub = document.getElementById("s8-sub");
+      if (sub) sub.innerHTML = "定时 <span class='art-cmd-amber'>/schedule · /automation</span>，画图 <span class='art-cmd-purple'>/generative_ui</span>，攻坚 <span class='art-cmd-red'>/boost</span>，复盘 <span class='art-cmd'>/learn</span>！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 12 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 13.358);
+
+    // Beat 4 (20.158s): All reset + Screenshot pill pulse
+    tl.to(["#r13", "#r14", "#r3", "#r9", "#r12"], { borderColor: "#60A5FA", backgroundColor: "#1E293B", duration: 0.3 }, 20.158);
+    tl.fromTo("#snap-pill", { scale: 1 }, { scale: 1.15, repeat: 4, yoyo: true, duration: 0.45, ease: "sine.inOut" }, 20.158);
+    tl.call(() => {
+      const sub = document.getElementById("s8-sub");
+      if (sub) sub.innerHTML = "14 个神级命令速查表放屏幕上了，赶紧<span class='art-hl'>截图保存</span>！！";
+      gsap.fromTo("#sub-capsule", { scale: 0.88, y: 12 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(2.2)" });
+    }, null, 20.158);
+
+    // Beat 5 (25.118s): Transition to Fixed Pangmao AI Brand Outro Screen
+    tl.to("#s8-stage1", { opacity: 0, scale: 0.95, duration: 0.4, ease: "power2.in" }, 24.8);
+    tl.to("#s8-avatar", { opacity: 0, duration: 0.25 }, 24.85);
+
+    tl.call(() => {
+      const num = document.getElementById("nav-num");
+      const title = document.getElementById("nav-title");
+      if (num) num.textContent = "09";
+      if (title) title.textContent = "超级个体";
+
+      const s1 = document.getElementById("s8-stage1");
+      const outro = document.getElementById("s8-grand-outro");
+      if (s1) s1.style.display = "none";
+      if (outro) outro.style.display = "flex";
+
+      const cap = document.getElementById("sub-capsule");
+      const sub = document.getElementById("s8-sub");
+      if (cap) cap.classList.add("subtitle-capsule-light");
+      if (sub) {
+        sub.classList.add("subtitle-text-dark");
+        sub.innerHTML = "我是<span class='sub-hl'>胖猫 AI</span>，带你探索 AI 时代超级个体之路，咱们下期见！";
+      }
+      gsap.fromTo("#sub-capsule", { scale: 0.92, y: 10 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(2)" });
+    }, null, 25.118);
+
+    tl.fromTo("#s8-grand-outro", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.65, ease: "back.out(1.4)" }, 25.16);
+    tl.to("#outro-avatar", { y: -8, duration: 2.0, yoyo: true, repeat: 3, ease: "sine.inOut" }, 25.8);
+    tl.to("#outro-pill", { scale: 1.05, duration: 1.2, yoyo: true, repeat: 4, ease: "sine.inOut" }, 26.0);
+
+    // PERMANENT HOLD! NO FADE TO BLACK!
+    window.__timelines = window.__timelines || {};
+    window.__timelines["ag_s8_summary_outro"] = tl;
+  </script>
+</template>

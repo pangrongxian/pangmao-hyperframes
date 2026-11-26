@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Antigravity 14 个神级原生命令 9:16 手机端爆款封面</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: swap; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #050811;
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #FFFFFF; -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        position: relative; width: 1080px; height: 1920px; overflow: hidden;
+        background: radial-gradient(circle at 50% 35%, #1E1B4B 0%, #090E1C 48%, #04070F 100%);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 180px 64px 280px;
+      }
+
+      /* Architectural Cyber Grid & Glowing Rings */
+      .grid-bg {
+        position: absolute; inset: 0;
+        background-image: linear-gradient(rgba(96, 165, 250, 0.09) 1.5px, transparent 1.5px),
+                          linear-gradient(90deg, rgba(96, 165, 250, 0.09) 1.5px, transparent 1.5px);
+        background-size: 56px 56px; pointer-events: none; z-index: 1;
+      }
+      .glow-ring-outer {
+        position: absolute; top: 360px; left: 50%; transform: translateX(-50%);
+        width: 920px; height: 920px; border-radius: 50%;
+        border: 2px dashed rgba(96, 165, 250, 0.25);
+        box-shadow: 0 0 120px rgba(37, 99, 235, 0.2), inset 0 0 80px rgba(124, 58, 237, 0.15);
+        pointer-events: none; z-index: 2;
+      }
+      .glow-orb-top {
+        position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+        width: 820px; height: 600px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, transparent 70%);
+        pointer-events: none; z-index: 2;
+      }
+      .glow-orb-bottom {
+        position: absolute; bottom: 200px; left: 50%; transform: translateX(-50%);
+        width: 820px; height: 560px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+        pointer-events: none; z-index: 2;
+      }
+
+      /* Giant Watermark "14" behind hero */
+      .watermark-14 {
+        position: absolute; top: 430px; left: 50%; transform: translateX(-50%);
+        font-size: 540px; font-weight: 900; line-height: 1; letter-spacing: -0.05em;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        pointer-events: none; z-index: 3; user-select: none;
+      }
+
+      /* Top Brand Header */
+      .top-header {
+        position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 24px;
+        margin-bottom: 42px;
+      }
+      .brand-chip {
+        display: flex; align-items: center; gap: 14px; padding: 10px 28px 10px 12px;
+        background: rgba(15, 23, 42, 0.85); border: 2px solid rgba(251, 191, 36, 0.5);
+        border-radius: 100px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      }
+      .brand-avatar {
+        width: 54px; height: 54px; border-radius: 50%; border: 2.5px solid #FBBF24; overflow: hidden;
+      }
+      .brand-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      .brand-text { font-size: 26px; font-weight: 900; color: #FDE047; letter-spacing: 0.05em; }
+
+      .hook-pill {
+        padding: 14px 36px; border-radius: 100px;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.28), rgba(220, 38, 38, 0.15));
+        border: 2.5px solid rgba(248, 113, 113, 0.8);
+        color: #FECACA; font-size: 32px; font-weight: 900; letter-spacing: 0.04em;
+        box-shadow: 0 0 36px rgba(239, 68, 68, 0.4);
+      }
+
+      /* Center Hero Art Typography */
+      .hero-typo {
+        position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; text-align: center;
+        gap: 18px; width: 100%;
+      }
+      .art-antigravity {
+        font-size: 118px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.05;
+        background: linear-gradient(135deg, #FFFFFF 0%, #93C5FD 50%, #C4B5FD 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 12px 32px rgba(59, 130, 246, 0.55));
+      }
+
+      .art-num-row {
+        display: flex; align-items: baseline; justify-content: center; gap: 16px; margin: 6px 0;
+      }
+      .art-14 {
+        font-size: 210px; font-weight: 900; line-height: 0.95; letter-spacing: -0.04em;
+        background: linear-gradient(180deg, #FEF08A 0%, #FACC15 48%, #EA580C 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 16px 36px rgba(245, 158, 11, 0.65));
+      }
+      .art-unit {
+        font-size: 92px; font-weight: 900; line-height: 1.1;
+        background: linear-gradient(180deg, #FEF08A 0%, #F59E0B 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 10px 24px rgba(245, 158, 11, 0.45));
+      }
+
+      .art-sub-banner {
+        margin-top: 8px; padding: 20px 48px; border-radius: 26px;
+        background: linear-gradient(135deg, #2563EB, #7C3AED);
+        border: 3px solid rgba(191, 219, 254, 0.85);
+        box-shadow: 0 20px 50px rgba(37, 99, 235, 0.55), 0 0 40px rgba(124, 58, 237, 0.4);
+        transform: skewX(-6deg);
+      }
+      .art-sub-text {
+        font-size: 68px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.04em;
+        transform: skewX(6deg);
+        text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      }
+
+      /* Floating Artistic Command Pills */
+      .cmd-cloud {
+        position: relative; z-index: 20; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px;
+        margin-top: 64px; max-width: 940px;
+      }
+      .c-pill {
+        padding: 16px 30px; border-radius: 20px; font-family: monospace; font-size: 32px; font-weight: 900;
+        background: rgba(15, 23, 42, 0.9); border: 2px solid;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      }
+      .cp-blue { color: #60A5FA; border-color: rgba(96, 165, 250, 0.7); }
+      .cp-amber { color: #FBBF24; border-color: rgba(251, 191, 36, 0.7); }
+      .cp-purple { color: #C4B5FD; border-color: rgba(167, 139, 250, 0.7); }
+      .cp-cyan { color: #67E8F9; border-color: rgba(34, 211, 238, 0.7); }
+      .cp-red { color: #FDA4AF; border-color: rgba(251, 113, 133, 0.7); }
+      .cp-green { color: #34D399; border-color: rgba(52, 211, 153, 0.7); }
+
+      /* Bottom Benefit Strip */
+      .bottom-strip {
+        position: relative; z-index: 20; margin-top: 56px;
+        display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-size: 30px; font-weight: 900; color: #CBD5E1; letter-spacing: 0.04em;
+      }
+      .strip-dot { color: #FBBF24; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="cover_9_16" data-start="0" data-duration="1" data-width="1080" data-height="1920" data-fps="30">
+      <div class="grid-bg"></div>
+      <div class="glow-ring-outer"></div>
+      <div class="glow-orb-top"></div>
+      <div class="glow-orb-bottom"></div>
+      <div class="watermark-14">14</div>
+
+      <div class="top-header">
+        <div class="brand-chip">
+          <div class="brand-avatar"><img src="assets/avatar.jpg" alt="胖猫AI" /></div>
+          <div class="brand-text">胖猫 AI · 效率核武器</div>
+        </div>
+        <div class="hook-pill">🔥 别再当傻瓜聊天框使了！！</div>
+      </div>
+
+      <div class="hero-typo">
+        <div class="art-antigravity">Antigravity</div>
+        <div class="art-num-row">
+          <span class="art-14">14</span>
+          <span class="art-unit">个神级命令</span>
+        </div>
+        <div class="art-sub-banner">
+          <div class="art-sub-text">直接让你效率起飞！！</div>
+        </div>
+      </div>
+
+      <div class="cmd-cloud">
+        <div class="c-pill cp-blue">/plan</div>
+        <div class="c-pill cp-amber">/grill-me</div>
+        <div class="c-pill cp-purple">/generative_ui</div>
+        <div class="c-pill cp-cyan">/browser</div>
+        <div class="c-pill cp-blue">/swarm</div>
+        <div class="c-pill cp-red">/boost</div>
+        <div class="c-pill cp-green">/automation</div>
+      </div>
+
+      <div class="bottom-strip">
+        <span>0 Token 互动图</span>
+        <span class="strip-dot">✦</span>
+        <span>防乱改文件</span>
+        <span class="strip-dot">✦</span>
+        <span>AI 特种兵团</span>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["cover_9_16"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
+
